@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>善意取得 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --desk:#1d1712; --folder:#efe4c8; --folder-2:#e2d2a8;
+    --ink:#2a2420; --ink-soft:#6b5e4d; --brass:#b8893b;
+    --accent:#2b4960; --warn:#9a6a1e;
+    --line:rgba(42,36,32,.16); --shadow:0 14px 30px rgba(0,0,0,.38);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
+      radial-gradient(circle at 20% -10%, rgba(43,73,96,.14), transparent 40%),
+      var(--desk);
+    color:var(--folder); font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+    min-height:100vh; padding:28px 18px 60px;
+  }
+  ::selection{background:var(--brass); color:#fff;}
+  .page{max-width:980px; margin:0 auto;}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:13px;
+    color:var(--folder-2); opacity:.85; padding-bottom:14px; margin-bottom:26px;
+    border-bottom:1px dashed rgba(239,228,200,.25); flex-wrap:wrap;}
+  .crumb b{color:var(--brass); font-weight:700;}
+  .pager{display:flex; gap:16px;}
+  .pager a{color:var(--folder); text-decoration:none; opacity:.75; border-bottom:1px solid transparent;}
+  .pager a:hover{opacity:1; border-color:var(--brass);}
+
+  /* ---------- 口诀卷首 ---------- */
+  .hero{position:relative; background:linear-gradient(180deg, var(--folder), var(--folder-2));
+    border-radius:14px; padding:30px 30px 26px; margin-bottom:30px; box-shadow:var(--shadow); color:var(--ink); text-align:center;}
+  .hero::before,.hero::after{content:""; position:absolute; inset:0; border-radius:14px;
+    background:var(--folder-2); border:1px solid var(--line); z-index:-1;}
+  .hero::before{transform:rotate(-1.3deg) translate(-6px,5px);}
+  .hero::after{transform:rotate(1.6deg) translate(8px,7px); opacity:.7;}
+  .tab{position:absolute; top:-16px; left:26px; background:var(--accent); color:var(--folder);
+    font-family:'Noto Serif SC',serif; font-weight:900; font-size:13px; padding:5px 14px 6px;
+    border-radius:6px 6px 2px 2px; letter-spacing:.08em; box-shadow:0 -2px 6px rgba(0,0,0,.18);}
+  .hero h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(24px,4.2vw,32px); margin:6px 0 4px;}
+  .hero .cite{font-family:'SF Mono',Consolas,monospace; font-size:12px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:18px;}
+
+  .stamp-row{display:flex; justify-content:center; gap:22px; flex-wrap:wrap; margin-bottom:14px;}
+  .stamp-item{display:flex; flex-direction:column; align-items:center; gap:9px;}
+  .stamp-sq{width:62px; height:62px; border:3px double var(--accent); color:var(--accent);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:21px; line-height:1.05;
+    background:rgba(43,73,96,.05); mix-blend-mode:multiply; opacity:.92;}
+  .stamp-item .cap{font-size:11.5px; color:var(--ink-soft); max-width:88px; line-height:1.4;}
+
+  .hero .lead{font-size:14px; color:var(--ink-soft); line-height:1.7; max-width:600px; margin:6px auto 0;}
+
+  /* ---------- 关键词卡片 ---------- */
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;}
+  .card{position:relative; background:var(--folder); border-radius:12px; padding:18px 16px 16px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); border-top:4px solid var(--accent);}
+  .card .dot{width:26px; height:26px; border-radius:50%; border:1.5px solid var(--brass); color:var(--brass);
+    font-family:'Noto Serif SC',serif; font-weight:700; font-size:13px; display:flex; align-items:center;
+    justify-content:center; margin-bottom:10px;}
+  .card h3{font-family:'Noto Serif SC',serif; font-size:16px; font-weight:700; margin:0 0 8px;}
+  .card p{font-size:12.8px; color:var(--ink-soft); line-height:1.65; margin:0;}
+  mark{background:linear-gradient(100deg, transparent 0%, var(--brass) 6%, var(--brass) 94%, transparent 100%);
+    background-size:100% 60%; background-repeat:no-repeat; background-position:0 70%; color:var(--ink); font-weight:700; padding:0 3px;}
+
+  /* ---------- 效果 + 例外 ---------- */
+  .twocol{display:grid; grid-template-columns:1.2fr 1fr; gap:18px;}
+  .panel{background:var(--folder); border-radius:12px; padding:20px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink);}
+  .panel h4{font-family:'Noto Serif SC',serif; font-size:15px; margin:0 0 10px; display:flex; align-items:center; gap:7px;}
+  .panel ul{margin:0; padding-left:18px; font-size:13px; line-height:1.75; color:var(--ink-soft);}
+  .panel.warn{border-left:5px solid var(--warn);}
+  .panel.warn p{font-size:13px; color:var(--ink-soft); line-height:1.75; margin:0;}
+
+  .pagefoot{display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:36px;}
+  .dots{display:flex; gap:8px;}
+  .dots span{width:7px; height:7px; border-radius:50%; background:rgba(239,228,200,.3);}
+  .dots span.active{background:var(--brass); width:20px; border-radius:4px;}
+  .footnav{display:flex; gap:26px; font-size:13px;}
+  .footnav a{color:var(--folder); opacity:.8; text-decoration:none; border-bottom:1px solid var(--brass);}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .twocol{grid-template-columns:1fr;}
+  }
+  @media (max-width:480px){.stamp-sq{width:52px;height:52px;font-size:18px;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>民法</b> · 善意取得</div>
+    <div class="pager"><a href="04-comparison.html">← 上一主题</a><a href="index.html">回到首页</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 05</div>
+    <h1>善意取得</h1>
+    <div class="cite">民法典 §311</div>
+
+    <div class="stamp-row">
+      <div class="stamp-item"><div class="stamp-sq"><span>一</span><span>无</span></div><div class="cap">无处分权</div></div>
+      <div class="stamp-item"><div class="stamp-sq"><span>二</span><span>善</span></div><div class="cap">受让善意</div></div>
+      <div class="stamp-item"><div class="stamp-sq"><span>三</span><span>价</span></div><div class="cap">价格合理</div></div>
+      <div class="stamp-item"><div class="stamp-sq"><span>四</span><span>示</span></div><div class="cap">登记或交付</div></div>
+    </div>
+
+    <p class="lead">四个字组成四道关卡，<mark>缺一不可</mark>。只要转让人无权处分、受让人不知情、价格不离谱、手续走完——所有权当场转移。</p>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <div class="dot">①</div>
+      <h3>一无 · 无处分权</h3>
+      <p>转让人对转让的动产或不动产<b>没有所有权或处分权</b>，却以自己名义处分。</p>
+    </article>
+    <article class="card">
+      <div class="dot">②</div>
+      <h3>二善 · 受让善意</h3>
+      <p>受让人在受让时<mark>不知道也不应当知道</mark>转让人无处分权。</p>
+    </article>
+    <article class="card">
+      <div class="dot">③</div>
+      <h3>三价 · 价格合理</h3>
+      <p>以<b>合理的价格</b>转让；明显低于市场价的，通常会被推定受让人并非善意。</p>
+    </article>
+    <article class="card">
+      <div class="dot">④</div>
+      <h3>四示 · 完成公示</h3>
+      <p>应登记的不动产/特殊动产已<b>登记</b>；无需登记的一般动产已<b>交付</b>。</p>
+    </article>
+  </section>
+
+  <section class="twocol">
+    <div class="panel">
+      <h4>📜 法律效果</h4>
+      <ul>
+        <li>受让人<b>取得所有权</b>，且是原始取得，不受原权利状态瑕疵的影响</li>
+        <li>原权利人丧失该动产/不动产的所有权，但可以向<b>无处分权人</b>请求损害赔偿</li>
+      </ul>
+    </div>
+    <div class="panel warn">
+      <h4>⚠️ 进阶提示</h4>
+      <p>赃物、文物等特殊动产的善意取得受到<b>特别限制</b>；遗失物所有权人有权追回，拾得人不能径直善意取得——具体以特别规定为准，做题时留意题干是否点出这些"特殊物"。</p>
+    </div>
+  </section>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="04-comparison.html">上一主题：效力三态</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>

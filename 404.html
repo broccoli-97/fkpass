@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · 页面缺席裁定书</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --desk:#1d1712; --folder:#efe4c8; --folder-2:#e2d2a8;
+    --ink:#2a2420; --ink-soft:#6b5e4d; --brass:#b8893b;
+    --seal:#a52422; --indigo:#2b4960;
+    --line:rgba(42,36,32,.16); --shadow:0 18px 36px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
+      radial-gradient(circle at 80% 0%, rgba(165,36,34,.12), transparent 40%),
+      var(--desk);
+    color:var(--folder); font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+    min-height:100vh; padding:40px 18px 70px; display:flex; align-items:center; justify-content:center;
+  }
+  ::selection{background:var(--brass); color:#fff;}
+  .page{max-width:620px; width:100%;}
+
+  .doc{position:relative; background:linear-gradient(180deg, var(--folder), var(--folder-2));
+    border-radius:14px; padding:34px 36px 30px; box-shadow:var(--shadow); color:var(--ink); overflow:hidden;}
+  .doc::before,.doc::after{content:""; position:absolute; inset:0; border-radius:14px;
+    background:var(--folder-2); border:1px solid var(--line); z-index:-1;}
+  .doc::before{transform:rotate(-1.4deg) translate(-7px,5px);}
+  .doc::after{transform:rotate(1.7deg) translate(9px,7px); opacity:.7;}
+
+  .stamp-reject{
+    position:absolute; top:46%; left:50%; transform:translate(-50%,-50%) rotate(-16deg);
+    font-family:'Ma Shan Zheng',cursive; font-size:58px; color:var(--seal); border:5px solid var(--seal);
+    padding:6px 22px; border-radius:14px; opacity:.32; mix-blend-mode:multiply; pointer-events:none;
+    white-space:nowrap; z-index:2;
+  }
+
+  .case-no{font-family:'SF Mono',Consolas,monospace; font-size:12px; color:var(--ink-soft);
+    text-align:right; margin-bottom:6px;}
+  .doc h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:24px; text-align:center;
+    margin:4px 0 22px; letter-spacing:.06em; border-bottom:2px solid var(--ink); display:inline-block;
+    padding-bottom:8px; position:relative; left:50%; transform:translateX(-50%);}
+
+  .doc .lead{font-size:13.5px; color:var(--ink-soft); margin-bottom:14px; line-height:1.8;}
+
+  .doc ol{margin:0 0 20px; padding-left:22px; font-size:13.5px; line-height:1.85; color:var(--ink-soft);}
+  .doc ol b{color:var(--ink);}
+
+  .ruling{background:rgba(165,36,34,.06); border:1px dashed var(--seal); border-radius:10px;
+    padding:14px 18px; margin-bottom:24px; position:relative; z-index:3;}
+  .ruling .rt{font-family:'Noto Serif SC',serif; font-weight:700; font-size:13.5px; color:var(--seal); margin-bottom:8px;}
+  .ruling ol{margin:0; padding-left:20px; font-size:13px; color:var(--ink-soft); line-height:1.8;}
+  .ruling ol b{color:var(--ink);}
+
+  .actions{display:flex; flex-direction:column; align-items:center; gap:14px; position:relative; z-index:3;}
+  .btn-home{display:inline-block; background:var(--seal); color:#fff; text-decoration:none; font-weight:700;
+    font-size:14px; padding:12px 30px; border-radius:999px; box-shadow:0 10px 22px rgba(0,0,0,.3);
+    border:2px solid rgba(255,255,255,.2);}
+  .quicklinks{display:flex; flex-wrap:wrap; justify-content:center; gap:10px 18px; font-size:12.5px;}
+  .quicklinks a{color:var(--ink-soft); text-decoration:none; border-bottom:1px dashed var(--ink-soft);}
+  .quicklinks a:hover{color:var(--ink); border-color:var(--ink);}
+
+  .sign{text-align:right; font-size:12px; color:var(--ink-soft); margin-top:22px; position:relative; z-index:3;}
+
+  @media (max-width:480px){
+    .doc{padding:26px 20px 24px;}
+    .stamp-reject{font-size:40px; padding:5px 16px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="doc">
+    <div class="stamp-reject">查无此卷</div>
+
+    <div class="case-no">（2026）法考速记网 异字 第404号</div>
+    <h1>页面缺席裁定书</h1>
+
+    <p class="lead">本院（即你的浏览器）经审查认为：</p>
+    <ol>
+      <li>当事人（即你）主张访问的页面，在<b>客观上并不存在</b>于本网站的卷宗目录中；</li>
+      <li>该情形与"<b>假想防卫</b>"类似——主观上以为此处应有页面，现实中并不满足"现实存在"要件；</li>
+      <li>可能原因：链接地址输入有误、该卷宗已更名或下线、或你点击了一个本不该存在的按钮。</li>
+    </ol>
+
+    <div class="ruling">
+      <div class="rt">裁定如下</div>
+      <ol>
+        <li>驳回本次访问请求；</li>
+        <li>引导当事人返回首页或下列任一分卷继续查阅；</li>
+        <li>本裁定为<b>终审裁定</b>，点击下方按钮即生效，无需上诉。</li>
+      </ol>
+    </div>
+
+    <div class="actions">
+      <a class="btn-home" href="index.html">返回首页卷宗目录</a>
+      <div class="quicklinks">
+        <a href="01-grid-overview.html">诉讼时效</a>
+        <a href="02-mindmap.html">共同犯罪</a>
+        <a href="03-flowchart.html">正当防卫</a>
+        <a href="04-comparison.html">效力三态</a>
+        <a href="05-mnemonic.html">善意取得</a>
+      </div>
+    </div>
+
+    <div class="sign">—— 法考速记卷宗 · 网站管理处</div>
+  </div>
+</div>
+
+<a class="fab-feedback" href="06-feedback.html" title="留言反馈" style="position:fixed; bottom:22px; right:22px; display:flex; align-items:center; gap:8px; background:var(--brass); color:#2a2420; text-decoration:none; padding:12px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.4); font-size:13px; font-weight:700; z-index:50; border:2px solid rgba(255,255,255,.25);">💬 留言反馈</a>
+</body>
+</html>

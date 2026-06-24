@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>诉讼时效 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --desk:#1d1712;
+    --desk-2:#2a2118;
+    --folder:#efe4c8;
+    --folder-2:#e2d2a8;
+    --ink:#2a2420;
+    --ink-soft:#6b5e4d;
+    --seal:#a52422;
+    --brass:#b8893b;
+    --accent:#2b4960; /* 民法 = 墨蓝 */
+    --accent-soft:#dfe6ea;
+    --line:rgba(42,36,32,.16);
+    --shadow:0 14px 30px rgba(0,0,0,.38);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 20% -10%, rgba(184,137,59,.08), transparent 40%),
+      var(--desk);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
+      radial-gradient(circle at 20% -10%, rgba(184,137,59,.08), transparent 40%),
+      var(--desk);
+    color:var(--folder);
+    font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+    min-height:100vh;
+    padding:28px 18px 60px;
+  }
+  ::selection{background:var(--brass); color:#fff;}
+  .page{max-width:1080px; margin:0 auto;}
+
+  /* ---------- 顶部条 ---------- */
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    font-size:13px; color:var(--folder-2); opacity:.85;
+    padding-bottom:14px; margin-bottom:22px; border-bottom:1px dashed rgba(239,228,200,.25);
+    flex-wrap:wrap;
+  }
+  .crumb{letter-spacing:.04em;}
+  .crumb b{color:var(--brass); font-weight:700;}
+  .pager{display:flex; gap:16px; align-items:center;}
+  .pager a{color:var(--folder); text-decoration:none; opacity:.75; border-bottom:1px solid transparent; transition:opacity .15s, border-color .15s;}
+  .pager a:hover{opacity:1; border-color:var(--brass);}
+
+  /* ---------- 卷首卡（标题区，叠纸效果） ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg, var(--folder), var(--folder-2));
+    border-radius:14px;
+    padding:30px 32px 26px;
+    margin-bottom:30px;
+    box-shadow:var(--shadow);
+    color:var(--ink);
+  }
+  .hero::before,.hero::after{
+    content:""; position:absolute; inset:0; border-radius:14px;
+    background:var(--folder-2); border:1px solid var(--line); z-index:-1;
+  }
+  .hero::before{transform:rotate(-1.3deg) translate(-7px,5px);}
+  .hero::after{transform:rotate(1.6deg) translate(9px,7px); opacity:.75;}
+  .tab{
+    position:absolute; top:-16px; left:28px;
+    background:var(--accent); color:var(--folder);
+    font-family:'Noto Serif SC',serif; font-weight:900; font-size:13px;
+    padding:5px 14px 6px; border-radius:6px 6px 2px 2px; letter-spacing:.08em;
+    box-shadow:0 -2px 6px rgba(0,0,0,.18);
+  }
+  .hero h1{
+    font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(30px,5vw,42px);
+    margin:6px 0 10px; letter-spacing:.02em;
+  }
+  .tags{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px;}
+  .subject-tag{
+    background:var(--accent); color:#fff; font-size:12px; font-weight:700;
+    padding:4px 11px; border-radius:99px; letter-spacing:.05em;
+  }
+  .cite-chip{
+    font-family:'SF Mono',Consolas,'Noto Sans SC',monospace; font-size:12px;
+    border:1px solid var(--ink-soft); color:var(--ink-soft);
+    padding:3px 10px; border-radius:6px; letter-spacing:.02em;
+  }
+  .freq{font-size:12.5px; color:var(--seal); font-weight:700;}
+  .hero-desc{font-size:15px; line-height:1.75; color:var(--ink-soft); max-width:680px;}
+  .hero-desc b{color:var(--ink); border-bottom:2px solid var(--brass);}
+
+  /* ---------- 网格卡片 ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  .card{
+    position:relative;
+    background:var(--folder);
+    border-radius:12px; padding:22px 20px 20px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28);
+    color:var(--ink);
+    border-top:4px solid var(--accent);
+  }
+  .card.wide{grid-column:span 2;}
+  .card .num{
+    position:absolute; top:14px; right:16px; font-family:'Noto Serif SC',serif;
+    font-size:12px; color:var(--ink-soft); opacity:.55; letter-spacing:.05em;
+  }
+  .card h3{
+    font-family:'Noto Serif SC',serif; font-size:18px; font-weight:700; margin:0 0 12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .card h3 .ico{font-size:18px;}
+  .card p{font-size:13.5px; line-height:1.7; color:var(--ink-soft); margin:0 0 8px;}
+  .card .note{
+    font-size:12.5px; color:var(--ink-soft); margin-top:10px; padding-top:10px;
+    border-top:1px dashed var(--line); line-height:1.6;
+  }
+
+  mark{
+    background:linear-gradient(100deg, transparent 0%, var(--brass) 6%, var(--brass) 94%, transparent 100%);
+    background-size:100% 60%; background-repeat:no-repeat; background-position:0 70%;
+    color:var(--ink); font-weight:700; padding:0 3px;
+  }
+
+  .bignum{display:flex; align-items:baseline; gap:8px; margin-bottom:10px;}
+  .bignum .n{font-family:'Noto Serif SC',serif; font-weight:900; font-size:58px; color:var(--accent); line-height:1;}
+  .bignum .u{font-size:15px; color:var(--ink-soft); font-weight:700;}
+
+  .cond-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .cond-list li{display:flex; gap:9px; font-size:13.5px; line-height:1.6; color:var(--ink-soft);}
+  .cond-list .dot{
+    flex:none; width:20px; height:20px; border-radius:50%; border:1.5px solid var(--brass);
+    color:var(--brass); font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center;
+    font-family:'Noto Serif SC',serif;
+  }
+
+  .compare{width:100%; border-collapse:collapse; font-size:12.5px; margin-top:4px;}
+  .compare th,.compare td{border:1px solid var(--line); padding:7px 8px; text-align:left; vertical-align:top;}
+  .compare th{background:var(--accent); color:#fff; font-weight:700; font-family:'Noto Serif SC',serif;}
+  .compare td{color:var(--ink-soft); line-height:1.55;}
+  .compare td.k{color:var(--ink); font-weight:700; background:rgba(184,137,59,.12); white-space:nowrap;}
+
+  .seal{
+    position:absolute; top:14px; right:14px; width:64px; height:64px; border-radius:50%;
+    border:2.5px double var(--seal); color:var(--seal); display:flex; align-items:center; justify-content:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:16px; transform:rotate(-11deg); opacity:.85;
+    mix-blend-mode:multiply; text-align:center; line-height:1.1;
+  }
+
+  /* ---------- 页脚分页 ---------- */
+  .pagefoot{display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:38px;}
+  .dots{display:flex; gap:8px;}
+  .dots span{width:7px; height:7px; border-radius:50%; background:rgba(239,228,200,.3);}
+  .dots span.active{background:var(--brass); width:20px; border-radius:4px;}
+  .footnav{display:flex; gap:26px; font-size:13px;}
+  .footnav a{color:var(--folder); opacity:.8; text-decoration:none; border-bottom:1px solid var(--brass);}
+
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr;}
+    .card.wide{grid-column:span 1;}
+    .hero{padding:24px 20px 20px;}
+    .topbar{font-size:12px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>民法</b> · 总则编 / 诉讼时效</div>
+    <div class="pager">
+      <a href="index.html">🏠 首页</a>
+      <a href="02-mindmap.html">下一主题 →</a>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 01</div>
+    <h1>诉讼时效</h1>
+    <div class="tags">
+      <span class="subject-tag">民法典</span>
+      <span class="cite-chip">§188 – §199</span>
+      <span class="freq">🔥 几乎每年必考</span>
+    </div>
+    <p class="hero-desc">权利人在法定期间内不行使请求权，义务人即取得<b>抗辩权</b>的制度。备考核心只有三件事：<b>算对起点</b>、<b>分清中止/中断</b>、<b>记住例外</b>。</p>
+  </section>
+
+  <section class="grid">
+
+    <article class="card">
+      <span class="num">01</span>
+      <h3><span class="ico">⏳</span>普通时效期间</h3>
+      <div class="bignum"><span class="n">3</span><span class="u">年</span></div>
+      <p>自<mark>知道或应当知道</mark>权利受损害及义务人之日起计算。法律另有规定的，从其规定。</p>
+      <div class="note">最长保护期：自权利受侵害之日起超过 <b>20年</b> 的，法院不予保护；权利人可申请延长。</div>
+    </article>
+
+    <article class="card">
+      <span class="num">02</span>
+      <h3><span class="ico">📍</span>起算规则</h3>
+      <p>起算时点是"<mark>知道或应当知道</mark>"权利受损害 <u>且</u> 知道义务人，两个条件同时满足才开始计算。</p>
+      <p class="note">不知道受损害不会让时效永久不起算——最终仍受"20年最长保护期"兜底限制。</p>
+    </article>
+
+    <article class="card">
+      <span class="num">03</span>
+      <h3><span class="ico">⏸</span>诉讼时效中止</h3>
+      <ul class="cond-list">
+        <li><span class="dot">·</span>仅发生在时效期间的<mark>最后6个月</mark>内</li>
+        <li><span class="dot">·</span>因不可抗力或其他障碍不能行使请求权</li>
+      </ul>
+      <div class="note">效果：障碍消除之日起<b>满6个月</b>，诉讼时效期间届满（之前经过的时间不归零）。</div>
+    </article>
+
+    <article class="card">
+      <span class="num">04</span>
+      <h3><span class="ico">🔄</span>诉讼时效中断</h3>
+      <ul class="cond-list">
+        <li><span class="dot">①</span>权利人向义务人提出履行请求</li>
+        <li><span class="dot">②</span>义务人同意履行义务</li>
+        <li><span class="dot">③</span>权利人提起诉讼或申请仲裁</li>
+        <li><span class="dot">④</span>与起诉/仲裁有同等效力的其他情形</li>
+      </ul>
+      <div class="note">效果：从中断时起，期间<b>重新计算</b>（之前经过的时间归零）。可发生在期间内任何时点。</div>
+    </article>
+
+    <article class="card">
+      <span class="num">05</span>
+      <h3><span class="ico">🚫</span>不适用诉讼时效</h3>
+      <ul class="cond-list">
+        <li><span class="dot">①</span>请求停止侵害、排除妨碍、消除危险</li>
+        <li><span class="dot">②</span>不动产 / 已登记动产权利人请求返还财产</li>
+        <li><span class="dot">③</span>请求支付抚养费、赡养费、扶养费</li>
+        <li><span class="dot">④</span>其他依法不适用时效的请求权</li>
+      </ul>
+    </article>
+
+    <article class="card wide">
+      <div class="seal">易混<br>淆点</div>
+      <h3><span class="ico">⚖️</span>中止 vs 中断 · 一表辨清</h3>
+      <table class="compare">
+        <tr><th>对比项</th><th>诉讼时效中止</th><th>诉讼时效中断</th></tr>
+        <tr><td class="k">发生时间</td><td>仅限最后6个月内</td><td>期间内任何时间</td></tr>
+        <tr><td class="k">法定事由</td><td>不可抗力等客观障碍</td><td>请求 / 同意 / 起诉 / 仲裁</td></tr>
+        <tr><td class="k">对已过期间</td><td>不归零，顺延6个月</td><td>归零，重新起算</td></tr>
+      </table>
+    </article>
+
+  </section>
+
+  <div class="pagefoot">
+    <div class="footnav">
+      <a href="index.html">返回首页</a>
+      <a href="02-mindmap.html">下一主题：共同犯罪</a>
+    </div>
+    <div class="dots">
+      <span class="active"></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

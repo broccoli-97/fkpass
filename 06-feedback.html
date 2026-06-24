@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>留言板 · 法考速记卷宗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --desk:#1d1712; --folder:#efe4c8; --folder-2:#e2d2a8;
+    --ink:#2a2420; --ink-soft:#6b5e4d; --brass:#b8893b;
+    --seal:#a52422; --indigo:#2b4960; --jade:#3f6b4f; --warn:#9a6a1e;
+    --accent:#8a6a2f;
+    --line:rgba(42,36,32,.16); --shadow:0 14px 30px rgba(0,0,0,.38);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
+      radial-gradient(circle at 80% -10%, rgba(184,137,59,.12), transparent 40%),
+      var(--desk);
+    color:var(--folder); font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+    min-height:100vh; padding:28px 18px 80px;
+  }
+  ::selection{background:var(--brass); color:#fff;}
+  .page{max-width:760px; margin:0 auto;}
+
+  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:13px;
+    color:var(--folder-2); opacity:.85; padding-bottom:14px; margin-bottom:26px;
+    border-bottom:1px dashed rgba(239,228,200,.25); flex-wrap:wrap;}
+  .crumb b{color:var(--brass); font-weight:700;}
+  .pager a{color:var(--folder); text-decoration:none; opacity:.75; border-bottom:1px solid transparent;}
+  .pager a:hover{opacity:1; border-color:var(--brass);}
+
+  .hero{position:relative; background:linear-gradient(180deg, var(--folder), var(--folder-2));
+    border-radius:14px; padding:26px 28px 22px; margin-bottom:26px; box-shadow:var(--shadow); color:var(--ink);}
+  .hero::before,.hero::after{content:""; position:absolute; inset:0; border-radius:14px;
+    background:var(--folder-2); border:1px solid var(--line); z-index:-1;}
+  .hero::before{transform:rotate(-1.3deg) translate(-6px,5px);}
+  .hero::after{transform:rotate(1.6deg) translate(8px,7px); opacity:.7;}
+  .tab{position:absolute; top:-16px; left:26px; background:var(--accent); color:var(--folder);
+    font-family:'Noto Serif SC',serif; font-weight:900; font-size:13px; padding:5px 14px 6px;
+    border-radius:6px 6px 2px 2px; letter-spacing:.08em; box-shadow:0 -2px 6px rgba(0,0,0,.18);}
+  .hero h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(24px,4.2vw,32px); margin:6px 0 8px;}
+  .hero p{font-size:13.5px; color:var(--ink-soft); line-height:1.75; margin:0; max-width:560px;}
+
+  .privacy{display:flex; gap:10px; align-items:flex-start; background:rgba(184,137,59,.14);
+    border:1px dashed var(--brass); border-radius:10px; padding:10px 14px; font-size:12.5px;
+    color:var(--folder-2); margin-bottom:24px; line-height:1.7;}
+  .privacy .ic{flex:none;}
+
+  .fallback-banner{display:none; gap:10px; align-items:flex-start; background:rgba(165,36,34,.16);
+    border:1px dashed var(--seal); border-radius:10px; padding:10px 14px; font-size:12.5px;
+    color:var(--folder); margin-bottom:20px; line-height:1.7;}
+  .fallback-banner.show{display:flex;}
+
+  /* ---------- 表单 ---------- */
+  .panel{background:var(--folder); border-radius:13px; padding:22px 24px; box-shadow:0 10px 22px rgba(0,0,0,.3);
+    color:var(--ink); margin-bottom:30px;}
+  .panel h2{font-family:'Noto Serif SC',serif; font-size:16px; margin:0 0 16px; display:flex; align-items:center; gap:8px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  label{display:block; font-size:12px; color:var(--ink-soft); margin-bottom:5px; font-weight:700;}
+  input[type=text], textarea{
+    width:100%; border:1.5px solid var(--line); background:#fbf6e8; color:var(--ink);
+    border-radius:8px; padding:9px 11px; font-size:13.5px; font-family:inherit; resize:vertical;
+  }
+  input[type=text]:focus, textarea:focus{outline:none; border-color:var(--accent);}
+  textarea{min-height:90px;}
+  .charcount{font-size:11px; color:var(--ink-soft); text-align:right; margin-top:4px;}
+  .submit-row{display:flex; align-items:center; gap:14px; margin-top:6px; flex-wrap:wrap;}
+  button{font-family:inherit; cursor:pointer;}
+  .btn-submit{background:var(--accent); color:#fff; border:none; font-weight:700; font-size:13.5px;
+    padding:10px 26px; border-radius:999px; box-shadow:0 8px 16px rgba(0,0,0,.25);}
+  .btn-submit:disabled{opacity:.5; cursor:not-allowed;}
+  .toast{font-size:12.5px; color:var(--jade); font-weight:700; opacity:0; transition:opacity .25s;}
+  .toast.show{opacity:1;}
+  .err{font-size:12.5px; color:var(--seal); font-weight:700; margin-top:4px;}
+
+  /* ---------- 留言列表 ---------- */
+  .list-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .list-head h2{font-family:'Noto Serif SC',serif; font-size:16px; margin:0; color:var(--folder);}
+  .btn-refresh{background:transparent; border:1px solid var(--brass); color:var(--folder); font-size:12px;
+    padding:6px 14px; border-radius:999px;}
+  .btn-refresh:hover{background:rgba(184,137,59,.18);}
+
+  #list{display:flex; flex-direction:column; gap:12px;}
+  .note{background:var(--folder); color:var(--ink); border-radius:10px; padding:14px 16px;
+    box-shadow:0 6px 14px rgba(0,0,0,.22); border-left:4px solid var(--accent); position:relative;}
+  .note .meta{display:flex; justify-content:space-between; gap:10px; font-size:11.5px; color:var(--ink-soft); margin-bottom:6px;}
+  .note .name{font-weight:700; color:var(--ink); font-family:'Noto Serif SC',serif;}
+  .note .msg{font-size:13.5px; line-height:1.7; white-space:pre-wrap; word-break:break-word;}
+  .note .contact{font-size:11.5px; color:var(--accent); margin-top:6px;}
+  .empty,.loading{text-align:center; font-size:13px; color:var(--folder-2); opacity:.7; padding:30px 0;}
+
+  footer.note-foot{text-align:center; font-size:12px; color:var(--folder-2); opacity:.55; margin-top:36px;}
+
+  @media (max-width:560px){.row2{grid-template-columns:1fr;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷宗 · <b>意见箱</b></div>
+    <div class="pager"><a href="index.html">🏠 返回首页</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">留言板</div>
+    <h1>意见箱</h1>
+    <p>想看哪个考点出成卷？哪张卡片排版看得不舒服？发现内容有错？都欢迎写在这里——这是给整套卷宗"挑错 + 提需求"的地方。</p>
+  </section>
+
+  <div class="privacy"><span class="ic">📢</span><span>你填写的昵称、联系方式和留言内容将<b>公开展示</b>在下方列表中，请自行决定是否填写联系方式；不填也可以提交。</span></div>
+
+  <div class="fallback-banner" id="fallbackBanner"><span class="ic">⚠️</span><span>当前未连接到留言存储服务，留言暂时只保存在本次浏览中，刷新后会清空。请确认 Cloudflare Pages 已部署 <b>functions/</b> 目录，并绑定了名为 <b>FEEDBACK_KV</b> 的 KV 命名空间（见 CLOUDFLARE-SETUP.md）。</span></div>
+
+  <section class="panel">
+    <h2>✍️ 写留言</h2>
+    <form id="feedbackForm">
+      <div class="row2">
+        <div>
+          <label for="fname">昵称（选填）</label>
+          <input type="text" id="fname" maxlength="30" placeholder="匿名考生">
+        </div>
+        <div>
+          <label for="fcontact">联系方式（选填，微信 / 邮箱）</label>
+          <input type="text" id="fcontact" maxlength="60" placeholder="方便回复你时使用">
+        </div>
+      </div>
+      <label for="fmsg">留言内容</label>
+      <textarea id="fmsg" maxlength="500" placeholder="例如：求一张《缔约过失责任》的对比卡片！"></textarea>
+      <div class="charcount"><span id="charnum">0</span>/500</div>
+      <div class="submit-row">
+        <button type="submit" class="btn-submit" id="submitBtn">提交留言</button>
+        <span class="toast" id="toast">已收到，感谢反馈！</span>
+        <span class="err" id="errMsg"></span>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <div class="list-head">
+      <h2>📋 大家的留言</h2>
+      <button class="btn-refresh" id="refreshBtn">↻ 刷新</button>
+    </div>
+    <div id="list"><div class="loading">正在调取留言…</div></div>
+  </section>
+
+  <footer class="note-foot">留言区为公开演示功能 · 法考速记卷宗</footer>
+</div>
+
+<script>
+(function(){
+  var API = '/api/messages';
+  var online = true;          // 若留言 API 不可达，转为本地兜底模式
+  var memoryList = [];        // API 不可用时，仅保存在本次浏览的兜底列表
+
+  var listEl = document.getElementById('list');
+  var formEl = document.getElementById('feedbackForm');
+  var nameEl = document.getElementById('fname');
+  var contactEl = document.getElementById('fcontact');
+  var msgEl = document.getElementById('fmsg');
+  var charnumEl = document.getElementById('charnum');
+  var toastEl = document.getElementById('toast');
+  var errEl = document.getElementById('errMsg');
+  var submitBtn = document.getElementById('submitBtn');
+  var refreshBtn = document.getElementById('refreshBtn');
+  var fallbackBanner = document.getElementById('fallbackBanner');
+
+  msgEl.addEventListener('input', function(){
+    charnumEl.textContent = msgEl.value.length;
+  });
+
+  async function loadAll(){
+    try{
+      var res = await fetch(API, { headers:{ 'Accept':'application/json' } });
+      if(!res.ok){ throw new Error('HTTP '+res.status); }
+      var data = await res.json();
+      online = true;
+      fallbackBanner.classList.remove('show');
+      return Array.isArray(data) ? data : [];
+    }catch(e){
+      online = false;
+      fallbackBanner.classList.add('show');
+      return memoryList.slice();
+    }
+  }
+
+  function fmtTime(ts){
+    try{
+      return new Date(ts).toLocaleString('zh-CN', {hour12:false});
+    }catch(e){ return ''; }
+  }
+
+  function renderList(list){
+    listEl.innerHTML = '';
+    if(!list || list.length === 0){
+      var empty = document.createElement('div');
+      empty.className = 'empty';
+      empty.textContent = '暂无留言，来做第一个留言的人吧～';
+      listEl.appendChild(empty);
+      return;
+    }
+    list.slice().sort(function(a,b){ return (b.time||0)-(a.time||0); }).forEach(function(item){
+      var note = document.createElement('div');
+      note.className = 'note';
+
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      var nameSpan = document.createElement('span');
+      nameSpan.className = 'name';
+      nameSpan.textContent = item.name || '匿名考生';
+      var timeSpan = document.createElement('span');
+      timeSpan.textContent = fmtTime(item.time);
+      meta.appendChild(nameSpan);
+      meta.appendChild(timeSpan);
+
+      var msg = document.createElement('div');
+      msg.className = 'msg';
+      msg.textContent = item.message || '';
+
+      note.appendChild(meta);
+      note.appendChild(msg);
+
+      if(item.contact){
+        var contact = document.createElement('div');
+        contact.className = 'contact';
+        contact.textContent = '联系方式：' + item.contact;
+        note.appendChild(contact);
+      }
+
+      listEl.appendChild(note);
+    });
+  }
+
+  async function refresh(){
+    listEl.innerHTML = '<div class="loading">正在调取留言…</div>';
+    var list = await loadAll();
+    renderList(list);
+  }
+
+  formEl.addEventListener('submit', async function(e){
+    e.preventDefault();
+    errEl.textContent = '';
+    var message = msgEl.value.trim();
+    if(!message){
+      errEl.textContent = '请先填写留言内容～';
+      return;
+    }
+    submitBtn.disabled = true;
+
+    var payload = {
+      name: nameEl.value.trim().slice(0,30),
+      contact: contactEl.value.trim().slice(0,60),
+      message: message.slice(0,500)
+    };
+
+    var ok = false;
+    try{
+      var res = await fetch(API, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if(!res.ok){ throw new Error('HTTP '+res.status); }
+      ok = true;
+    }catch(e){ ok = false; }
+
+    submitBtn.disabled = false;
+
+    toastEl.classList.add('show');
+    setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
+    formEl.reset();
+    charnumEl.textContent = '0';
+
+    if(ok){
+      online = true;
+      fallbackBanner.classList.remove('show');
+      await refresh();                 // 重新拉取服务端的权威列表
+    }else{
+      // 兜底：API 不可用时，仍把这条留言显示在本次浏览里
+      online = false;
+      fallbackBanner.classList.add('show');
+      memoryList.push({
+        id: Date.now() + '-' + Math.random().toString(36).slice(2,8),
+        name: payload.name,
+        contact: payload.contact,
+        message: payload.message,
+        time: Date.now()
+      });
+      renderList(memoryList);
+    }
+  });
+
+  refreshBtn.addEventListener('click', refresh);
+
+  refresh();
+})();
+</script>
+
+<a href="index.html" title="返回首页" style="position:fixed; bottom:22px; right:22px; display:flex; align-items:center; gap:8px; background:var(--seal); color:#fff; text-decoration:none; padding:12px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.4); font-size:13px; font-weight:700; z-index:50; border:2px solid rgba(255,255,255,.25);">🏠 首页</a>
+</body>
+</html>
