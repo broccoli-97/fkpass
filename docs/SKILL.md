@@ -136,7 +136,7 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 - 文件名格式：`NN-版式名.html`（如 `01-grid-overview.html`）；首页固定 `index.html`，404固定 `404.html`，留言板固定 `06-feedback.html`。
 - 每页顶部 `.topbar` 必须有：科目面包屑 + 上一页/下一页（或返回首页）链接。
 - 每页底部 `.pagefoot` 必须有：`.footnav` 文字链接 + `.dots` 进度指示（圆点数 = 当前系列总页数，当前页拉长高亮）。
-- 新增知识点页时记得：`<link>` 引用 `tokens.css`（页面 `<style>` 只放 `--accent` + 专属样式，别再内联公共基础层）、插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
+- 新增知识点页时记得：`<link>` 引用 `tokens.css`（页面 `<style>` 只放 `--accent` + 专属样式，别再内联公共基础层）、插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡（首页搜索会自动收录该卡；卡片上加 `data-keywords="别名 法条 拼音"` 可提升搜索命中率）、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
 
 ## 留言板的持久化策略（`06-feedback.html`）
 

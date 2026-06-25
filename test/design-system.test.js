@@ -141,3 +141,13 @@ test('term links: every .term button has a matching .term-detail template (and v
     }
   }
 });
+
+test('homepage wires a topic search box + catalog filter script', () => {
+  const html = read('index.html');
+  assert.match(html, /id="topicSearch"/, 'index.html is missing the #topicSearch input');
+  assert.match(
+    html,
+    /<script>[\s\S]*topicSearch[\s\S]*\.catalog \.tcard[\s\S]*<\/script>/,
+    'index.html is missing the search script that filters .catalog .tcard',
+  );
+});

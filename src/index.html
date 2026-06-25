@@ -51,6 +51,25 @@
   .legend .item{display:flex; align-items:center; gap:7px;}
   .legend .sw{width:13px; height:13px; border-radius:4px; display:inline-block;}
 
+  /* ---------- 搜索 ---------- */
+  .search{max-width:540px; margin:0 auto 40px;}
+  .search-box{display:flex; align-items:center; gap:10px; background:var(--folder); border-radius:999px;
+    padding:12px 18px; box-shadow:0 8px 18px rgba(0,0,0,.28); border:2px solid transparent;
+    transition:border-color .15s ease;}
+  .search-box:focus-within{border-color:var(--brass);}
+  .search-box .ico{font-size:16px; opacity:.6; flex:none;}
+  .search-box input{flex:1; min-width:0; border:none; background:none; outline:none;
+    font-family:inherit; font-size:14.5px; color:var(--ink);}
+  .search-box input::placeholder{color:var(--ink-soft); opacity:.7;}
+  .search-clear{flex:none; display:none; border:none; background:none; cursor:pointer;
+    font-size:18px; line-height:1; color:var(--ink-soft);}
+  .search-clear.show{display:block;}
+  .search-hint{text-align:center; font-size:11.5px; color:var(--folder-2); opacity:.6; margin-top:9px;}
+  .search-empty{display:none; text-align:center; font-size:13.5px; color:var(--folder-2); opacity:.85;
+    padding:18px 0 6px;}
+  .search-empty.show{display:block;}
+  .search-empty a{color:var(--brass);}
+
   /* ---------- 目录 ---------- */
   .catalog-title{font-family:'Noto Serif SC',serif; font-weight:900; font-size:20px; margin-bottom:18px;
     display:flex; align-items:center; gap:10px;}
@@ -111,11 +130,21 @@
     <span class="item"><mark style="background:var(--brass); color:#2a2420; padding:0 4px; border-radius:2px;">高亮</mark> = 关键词</span>
   </div>
 
+  <div class="search" role="search">
+    <div class="search-box">
+      <span class="ico" aria-hidden="true">🔍</span>
+      <input type="text" id="topicSearch" aria-label="搜索考点" autocomplete="off"
+        placeholder="搜索考点：诉讼时效、正当防卫、善意取得…">
+      <button type="button" class="search-clear" id="searchClear" aria-label="清空搜索">×</button>
+    </div>
+    <div class="search-hint">输入关键词即时筛选 · 回车直达第一条 · 按 / 快速聚焦</div>
+  </div>
+
   <div class="catalog-title">卷宗目录 <span class="ln"></span></div>
 
   <div class="catalog">
 
-    <a class="tcard c1" href="susong-shixiao.html">
+    <a class="tcard c1" href="susong-shixiao.html" data-keywords="时效 抗辩权 中止 中断 最长保护期 民法总则 §188 susong shixiao">
       <div class="top"><span class="idx">卷 01</span><span class="stag">民法</span></div>
       <h3>诉讼时效</h3>
       <div class="style-name">网格速览</div>
@@ -123,7 +152,7 @@
       <span class="go">翻开本卷</span>
     </a>
 
-    <a class="tcard c2" href="gongtong-fanzui.html">
+    <a class="tcard c2" href="gongtong-fanzui.html" data-keywords="共犯 主犯 从犯 教唆犯 帮助犯 刑法 gongtong fanzui">
       <div class="top"><span class="idx">卷 02</span><span class="stag">刑法</span></div>
       <h3>共同犯罪</h3>
       <div class="style-name">思维导图</div>
@@ -131,7 +160,7 @@
       <span class="go">翻开本卷</span>
     </a>
 
-    <a class="tcard c3" href="zhengdang-fangwei.html">
+    <a class="tcard c3" href="zhengdang-fangwei.html" data-keywords="防卫 防卫过当 不法侵害 特殊正当防卫 无限防卫 刑法 §20 zhengdang fangwei">
       <div class="top"><span class="idx">卷 03</span><span class="stag">刑法</span></div>
       <h3>正当防卫认定</h3>
       <div class="style-name">认定流程图</div>
@@ -139,7 +168,7 @@
       <span class="go">翻开本卷</span>
     </a>
 
-    <a class="tcard c4" href="xiaoli-santai.html">
+    <a class="tcard c4" href="xiaoli-santai.html" data-keywords="有效 无效 效力待定 可撤销 合同效力 法律行为 民法 xiaoli santai">
       <div class="top"><span class="idx">卷 04</span><span class="stag">民法</span></div>
       <h3>效力三态对比</h3>
       <div class="style-name">三栏对比</div>
@@ -147,7 +176,7 @@
       <span class="go">翻开本卷</span>
     </a>
 
-    <a class="tcard c5" href="shanyi-qude.html">
+    <a class="tcard c5" href="shanyi-qude.html" data-keywords="善意 无权处分 物权 不动产 动产 民法 §311 shanyi qude">
       <div class="top"><span class="idx">卷 05</span><span class="stag">民法</span></div>
       <h3>善意取得</h3>
       <div class="style-name">口诀速记</div>
@@ -156,6 +185,8 @@
     </a>
 
   </div>
+
+  <div class="search-empty" id="searchEmpty" role="status" aria-live="polite">没有找到匹配的考点，换个关键词试试，或去<a href="feedback.html">留言板</a>点播 👇</div>
 
   <a class="tcard" href="feedback.html" style="--accent:var(--brass); display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:30px; flex-wrap:wrap;">
     <div>
@@ -171,5 +202,58 @@
 </div>
 
 <a class="fab-feedback" href="feedback.html" title="留言反馈" style="position:fixed; bottom:22px; right:22px; display:flex; align-items:center; gap:8px; background:var(--brass); color:#2a2420; text-decoration:none; padding:12px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.4); font-size:13px; font-weight:700; z-index:50; border:2px solid rgba(255,255,255,.25);">💬 留言反馈</a>
+<script>
+  // 首页考点搜索：实时筛选目录卡片，回车直达第一条。新增主题卡片会被自动纳入
+  // （按 .catalog .tcard 收集）；可在卡片上加 data-keywords 增补别名/法条/拼音。
+  (function () {
+    var input = document.getElementById('topicSearch');
+    var clearBtn = document.getElementById('searchClear');
+    var empty = document.getElementById('searchEmpty');
+    if (!input) { return; }
+
+    var entries = [].slice.call(document.querySelectorAll('.catalog .tcard')).map(function (card) {
+      var kw = card.getAttribute('data-keywords') || '';
+      return { card: card, text: (card.textContent + ' ' + kw).toLowerCase().replace(/\s+/g, ' ') };
+    });
+
+    function apply() {
+      var q = input.value.trim().toLowerCase();
+      clearBtn.classList.toggle('show', q.length > 0);
+      var terms = q ? q.split(/\s+/) : [];
+      var visible = 0;
+      entries.forEach(function (e) {
+        var hit = terms.every(function (t) { return e.text.indexOf(t) !== -1; });
+        e.card.style.display = hit ? '' : 'none';
+        if (hit) { visible++; }
+      });
+      empty.classList.toggle('show', q.length > 0 && visible === 0);
+    }
+
+    function firstVisible() {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].card.style.display !== 'none') { return entries[i].card; }
+      }
+      return null;
+    }
+
+    input.addEventListener('input', apply);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        var card = firstVisible();
+        if (card) { window.location.href = card.getAttribute('href'); }
+      } else if (e.key === 'Escape') {
+        input.value = ''; apply(); input.blur();
+      }
+    });
+    clearBtn.addEventListener('click', function () { input.value = ''; apply(); input.focus(); });
+
+    // 在页面任意处按 “/” 快速聚焦搜索框
+    document.addEventListener('keydown', function (e) {
+      var a = document.activeElement;
+      var typing = a && /^(INPUT|TEXTAREA)$/.test(a.tagName);
+      if (e.key === '/' && !typing) { e.preventDefault(); input.focus(); }
+    });
+  })();
+</script>
 </body>
 </html>
