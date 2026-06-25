@@ -151,3 +151,11 @@ test('homepage wires a topic search box + catalog filter script', () => {
     'index.html is missing the search script that filters .catalog .tcard',
   );
 });
+
+test('homepage shows visitor count + like/dislike reactions wired to /api/stats', () => {
+  const html = read('index.html');
+  assert.match(html, /id="visitCount"/, 'index.html is missing the visitor counter');
+  assert.match(html, /id="likeBtn"/, 'index.html is missing the like button');
+  assert.match(html, /id="dislikeBtn"/, 'index.html is missing the dislike button');
+  assert.match(html, /\/api\/stats/, 'index.html should talk to /api/stats');
+});

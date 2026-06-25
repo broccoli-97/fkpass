@@ -95,6 +95,32 @@
   .c4{--accent:var(--indigo);} .c4 .stag{background:var(--indigo);}
   .c5{--accent:var(--indigo);} .c5 .stag{background:var(--indigo);}
 
+  /* ---------- 站点脉搏：访问量 + 点赞/点踩 ---------- */
+  .pulse{background:var(--folder); color:var(--ink); border-radius:14px; padding:22px 24px;
+    box-shadow:0 10px 22px rgba(0,0,0,.3); text-align:center; margin-bottom:30px;}
+  .pulse-visits{font-size:13px; color:var(--ink-soft);}
+  .pulse-visits b{font-family:'Noto Serif SC',serif; font-weight:900; font-size:20px; color:var(--ink); margin:0 3px;}
+  .pulse-ask{font-family:'Noto Serif SC',serif; font-weight:700; font-size:15px; margin:12px 0 14px;}
+  .pulse-btns{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .react{position:relative; display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+    font-family:inherit; font-size:13.5px; font-weight:700; color:var(--ink-soft); background:#fbf6e8;
+    border:1.5px solid var(--line); border-radius:999px; padding:9px 18px;
+    transition:transform .12s ease, border-color .15s ease, color .15s ease, background .15s ease;}
+  .react:hover{transform:translateY(-2px);}
+  .react .emo{font-size:17px; line-height:1;}
+  .react .cnt{font-family:'SF Mono',Consolas,monospace; font-size:12.5px; opacity:.85;
+    background:rgba(42,36,32,.06); padding:1px 8px; border-radius:999px;}
+  .react.like.on{color:var(--brass); border-color:var(--brass); background:rgba(184,137,59,.10);}
+  .react.dislike.on{color:var(--ink); border-color:var(--ink-soft); background:rgba(42,36,32,.05);}
+  /* 升起的爱心（点“有用”时） */
+  .heart{position:absolute; left:50%; bottom:60%; pointer-events:none; font-size:16px;
+    will-change:transform,opacity; animation:heart-rise 1s ease-out forwards;}
+  @keyframes heart-rise{
+    0%{transform:translate(-50%,0) scale(.5); opacity:0;}
+    18%{opacity:1;}
+    100%{transform:translate(calc(-50% + var(--dx,0px)),-88px) scale(1.15); opacity:0;}
+  }
+
   footer.note{text-align:center; font-size:12px; color:var(--folder-2); opacity:.55; margin-top:46px;}
 
   @media (max-width:760px){
@@ -197,6 +223,19 @@
     <span class="go" style="white-space:nowrap;">去留言板</span>
   </a>
 
+  <div class="pulse" id="sitePulse">
+    <div class="pulse-visits">👀 累计访问 <b id="visitCount">—</b> 次</div>
+    <div class="pulse-ask">这套卷宗对你有帮助吗？</div>
+    <div class="pulse-btns">
+      <button type="button" class="react like" id="likeBtn" aria-pressed="false">
+        <span class="emo" aria-hidden="true">👍</span><span class="lbl">有用</span><span class="cnt" id="likeCount">0</span>
+      </button>
+      <button type="button" class="react dislike" id="dislikeBtn" aria-pressed="false">
+        <span class="emo" aria-hidden="true">👎</span><span class="lbl">一般</span><span class="cnt" id="dislikeCount">0</span>
+      </button>
+    </div>
+  </div>
+
   <footer class="note">法考速记卷宗 · 持续更新中</footer>
 
 </div>
@@ -253,6 +292,126 @@
       var typing = a && /^(INPUT|TEXTAREA)$/.test(a.tagName);
       if (e.key === '/' && !typing) { e.preventDefault(); input.focus(); }
     });
+  })();
+</script>
+<script>
+  // 站点脉搏：访问量 + 点赞/点踩。后端 /api/stats（复用 FEEDBACK_KV）。
+  // 接口不可达时（file://、本地静态服务器、未绑定 KV）自动降级为本地计数，点赞动画照常。
+  (function () {
+    var visitEl = document.getElementById('visitCount');
+    var likeBtn = document.getElementById('likeBtn');
+    var disBtn = document.getElementById('dislikeBtn');
+    var likeEl = document.getElementById('likeCount');
+    var disEl = document.getElementById('dislikeCount');
+    if (!likeBtn) { return; }
+
+    var API = '/api/stats';
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var LS = 'fk-vote'; // 'like' | 'dislike'：本浏览器的选择
+    var SS = 'fk-visited'; // 本次会话是否已计访问
+    var FB = 'fk-stats'; // 离线兜底计数
+
+    function fmt(n) { return (n || 0).toLocaleString('zh-CN'); }
+    function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k, v) { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} }
+    function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+    function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+    function readFB() { try { return JSON.parse(lsGet(FB)) || {}; } catch (e) { return {}; } }
+    function writeFB(s) { lsSet(FB, JSON.stringify(s)); }
+
+    function render(s) {
+      visitEl.textContent = fmt(s.visits);
+      likeEl.textContent = fmt(s.likes);
+      disEl.textContent = fmt(s.dislikes);
+    }
+    function reflectVote() {
+      var v = lsGet(LS);
+      likeBtn.classList.toggle('on', v === 'like');
+      disBtn.classList.toggle('on', v === 'dislike');
+      likeBtn.setAttribute('aria-pressed', v === 'like' ? 'true' : 'false');
+      disBtn.setAttribute('aria-pressed', v === 'dislike' ? 'true' : 'false');
+    }
+
+    async function send(action) {
+      var res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: action }),
+      });
+      if (!res.ok) { throw new Error('HTTP ' + res.status); }
+      return res.json();
+    }
+    function bumpFB(deltas) {
+      var s = readFB();
+      ['visits', 'likes', 'dislikes'].forEach(function (k) {
+        s[k] = Math.max(0, (s[k] || 0) + (deltas[k] || 0));
+      });
+      writeFB(s); render(s);
+    }
+
+    function riseHearts() {
+      if (reduce) { return; }
+      for (var i = 0; i < 6; i++) {
+        (function (n) {
+          var h = document.createElement('span');
+          h.className = 'heart';
+          h.textContent = '❤️';
+          h.style.setProperty('--dx', (Math.random() * 50 - 25).toFixed(0) + 'px');
+          h.style.left = (40 + Math.random() * 20) + '%';
+          h.style.fontSize = (13 + Math.random() * 8).toFixed(0) + 'px';
+          h.style.animationDelay = (n * 70) + 'ms';
+          likeBtn.appendChild(h);
+          setTimeout(function () { h.remove(); }, 1200 + n * 70);
+        })(i);
+      }
+    }
+
+    async function vote(choice) {
+      var prev = lsGet(LS);
+      var actions = [];
+      var deltas = { likes: 0, dislikes: 0 };
+      if (prev === choice) { // 再次点击 = 取消
+        actions.push(choice === 'like' ? 'unlike' : 'undislike');
+        deltas[choice === 'like' ? 'likes' : 'dislikes'] -= 1;
+        lsSet(LS, null);
+      } else { // 新投票或切换：先撤销旧的，再加新的
+        if (prev === 'like') { actions.push('unlike'); deltas.likes -= 1; }
+        if (prev === 'dislike') { actions.push('undislike'); deltas.dislikes -= 1; }
+        actions.push(choice);
+        deltas[choice === 'like' ? 'likes' : 'dislikes'] += 1;
+        lsSet(LS, choice);
+      }
+      reflectVote();
+      if (choice === 'like' && lsGet(LS) === 'like') { riseHearts(); }
+
+      try {
+        var s;
+        for (var i = 0; i < actions.length; i++) { s = await send(actions[i]); }
+        if (s) { render(s); }
+      } catch (e) {
+        bumpFB(deltas); // 离线兜底
+      }
+    }
+
+    likeBtn.addEventListener('click', function () { vote('like'); });
+    disBtn.addEventListener('click', function () { vote('dislike'); });
+
+    (async function init() {
+      reflectVote();
+      try {
+        var res = await fetch(API, { headers: { Accept: 'application/json' } });
+        if (!res.ok) { throw new Error('HTTP ' + res.status); }
+        render(await res.json());
+        if (ssGet(SS) !== '1') { // 每个会话只计一次访问
+          ssSet(SS, '1');
+          try { render(await send('visit')); } catch (e) {}
+        }
+      } catch (e) { // 离线：用本地兜底
+        var s = readFB();
+        if (ssGet(SS) !== '1') { ssSet(SS, '1'); s.visits = (s.visits || 0) + 1; writeFB(s); }
+        render(s);
+      }
+    })();
   })();
 </script>
 </body>

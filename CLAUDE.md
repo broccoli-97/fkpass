@@ -30,7 +30,7 @@ There is nothing to build or compile. The site lives in `src/`. To preview, serv
 cd src && python -m http.server 8000   # then visit http://localhost:8000
 ```
 
-The feedback page (`src/06-feedback.html`) is a real shared message board backed by a Cloudflare Pages Function at `functions/api/messages.js` (route `/api/messages`) plus a KV namespace bound as `FEEDBACK_KV`. The frontend `fetch`es that endpoint (GET to list, POST to add). When the API is unreachable — opening the file as a bare `file://`, local `python -m http.server`, or a missing KV binding — the page degrades to in-memory storage and shows a banner; that is expected, not a bug. Deployment/binding steps are in `docs/CLOUDFLARE-SETUP.md`.
+The feedback page (`src/feedback.html`) is a real shared message board backed by a Cloudflare Pages Function at `functions/api/messages.js` (route `/api/messages`) plus a KV namespace bound as `FEEDBACK_KV`. The frontend `fetch`es that endpoint (GET to list, POST to add). The homepage's visitor counter + 👍/👎 reactions use a second function `functions/api/stats.js` (route `/api/stats`) that **reuses the same `FEEDBACK_KV`** under a `site-stats` key (no extra binding). When any API is unreachable — opening the file as a bare `file://`, local `python -m http.server`, or a missing KV binding — the pages degrade gracefully (feedback → in-memory + banner; stats → `localStorage` counts, like animation still works); that is expected, not a bug. Deployment/binding steps are in `docs/CLOUDFLARE-SETUP.md`.
 
 ## Tests, linting & CI
 

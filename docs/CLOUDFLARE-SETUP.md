@@ -1,15 +1,17 @@
 # 部署到 Cloudflare Pages（含留言板存储）
 
-留言板用 **Cloudflare Pages Functions + KV** 实现真正的公共存储——所有访客共享同一份留言，全部在 Cloudflare 内，无需另开服务器。
+留言板用 **Cloudflare Pages Functions + KV** 实现真正的公共存储——所有访客共享同一份留言，全部在 Cloudflare 内，无需另开服务器。首页的**访问量 + 点赞/点踩**（`/api/stats`）复用同一个 KV，无需额外配置。
 
 ## 一、项目结构（已就绪）
 
 ```
-/                      ← 静态站点根目录，HTML 直接对外服务
-  06-feedback.html     ← 前端：fetch('/api/messages') 读写留言
-  functions/
-    api/
-      messages.js      ← Pages Function，自动映射到 /api/messages
+src/                   ← 静态站点（部署时拍平到根，HTML 直接对外服务）
+  index.html           ← 前端：fetch('/api/stats') 显示访问量、点赞/点踩
+  feedback.html        ← 前端：fetch('/api/messages') 读写留言
+functions/             ← 与站点同级（部署时一并带上）
+  api/
+    messages.js        ← Pages Function → /api/messages（留言板）
+    stats.js           ← Pages Function → /api/stats（访问量 + 点赞，复用 FEEDBACK_KV）
 ```
 
 `functions/` 是 Cloudflare Pages 的约定目录，**不会**被当作静态文件暴露，会被编译成 Functions。
@@ -47,6 +49,7 @@ wrangler pages dev . --kv FEEDBACK_KV
 ## 备注
 
 - 留言以单个 JSON 存在 KV 的 `feedback-list` 键下，读写各 1 次，契合免费额度；自动只保留最近 500 条。
+- 首页计数（`/api/stats`）用同一个 `FEEDBACK_KV`，存在 `site-stats` 键下（`{visits,likes,dislikes}`）；**不需要再建/再绑定一个 KV**。访问量按浏览器会话计一次；点赞/点踩在前端用 `localStorage` 限制每浏览器一票（可改主意），属尽力而为的防刷，与留言板同等信任模型。KV 最终一致，高并发下计数可能少计。
 - 留言在前端用 `textContent` 渲染（非 `innerHTML`），已防 XSS；KV 里存的是原始文本。
 - 没有后台审核/删除接口。需要删某条留言时，目前要去 KV 控制台编辑 `feedback-list` 的值。如需「管理员删除」功能可再加一个受保护的 DELETE 端点。
 
@@ -64,6 +67,6 @@ git push origin v1.0.0
 - `CLOUDFLARE_API_TOKEN` —— Cloudflare 控制台 → My Profile → API Tokens → Create Token，权限选 **Account → Cloudflare Pages → Edit**。
 - `CLOUDFLARE_ACCOUNT_ID` —— Cloudflare 控制台右侧栏的 Account ID。
 
-并确认 `deploy.yml` 里的 `--project-name=fkpass` 和 `--branch=master` 跟你的 Pages 项目名、生产分支一致；不一致就改这两个值。工作流只上传站点文件（`*.html` + `tokens.css` + `functions/`），`node_modules`、测试、配置都不会被部署。
+并确认 `deploy.yml` 里的 `--project-name=fkpass` 和 `--branch=master` 跟你的 Pages 项目名、生产分支一致；不一致就改这两个值。工作流只上传站点文件（`src/*.html` + `src/*.css` + `src/*.js` + `functions/`），`node_modules`、测试、配置都不会被部署。
 
 **避免重复部署：** 如果该 Pages 项目目前用 Cloudflare 的 Git 集成（连了 GitHub 仓库、每次 push 自动构建），它会和本工作流各部署一次。建议在 Pages 项目设置里关闭自动构建（或断开 Git 集成），只保留 tag 触发这一条部署线。
