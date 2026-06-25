@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刑事证据 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 思维导图节点/分支样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
+  .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
+  .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:340px; margin:0 auto;}
+  .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
+    display:flex; align-items:center; gap:6px;}
+  .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:5px; padding:1px 6px; margin-left:auto; white-space:nowrap;}
+  .branch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .branch-card li{font-size:12.6px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
+  .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
+  .branch-card li b{color:var(--ink);}
+  .mnemonic{margin-top:38px; display:flex; align-items:center; gap:18px; justify-content:center;
+    background:var(--folder); border-radius:12px; padding:18px 26px; box-shadow:0 8px 18px rgba(0,0,0,.28);
+    max-width:640px; margin-left:auto; margin-right:auto; position:relative; color:var(--ink);}
+  .mnemonic .seal{flex:none; width:70px; height:70px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:14px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .mnemonic .txt b{font-family:'Ma Shan Zheng',cursive; font-size:21px; color:var(--accent); display:block; margin-bottom:4px;}
+  .mnemonic .txt span{font-size:12.5px; color:var(--ink-soft); line-height:1.6;}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>刑事诉讼法</b> · 刑事证据</div>
+    <div class="pager"><a href="xingsu-qiangzhi-cuoshi.html">← 上一主题</a><a href="xingsu-feifa-zhengju-paichu.html">下一主题 →</a></div>
+  </div>
+
+  <div class="tree-stage">
+
+    <div class="root-node">
+      <div class="cite">刑事诉讼法 §50–§64</div>
+      <h1>刑事证据</h1>
+      <div class="sub">四块拼图：有哪几种 → 要证到什么程度 → 有哪些铁规则 → 学理怎么分类</div>
+    </div>
+
+    <div class="stem"></div>
+    <div class="bus-line"></div>
+
+    <div class="branches">
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>① 法定种类<span class="tag">§50</span></h3>
+          <ul>
+            <li><b>物证</b>；<b>书证</b></li>
+            <li><b>证人证言</b>；<b>被害人陈述</b></li>
+            <li>犯罪嫌疑人、被告人<b>供述和辩解</b></li>
+            <li><b>鉴定意见</b></li>
+            <li>勘验、检查、辨认、侦查实验等<b>笔录</b></li>
+            <li><b>视听资料、电子数据</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>② 证明标准<span class="tag">§55</span></h3>
+          <ul>
+            <li>定罪量刑的事实都<b>有证据证明</b></li>
+            <li>证据均经法定程序<b>查证属实</b></li>
+            <li>综合全案证据，对所认定事实已<mark>排除合理怀疑</mark></li>
+            <li>这就是"证据<b>确实、充分</b>"的三层含义</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>③ 铁规则</h3>
+          <ul>
+            <li><b>不得强迫</b>任何人证实自己有罪</li>
+            <li>只有被告人供述、没有其他证据的，<mark>不能定罪</mark>（口供补强）</li>
+            <li>重证据、重调查研究，<b>不轻信口供</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>④ 学理分类</h3>
+          <ul>
+            <li><b>言词</b>证据 / <b>实物</b>证据</li>
+            <li><b>直接</b>证据 / <b>间接</b>证据</li>
+            <li><b>原始</b>证据 / <b>传来</b>证据</li>
+            <li><b>有罪</b>证据 / <b>无罪</b>证据</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mnemonic">
+      <div class="seal">速<br>记</div>
+      <div class="txt"><b>物书 · 证言陈述 · 供鉴笔录 · 视听电子</b><span>八种法定证据种类一口气背完。注意"鉴定意见"是意见不是结论、"辨认笔录"归入笔录类——这三处最易在选项里被偷换。</span></div>
+    </div>
+
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-qiangzhi-cuoshi.html">上一主题：强制措施</a><a href="xingsu-feifa-zhengju-paichu.html">下一主题：非法证据排除</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

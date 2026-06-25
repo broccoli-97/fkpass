@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>非法证据排除 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 判断链页面级样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .page{max-width:680px;}
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .track-cap{display:flex; align-items:center; gap:8px; padding-left:54px; font-size:11.5px;
+    color:var(--folder-2); opacity:.75; margin-bottom:8px;}
+  .track-cap.end{margin-top:2px; margin-bottom:0;}
+  .dual-exit .exit-link{min-width:200px;}
+  .final-stamp{margin:30px auto 0; width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(180deg,var(--folder),var(--folder-2)); box-shadow:0 8px 18px rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;}
+  .final-seal{width:84px; height:84px; border-radius:50%; border:3px double var(--accent);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:17px; transform:rotate(-8deg); opacity:.9;
+    mix-blend-mode:multiply; line-height:1.2;}
+  @media (max-width:480px){ .track-cap{padding-left:0;} }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>刑事诉讼法</b> · 非法证据排除</div>
+    <div class="pager"><a href="xingsu-zhengju.html">← 上一主题</a><a href="xingsu-zhencha.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 07</div>
+    <h1>非法证据排除规则</h1>
+    <div class="cite">刑事诉讼法 §56–§60</div>
+    <p>一句话抓本质：<b>言词证据看"逼供"——绝对排除；实物证据看"程序"——能补正就留、补不了才排。</b>沿判断链逐步走。</p>
+  </section>
+
+  <div class="track-cap">▶ 拿到一份证据，开始判断</div>
+
+  <div class="flow-track">
+
+    <div class="step">
+      <div class="marker">1</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">言词 · 供述</span><div class="qtext">是否以<b>刑讯逼供</b>等非法方法取得的犯罪嫌疑人、被告人<b>供述</b>？</div></div>
+        <div class="path-line">
+          <span class="continue-tag">否 → 下一步</span>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">是</span>
+            <div class="exit-card"><span class="ic">❌</span><div><b>绝对排除</b><span>采用刑讯逼供等非法方法收集的供述，应当予以排除，没有裁量余地</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">2</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">言词 · 证言/陈述</span><div class="qtext">是否以<b>暴力、威胁</b>等非法方法取得的<b>证人证言 / 被害人陈述</b>？</div></div>
+        <div class="path-line">
+          <span class="continue-tag">否 → 下一步</span>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">是</span>
+            <div class="exit-card"><span class="ic">❌</span><div><b>绝对排除</b><span>与非法供述同等对待，应当排除</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">3</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">实物 · 程序</span><div class="qtext">收集<b>物证、书证</b>是否违反法定程序，<b>可能严重影响司法公正</b>？</div></div>
+        <div class="path-line">
+          <span class="continue-tag">否 → 可以采用</span>
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">是</span>
+            <div class="exit-card"><span class="ic">⚠️</span><div><b>进入补正判断</b><span>不是立即排除，先看能否补救</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">4</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">实物 · 补救</span><div class="qtext">能否<b>补正</b>或作出<b>合理解释</b>？</div></div>
+        <div class="dual-exit">
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">能</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>可以采用</b><span>瑕疵已补正或解释合理</span></div></div>
+          </div>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">不能</span>
+            <div class="exit-card"><span class="ic">❌</span><div><b>予以排除</b><span>不能补正且无合理解释</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="track-cap end">🏁 程序：当事人申请 → 法庭就取证合法性调查 → 检察机关证明合法 → 不能排除非法可能的，予以排除</div>
+
+  <div class="final-stamp"><div class="final-seal">言词从严<br>实物补正</div></div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-zhengju.html">上一主题：刑事证据</a><a href="xingsu-zhencha.html">下一主题：侦查程序</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

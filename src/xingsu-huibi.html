@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>回避 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 口诀印章 / 关键词卡 / 两栏。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .hero{text-align:center;}
+  .hero h1{font-size:clamp(24px,4.2vw,32px); margin:6px 0 4px;}
+  .hero .lead{font-size:14px; color:var(--ink-soft); line-height:1.7; max-width:600px; margin:6px auto 0;}
+  .stamp-row{display:flex; justify-content:center; gap:22px; flex-wrap:wrap; margin-bottom:14px;}
+  .stamp-item{display:flex; flex-direction:column; align-items:center; gap:9px;}
+  .stamp-sq{background:rgba(122,59,85,.05);}
+  .stamp-item .cap{font-size:11.5px; color:var(--ink-soft); max-width:96px; line-height:1.4;}
+  .grid{grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px;}
+  .card{padding:18px 16px 16px;}
+  .card .dot{width:26px; height:26px; border-radius:50%; border:1.5px solid var(--brass); color:var(--brass);
+    font-family:'Noto Serif SC',serif; font-weight:700; font-size:13px; display:flex; align-items:center;
+    justify-content:center; margin-bottom:10px;}
+  .card h3{font-size:15px; margin:0 0 8px;}
+  .card p{font-size:12.6px; line-height:1.65; margin:0;}
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .panel{background:var(--folder); border-radius:12px; padding:20px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink);}
+  .panel h4{font-family:'Noto Serif SC',serif; font-size:15px; margin:0 0 10px; display:flex; align-items:center; gap:7px;}
+  .panel ul{margin:0; padding-left:18px; font-size:12.8px; line-height:1.75; color:var(--ink-soft);}
+  .panel.warn{border-left:5px solid var(--warn);}
+  @media (max-width:760px){ .grid{grid-template-columns:repeat(2,1fr);} .twocol{grid-template-columns:1fr;} }
+  @media (max-width:480px){ .stamp-sq{width:52px; height:52px; font-size:18px;} }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>刑事诉讼法</b> · 回避</div>
+    <div class="pager"><a href="xingsu-guanxia.html">← 上一主题</a><a href="xingsu-bianhu.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 03</div>
+    <h1>回避</h1>
+    <div class="cite">刑事诉讼法 §29–§31</div>
+
+    <div class="stamp-row">
+      <div class="stamp-item"><div class="stamp-sq"><span>一</span><span>亲</span></div><div class="cap">当事人或其近亲属</div></div>
+      <div class="stamp-item"><div class="stamp-sq"><span>二</span><span>利</span></div><div class="cap">本人/近亲属有利害关系</div></div>
+      <div class="stamp-item"><div class="stamp-sq"><span>三</span><span>曾</span></div><div class="cap">曾任本案某职</div></div>
+      <div class="stamp-item"><div class="stamp-sq"><span>四</span><span>关</span></div><div class="cap">其他关系影响公正</div></div>
+    </div>
+
+    <p class="lead"><b>亲 · 利 · 曾 · 关</b>四字记住四种法定情形。<mark>只要可能影响公正办案，就应当回避。</mark></p>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <div class="dot">①</div>
+      <h3>适用对象</h3>
+      <p>审判、检察、侦查人员；同样适用于<b>书记员、翻译人员、鉴定人</b>。</p>
+    </article>
+    <article class="card">
+      <div class="dot">②</div>
+      <h3>四种情形</h3>
+      <p>当事人或其近亲属／本人或近亲属与本案有<b>利害关系</b>／曾任本案<b>证人、鉴定人、辩护人、诉讼代理人</b>／其他关系可能影响公正。</p>
+    </article>
+    <article class="card">
+      <div class="dot">③</div>
+      <h3>决定权</h3>
+      <p>审判人员→<b>院长</b>决定；院长→<b>审判委员会</b>决定；检察人员→<b>检察长</b>；侦查人员→<b>公安机关负责人</b>。</p>
+    </article>
+    <article class="card">
+      <div class="dot">④</div>
+      <h3>申请与复议</h3>
+      <p>当事人及法定代理人<b>有权申请回避</b>；对驳回申请回避的决定，可<mark>申请复议一次</mark>。</p>
+    </article>
+  </section>
+
+  <section class="twocol">
+    <div class="panel">
+      <h4>🔁 三种启动方式</h4>
+      <ul>
+        <li><b>自行回避</b>：办案人员主动提出</li>
+        <li><b>申请回避</b>：当事人及其法定代理人申请</li>
+        <li><b>指令回避</b>：有权机关负责人发现后责令回避</li>
+      </ul>
+    </div>
+    <div class="panel warn">
+      <h4>⚠️ 易错提示</h4>
+      <ul>
+        <li>侦查人员被申请回避，作出决定<b>前不能停止</b>对案件的侦查。</li>
+        <li>违反"不得接受请客送礼、违规会见"的，当事人有权要求其回避。</li>
+        <li>"应当知道而不知道"不影响回避制度的适用——以是否可能影响公正为准。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-guanxia.html">上一主题：管辖</a><a href="xingsu-bianhu.html">下一主题：辩护与代理</a></div>
+    <div class="dots"><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

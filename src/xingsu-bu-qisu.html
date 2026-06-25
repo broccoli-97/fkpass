@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提起公诉与不起诉 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 四列对比 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:104px repeat(4,1fr); min-width:860px;}
+  .cmp .head{background:var(--accent);}
+  .cell b{color:var(--ink);}
+  .errnote{margin-top:28px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:880px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  @media (max-width:760px){ .errnote{flex-direction:column;} }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>刑事诉讼法</b> · 提起公诉与不起诉</div>
+    <div class="pager"><a href="xingsu-zhencha.html">← 上一主题</a><a href="xingsu-shenpan.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 09</div>
+    <h1>提起公诉与四种不起诉</h1>
+    <div class="cite">刑事诉讼法 §175–§177 / §282</div>
+    <p>审查起诉后只有两条路：<b>事实清楚、证据确实充分、依法应追究 → 提起公诉</b>；否则进入四种不起诉之一。重点辨清"<mark>应当</mark>"与"<mark>可以</mark>"。</p>
+  </section>
+
+  <div class="hint">← 左右滑动查看完整对比 →</div>
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head">法定（绝对）<small>§16</small></div>
+      <div class="head">酌定（相对）<small>§177②</small></div>
+      <div class="head">存疑（证据不足）<small>§175④</small></div>
+      <div class="head">附条件<small>§282</small></div>
+
+      <div class="lbl">应当 / 可以</div>
+      <div class="cell"><b>应当</b>不起诉</div>
+      <div class="cell"><b>可以</b>不起诉</div>
+      <div class="cell"><b>可以</b>不起诉</div>
+      <div class="cell"><b>可以</b>附条件不起诉</div>
+
+      <div class="lbl">适用情形</div>
+      <div class="cell">具有 §16 法定不追究情形：情节显著轻微不认为是犯罪、超追诉时效、特赦、告诉才处理未告诉、嫌疑人死亡等</div>
+      <div class="cell"><b>犯罪情节轻微</b>，依刑法<b>不需要判刑或免除刑罚</b></div>
+      <div class="cell"><b>二次</b>补充侦查后仍<b>证据不足</b>、不符合起诉条件</div>
+      <div class="cell"><b>未成年人</b>涉特定犯罪、可能判<b>一年以下</b>、有悔罪表现</div>
+
+      <div class="lbl">关键特征</div>
+      <div class="cell">不构成犯罪或法定不追究——<b>无裁量</b></div>
+      <div class="cell">构成犯罪但轻微——有<b>裁量</b></div>
+      <div class="cell">事实存疑——疑罪从无</div>
+      <div class="cell">设<b>考验期 6 个月–1 年</b>，考验合格则不起诉</div>
+
+      <div class="lbl">救济</div>
+      <div class="cell" style="grid-column:span 4;">被害人不服：收到决定书后 <b>7 日内</b>向<b>上一级</b>检察院申诉；也可不经申诉直接向法院提起<b>自诉</b>。被不起诉人对相对不起诉有异议的，可向作出决定的检察院申诉。</div>
+
+    </div>
+  </div>
+
+  <div class="errnote">
+    <div class="seal">易错<br>提醒</div>
+    <div>
+      <h4>"绝对"用"应当"，其余用"可以"</h4>
+      <p>只有<b>法定不起诉</b>是"应当"（没有选择），酌定、存疑、附条件都是"<mark>可以</mark>"（有裁量）。附条件不起诉<b>只对未成年人</b>，且必须"可能判一年以下"——把它套到成年人或重罪上，就是典型错误选项。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-zhencha.html">上一主题：侦查程序</a><a href="xingsu-shenpan.html">下一主题：审判程序</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>强制措施 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 五列对比网格 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:88px repeat(5,1fr); min-width:980px;}
+  .cmp .head{background:var(--accent);}
+  .cell b{color:var(--ink);}
+  .errnote{margin-top:28px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:880px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  @media (max-width:760px){ .errnote{flex-direction:column;} }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>刑事诉讼法</b> · 强制措施</div>
+    <div class="pager"><a href="xingsu-bianhu.html">← 上一主题</a><a href="xingsu-zhengju.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 05</div>
+    <h1>强制措施：从轻到重的五道闸</h1>
+    <div class="cite">刑事诉讼法 §66–§99</div>
+    <p>五种措施由<b>轻到重</b>排列：拘传 → 取保候审 → 监视居住 → 拘留 → 逮捕。背熟<mark>期限</mark>和<mark>决定机关</mark>，半数考点已拿下。</p>
+  </section>
+
+  <div class="hint">← 左右滑动查看完整对比 →</div>
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head">拘传<small>§119</small></div>
+      <div class="head">取保候审<small>§67,§79</small></div>
+      <div class="head">监视居住<small>§74,§79</small></div>
+      <div class="head">拘留<small>§82,§91</small></div>
+      <div class="head">逮捕<small>§80,§81</small></div>
+
+      <div class="lbl">定位</div>
+      <div class="cell">强制到案接受讯问，最轻</div>
+      <div class="cell">交保证人或保证金，<b>不羁押</b></div>
+      <div class="cell">限制在住处/指定居所，介于取保与羁押</div>
+      <div class="cell">紧急情况下<b>短期</b>剥夺自由</div>
+      <div class="cell">最严厉，<b>较长时间羁押</b></div>
+
+      <div class="lbl">期限</div>
+      <div class="cell"><b>≤12h</b>；重大复杂 ≤24h，不得变相拘禁</div>
+      <div class="cell">最长 <b>12 个月</b></div>
+      <div class="cell">最长 <b>6 个月</b></div>
+      <div class="cell">提请批捕一般 3 日，可延 1–4 日；流窜/结伙/多次作案 <b>30 日</b></div>
+      <div class="cell">侦查羁押一般 <b>2 个月</b>，复杂可依法延长</div>
+
+      <div class="lbl">核心条件</div>
+      <div class="cell">未被羁押者经传唤无正当理由不到案等</div>
+      <div class="cell">可能判管制拘役/独立附加刑；或徒刑以上但取保不致危险等</div>
+      <div class="cell">符合逮捕条件但有特定情形（患病、生活不能自理、孕产妇等）</div>
+      <div class="cell">现行犯或重大嫌疑分子 + 法定紧急情形</div>
+      <div class="cell">有证据证明有犯罪事实 + 可能判<b>徒刑以上</b> + 有<b>社会危险性</b></div>
+
+      <div class="lbl">决定 / 批准</div>
+      <div class="cell">公、检、法各自决定</div>
+      <div class="cell">公、检、法各自决定</div>
+      <div class="cell">公、检、法各自决定</div>
+      <div class="cell">公安决定并执行；检察院对直接受理案件可决定，公安执行</div>
+      <div class="cell"><b>检察院批准</b>或<b>法院决定</b>，公安<b>执行</b></div>
+
+    </div>
+  </div>
+
+  <div class="errnote">
+    <div class="seal">易错<br>提醒</div>
+    <div>
+      <h4>"决定"与"执行"分家——逮捕是高频陷阱</h4>
+      <p>逮捕的权力在<mark>检察院（批准）或法院（决定）</mark>，但具体抓人由<b>公安机关执行</b>；公安自己<b>无权</b>批准逮捕。取保候审的保证金与保证人<b>不能并用</b>，只能择一。监视居住期限折抵刑期的规则也常考。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-bianhu.html">上一主题：辩护与代理</a><a href="xingsu-zhengju.html">下一主题：刑事证据</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

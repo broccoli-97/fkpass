@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刑事审判程序 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 思维导图节点/分支样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
+  .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
+  .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:340px; margin:0 auto;}
+  .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
+    display:flex; align-items:center; gap:6px;}
+  .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:5px; padding:1px 6px; margin-left:auto; white-space:nowrap;}
+  .branch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .branch-card li{font-size:12.6px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
+  .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
+  .branch-card li b{color:var(--ink);}
+  .mnemonic{margin-top:38px; display:flex; align-items:center; gap:18px; justify-content:center;
+    background:var(--folder); border-radius:12px; padding:18px 26px; box-shadow:0 8px 18px rgba(0,0,0,.28);
+    max-width:640px; margin-left:auto; margin-right:auto; position:relative; color:var(--ink);}
+  .mnemonic .seal{flex:none; width:70px; height:70px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:14px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .mnemonic .txt b{font-family:'Ma Shan Zheng',cursive; font-size:21px; color:var(--accent); display:block; margin-bottom:4px;}
+  .mnemonic .txt span{font-size:12.5px; color:var(--ink-soft); line-height:1.6;}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>刑事诉讼法</b> · 审判程序</div>
+    <div class="pager"><a href="xingsu-bu-qisu.html">← 上一主题</a><a href="index.html">🏠 目录</a></div>
+  </div>
+
+  <div class="tree-stage">
+
+    <div class="root-node">
+      <div class="cite">刑事诉讼法 §186–§260</div>
+      <h1>刑事审判程序</h1>
+      <div class="sub">从一审到再审的全景：一审定繁简 → 二审管纠错 → 死刑独立复核 → 再审兜底</div>
+    </div>
+
+    <div class="stem"></div>
+    <div class="bus-line"></div>
+
+    <div class="branches">
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>① 第一审</h3>
+          <ul>
+            <li><b>普通程序</b>：完整的法庭调查与辩论</li>
+            <li><b>简易程序</b>：基层 + 事实清楚 + 被告认罪且无异议</li>
+            <li><b>速裁程序</b>：基层 + 可能判<b>3 年以下</b> + 认罪认罚，一般不作法庭调查辩论</li>
+            <li>贯穿<mark>认罪认罚从宽</mark>制度</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>② 第二审</h3>
+          <ul>
+            <li>由<b>上诉</b>（被告人等）或<b>抗诉</b>（检察院）引起</li>
+            <li><b>全面审查</b>原则：不受上诉/抗诉范围限制</li>
+            <li><mark>上诉不加刑</mark>：只有被告人一方上诉，不得加重其刑罚</li>
+            <li>可开庭或依法不开庭审理</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>③ 死刑复核<span class="tag">§246</span></h3>
+          <ul>
+            <li>死刑（立即执行）由<b>最高人民法院</b>核准</li>
+            <li>是<b>独立</b>于两审之外的特别程序</li>
+            <li>死缓的核准依法由高级人民法院进行</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>④ 再审 + 特别程序</h3>
+          <ul>
+            <li><b>审判监督（再审）</b>：确有错误时由法院/检察院依法提起，当事人可申诉</li>
+            <li>特别程序：未成年人案件、当事人和解、<b>缺席审判</b>、违法所得没收、强制医疗</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mnemonic">
+      <div class="seal">速<br>记</div>
+      <div class="txt"><b>一审分繁简 · 二审不加刑 · 死刑最高核 · 再审兜错案</b><span>四句锁住审判全程。"上诉不加刑"只在<b>被告人一方</b>上诉时适用；检察院抗诉或自诉人上诉的，不受此限。</span></div>
+    </div>
+
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-bu-qisu.html">上一主题：提起公诉与不起诉</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>
