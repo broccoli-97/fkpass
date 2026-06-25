@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宪法 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 思维导图节点/分支样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#46506b; --glow:rgba(70,80,107,.14); }  /* 理论法 = 黛青灰 */
+  .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
+  .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
+  .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:360px; margin:0 auto;}
+  .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
+    display:flex; align-items:center; gap:6px;}
+  .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:5px; padding:1px 6px; margin-left:auto; white-space:nowrap;}
+  .branch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .branch-card li{font-size:12.6px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
+  .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
+  .branch-card li b{color:var(--ink);}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
+</style>
+</head>
+<body data-subject="理论法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>理论法</b> · 宪法</div>
+    <div class="pager"><a href="falixue.html">← 上一主题</a><a href="fazhishi.html">下一主题 →</a></div>
+  </div>
+
+  <div class="tree-stage">
+
+    <div class="root-node">
+      <div class="cite">现行宪法 · 1982（五次修正）</div>
+      <h1>宪法</h1>
+      <div class="sub">国家根本法、最高法律效力。四块：基本制度 / 公民权利义务 / 国家机构 / 宪法实施</div>
+    </div>
+
+    <div class="stem"></div>
+    <div class="bus-line"></div>
+
+    <div class="branches">
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>① 基本制度</h3>
+          <ul>
+            <li>国体：<b>人民民主专政</b>；政体：<b>人民代表大会制度</b>（根本政治制度）</li>
+            <li>结构形式：<b>单一制</b></li>
+            <li><b>民族区域自治</b>、<b>特别行政区</b>、基层群众自治</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>② 公民权利义务</h3>
+          <ul>
+            <li><b>平等权</b>；政治权利（选举权与被选举权等）</li>
+            <li>人身自由、<b>人格尊严</b>、住宅不受侵犯、宗教信仰自由</li>
+            <li>社会经济文化权利（劳动、受教育、物质帮助）</li>
+            <li>义务：维护统一、遵守宪法法律、<b>依法纳税</b>、服兵役</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>③ 国家机构</h3>
+          <ul>
+            <li><b>全国人大及其常委会</b>：最高国家权力机关</li>
+            <li>国家主席 · <b>国务院</b>（最高行政机关）· 中央军委</li>
+            <li><b>监察委员会</b>（2018 入宪）· 法院 · 检察院</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>④ 宪法实施</h3>
+          <ul>
+            <li>宪法具有<mark>最高法律效力</mark>，是制定普通法律的依据</li>
+            <li><b>全国人大及其常委会</b>监督宪法实施</li>
+            <li><b>合宪性审查</b> + 国家工作人员<b>宪法宣誓</b>制度</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="falixue.html">上一主题：法理学</a><a href="fazhishi.html">下一主题：中国法律史</a></div>
+    <div class="dots"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

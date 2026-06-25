@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法理学 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 思维导图节点/分支样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#46506b; --glow:rgba(70,80,107,.14); }  /* 理论法 = 黛青灰 */
+  .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
+  .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
+  .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:340px; margin:0 auto;}
+  .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
+    display:flex; align-items:center; gap:6px;}
+  .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:5px; padding:1px 6px; margin-left:auto; white-space:nowrap;}
+  .branch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .branch-card li{font-size:12.6px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
+  .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
+  .branch-card li b{color:var(--ink);}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
+</style>
+</head>
+<body data-subject="理论法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>理论法</b> · 法理学</div>
+    <div class="pager"><a href="lilun-fazhi.html">← 上一主题</a><a href="xianfa.html">下一主题 →</a></div>
+  </div>
+
+  <div class="tree-stage">
+
+    <div class="root-node">
+      <div class="cite">法理学</div>
+      <h1>法理学</h1>
+      <div class="sub">四块骨架：法是什么 → 法从哪来、对谁有效 → 法律关系怎么搭 → 法怎么运行</div>
+    </div>
+
+    <div class="stem"></div>
+    <div class="bus-line"></div>
+
+    <div class="branches">
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>① 法的本体</h3>
+          <ul>
+            <li>由国家<b>制定或认可</b>、以<b>权利义务</b>为内容、有<b>国家强制力</b>保障</li>
+            <li>规范作用：<b>指引、评价、预测、教育、强制</b></li>
+            <li>价值：秩序、自由、正义（冲突时位阶权衡）</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>② 渊源与效力</h3>
+          <ul>
+            <li><b>正式渊源</b>：宪法、法律、行政法规、地方性法规、规章、自治条例单行条例、国际条约</li>
+            <li><b>非正式渊源</b>：习惯、政策、法理、判例</li>
+            <li>效力：<mark>法不溯及既往</mark>，例外是"<b>从旧兼从轻</b>"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>③ 法律关系</h3>
+          <ul>
+            <li><b>主体</b>：须有权利能力、行为能力</li>
+            <li><b>客体</b>：物、行为、智力成果、人身利益</li>
+            <li><b>内容</b>：权利与义务</li>
+            <li>由<b>法律事实</b>（事件 / 行为）引起变动</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>④ 法的运行</h3>
+          <ul>
+            <li>立法 → 执法 → 司法 → 守法 → 法律监督</li>
+            <li><b>法律解释</b>：立法解释（全国人大常委会）、司法解释（两高）</li>
+            <li>方法：文义、体系、目的解释；演绎/归纳/类比<b>推理</b></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="lilun-fazhi.html">上一主题：法治理论</a><a href="xianfa.html">下一主题：宪法</a></div>
+    <div class="dots"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>
