@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识产权法 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 三列对比 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#2c6e84; --glow:rgba(44,110,132,.14); }  /* 知识产权法 = 青 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:96px repeat(3,1fr); min-width:760px;}
+  .cmp .head{background:var(--accent);}
+  .cell b{color:var(--ink);}
+  .errnote{margin-top:28px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:880px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  @media (max-width:760px){ .errnote{flex-direction:column;} }
+</style>
+</head>
+<body data-subject="知识产权法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>知识产权法</b> · 三权对比</div>
+    <div class="pager"><a href="index.html">🏠 返回目录</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">知产</div>
+    <h1>著作权 · 专利权 · 商标权</h1>
+    <div class="cite">著作权法 / 专利法 / 商标法（2020–2021 修订）</div>
+    <p>三权最爱在选择题里串门。一句话区分：<b>著作权自动取得，专利、商标须申请；保护期数字各不相同。</b></p>
+  </section>
+
+  <div class="hint">← 左右滑动查看完整对比 →</div>
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head">著作权</div>
+      <div class="head">专利权</div>
+      <div class="head">商标权</div>
+
+      <div class="lbl">客体</div>
+      <div class="cell">有<b>独创性</b>的作品（文学、艺术、科学）</div>
+      <div class="cell"><b>发明</b>、<b>实用新型</b>、<b>外观设计</b></div>
+      <div class="cell">区分商品/服务来源的<b>标志</b></div>
+
+      <div class="lbl">取得方式</div>
+      <div class="cell"><mark>作品完成自动取得</mark>（登记自愿）</div>
+      <div class="cell">申请 + 审查<b>授权</b>，<b>先申请</b>原则</div>
+      <div class="cell"><b>注册</b>取得，先申请原则</div>
+
+      <div class="lbl">保护期</div>
+      <div class="cell">人身权（署名等）<b>不受限</b>；财产权及发表权为作者<b>终生 + 死后 50 年</b></div>
+      <div class="cell">自<b>申请日</b>起：发明 <b>20 年</b>、实用新型 <b>10 年</b>、外观设计 <b>15 年</b></div>
+      <div class="cell"><b>10 年</b>，可<mark>无限次续展</mark>（每次 10 年）</div>
+
+      <div class="lbl">核心要件</div>
+      <div class="cell">独创性 + 思想/表达二分</div>
+      <div class="cell"><b>新颖性、创造性、实用性</b></div>
+      <div class="cell">显著性、不侵犯在先权利、不致混淆</div>
+
+    </div>
+  </div>
+
+  <div class="errnote">
+    <div class="seal">易错<br>提醒</div>
+    <div>
+      <h4>三个最爱被偷换的点</h4>
+      <p>① 著作权<b>自动产生</b>，登记只是证据，不是生效要件；② 外观设计保护期 2021 年起由 10 年<mark>延长为 15 年</mark>，旧题答案要更新；③ 商标可<b>无限续展</b>而专利<b>不能续展</b>——别把商标的"长生"套到专利上。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="index.html">返回首页</a></div>
+    <div class="dots"><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>
