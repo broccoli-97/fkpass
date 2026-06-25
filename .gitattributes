@@ -1,0 +1,9 @@
+# Normalize line endings to LF in the repo and in every working copy.
+# Without this, core.autocrlf=true gives Windows checkouts CRLF files, which
+# Prettier (endOfLine defaults to "lf") flags — making `npm run check` fail
+# locally even though CI (which checks out LF) is green. eol=lf overrides
+# autocrlf so every platform sees LF and the check passes everywhere.
+* text=auto eol=lf
+
+# Don't touch the binary distribution bundle.
+*.skill binary
