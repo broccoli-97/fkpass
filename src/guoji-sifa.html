@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国际私法 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 思维导图节点/分支样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#8f5066; --glow:rgba(143,80,102,.13); }  /* 国际法 = 绛红紫 */
+  .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
+  .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
+  .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:360px; margin:0 auto;}
+  .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
+    display:flex; align-items:center; gap:6px;}
+  .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:5px; padding:1px 6px; margin-left:auto; white-space:nowrap;}
+  .branch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .branch-card li{font-size:12.6px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
+  .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
+  .branch-card li b{color:var(--ink);}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
+</style>
+</head>
+<body data-subject="国际法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>国际法</b> · 国际私法</div>
+    <div class="pager"><a href="guoji-gongfa.html">← 上一主题</a><a href="guoji-jingjifa.html">下一主题 →</a></div>
+  </div>
+
+  <div class="tree-stage">
+
+    <div class="root-node">
+      <div class="cite">涉外民事关系法律适用法</div>
+      <h1>国际私法</h1>
+      <div class="sub">解决"涉外案件该用哪国法"：靠冲突规范找准据法，再过几道"安全阀"</div>
+    </div>
+
+    <div class="stem"></div>
+    <div class="bus-line"></div>
+
+    <div class="branches">
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>① 冲突规范</h3>
+          <ul>
+            <li>结构 = <b>范围</b>（调整对象）+ <b>系属</b>（指引哪国法）</li>
+            <li>靠<b>连结点</b>（国籍、住所、物之所在地等）锁定</li>
+            <li>指向的实体法即<mark>准据法</mark></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>② 适用制度（安全阀）</h3>
+          <ul>
+            <li><b>识别</b>、<b>反致</b>（我国原则上不采用）</li>
+            <li><b>公共秩序保留</b>、<b>法律规避</b></li>
+            <li>外国法<b>查明</b>不能时，适用中国法</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>③ 各论 · 准据法</h3>
+          <ul>
+            <li>属人法以<b>经常居所地法</b>为主</li>
+            <li>合同：<b>意思自治</b> + 最密切联系</li>
+            <li>侵权：侵权行为地法 / 共同经常居所地法</li>
+            <li>物权：<b>物之所在地法</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>④ 国际民诉与仲裁</h3>
+          <ul>
+            <li>涉外管辖、司法协助、外国判决承认与执行</li>
+            <li>国际商事仲裁：<b>《纽约公约》</b></li>
+            <li>承认与执行<b>外国仲裁裁决</b>的统一框架</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="guoji-gongfa.html">上一主题：国际公法</a><a href="guoji-jingjifa.html">下一主题：国际经济法</a></div>
+    <div class="dots"><span></span><span class="active"></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>
