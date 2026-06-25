@@ -4,17 +4,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A **static website with one serverless endpoint**: a design-system template collection for 法考速记卷宗 ("Legal-Exam Cheat-Sheet Casefile"), a Chinese bar-exam study site. Each page renders one law-exam topic as a "casefile card" laid on a dark-desk background. There is **no build step, no package manager, no test framework, no git**. Pages are plain HTML files that each link one shared stylesheet (`tokens.css`); the only dynamic piece is the feedback board's Cloudflare Pages Function.
+A **static website with one serverless endpoint**: a design-system template collection for 法考速记卷宗 ("Legal-Exam Cheat-Sheet Casefile"), a Chinese bar-exam study site. Each page renders one law-exam topic as a "casefile card" laid on a dark-desk background. The published site has **no build step** — pages are plain HTML files that each link one shared stylesheet (`tokens.css`); the only dynamic piece is the feedback board's Cloudflare Pages Function.
+
+## Project layout
+
+```
+src/         the published site — 8 HTML pages + tokens.css (kept flat: every
+             page links tokens.css from the same folder, so URLs/links stay simple)
+functions/   Cloudflare Pages Function — api/messages.js (must stay at repo root)
+docs/        design spec (SKILL.md, components.md), CLOUDFLARE-SETUP.md, the .skill bundle
+test/        node --test suites (design-system + messages API)
+.github/     CI (every push/PR) + deploy (on v* tags)
+```
+
+Linter configs (`.stylelintrc.json`, `.htmlvalidate.json`, `.prettierrc.json`,
+`eslint.config.js`) stay at the root so the tools auto-discover them. The deploy
+workflow flattens `src/*` + `functions/` into `dist/`, so the **deployed URL of
+every page is unchanged by this layout** (e.g. `/01-grid-overview.html`).
 
 ## Commands
 
-There is nothing to build or compile. To preview, serve the folder (recommended, so the shared `tokens.css` resolves cleanly), or open an HTML file that sits alongside `tokens.css`:
+There is nothing to build or compile. The site lives in `src/`. To preview, serve that folder (recommended, so the shared `tokens.css` resolves cleanly), or open an HTML file that sits alongside `tokens.css`:
 
 ```bash
-python -m http.server 8000   # then visit http://localhost:8000
+cd src && python -m http.server 8000   # then visit http://localhost:8000
 ```
 
-The feedback page (`06-feedback.html`) is a real shared message board backed by a Cloudflare Pages Function at `functions/api/messages.js` (route `/api/messages`) plus a KV namespace bound as `FEEDBACK_KV`. The frontend `fetch`es that endpoint (GET to list, POST to add). When the API is unreachable — opening the file as a bare `file://`, local `python -m http.server`, or a missing KV binding — the page degrades to in-memory storage and shows a banner; that is expected, not a bug. Deployment/binding steps are in `CLOUDFLARE-SETUP.md`.
+The feedback page (`src/06-feedback.html`) is a real shared message board backed by a Cloudflare Pages Function at `functions/api/messages.js` (route `/api/messages`) plus a KV namespace bound as `FEEDBACK_KV`. The frontend `fetch`es that endpoint (GET to list, POST to add). When the API is unreachable — opening the file as a bare `file://`, local `python -m http.server`, or a missing KV binding — the page degrades to in-memory storage and shows a banner; that is expected, not a bug. Deployment/binding steps are in `docs/CLOUDFLARE-SETUP.md`.
 
 ## Tests, linting & CI
 
@@ -38,11 +54,11 @@ npm test         # just the tests (node --test)
 - **Deploy** — `.github/workflows/deploy.yml` runs the checks, then deploys to Cloudflare
   Pages, but **only when you push a `v*` tag** (a "formal version"):
   `git tag v1.0.0 && git push origin v1.0.0`. Needs the `CLOUDFLARE_API_TOKEN` +
-  `CLOUDFLARE_ACCOUNT_ID` repo secrets (see `CLOUDFLARE-SETUP.md`).
+  `CLOUDFLARE_ACCOUNT_ID` repo secrets (see `docs/CLOUDFLARE-SETUP.md`).
 
 ## Authoritative design spec — read before editing any page
 
-`SKILL.md` is the design system's source of truth; `components.md` holds the full copy-paste CSS/HTML for every component; `tokens.css` is the **shared stylesheet every page links** — the canonical runtime source for the tokens, base/desk layer, chrome, and all five layout archetypes. **Read `SKILL.md` first** when creating or restyling any page — it defines hard rules that, if broken, mean the work no longer matches the system. The `.skill` file is just a zip bundle of those three docs for distribution; edit the loose files, not the archive.
+`docs/SKILL.md` is the design system's source of truth; `docs/components.md` holds the full copy-paste CSS/HTML for every component; `src/tokens.css` is the **shared stylesheet every page links** — the canonical runtime source for the tokens, base/desk layer, chrome, and all five layout archetypes. **Read `docs/SKILL.md` first** when creating or restyling any page — it defines hard rules that, if broken, mean the work no longer matches the system. The `.skill` file is just a zip bundle of those three docs for distribution; edit the loose files, not the archive.
 
 ## Architecture you can't see from the file list
 
@@ -70,4 +86,4 @@ npm test         # just the tests (node --test)
 
 ## When adding a new topic page
 
-Update the cross-page wiring that isn't auto-generated: link `tokens.css` and keep the new page's inline `<style>` to just its `--accent` (plus any page-unique components) — never re-inline the shared base/chrome. Then add a `<span>` to the `.dots` progress indicator in **every** topic page (dot count = number of knowledge pages), fix the prev/next `.footnav` links on the neighboring pages, add a catalog card in `index.html`, and — if you introduced a genuinely new layout — add a row to the layout table in `SKILL.md`.
+Update the cross-page wiring that isn't auto-generated: link `tokens.css` and keep the new page's inline `<style>` to just its `--accent` (plus any page-unique components) — never re-inline the shared base/chrome. Then add a `<span>` to the `.dots` progress indicator in **every** topic page (dot count = number of knowledge pages), fix the prev/next `.footnav` links on the neighboring pages, add a catalog card in `src/index.html`, and — if you introduced a genuinely new layout — add a row to the layout table in `docs/SKILL.md`.

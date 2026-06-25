@@ -10,8 +10,8 @@
   "scripts": {
     "test": "node --test",
     "lint:js": "eslint .",
-    "lint:css": "stylelint tokens.css \"*.html\"",
-    "lint:html": "html-validate \"*.html\"",
+    "lint:css": "stylelint \"src/tokens.css\" \"src/*.html\"",
+    "lint:html": "html-validate \"src/*.html\"",
     "format:check": "prettier --check \"test/**/*.js\" \"*.config.js\" \"*.json\" \".github/**/*.yml\"",
     "format": "prettier --write \"test/**/*.js\" \"*.config.js\" \"*.json\" \".github/**/*.yml\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html && npm run format:check",

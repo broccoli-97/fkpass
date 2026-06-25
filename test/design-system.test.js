@@ -8,7 +8,8 @@ import { dirname, join } from 'node:path';
 // so the shared-stylesheet refactor (and the design system in general) can't
 // silently regress. They are static-analysis only: read the files, no DOM/browser.
 
-const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+// The site (HTML pages + tokens.css) lives in src/; functions/ stays at the repo root.
+const root = join(dirname(fileURLToPath(import.meta.url)), '..', 'src');
 const read = (f) => readFileSync(join(root, f), 'utf8');
 
 const htmlPages = readdirSync(root).filter((f) => f.endsWith('.html'));
