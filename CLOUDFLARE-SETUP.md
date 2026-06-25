@@ -49,3 +49,21 @@ wrangler pages dev . --kv FEEDBACK_KV
 - 留言以单个 JSON 存在 KV 的 `feedback-list` 键下，读写各 1 次，契合免费额度；自动只保留最近 500 条。
 - 留言在前端用 `textContent` 渲染（非 `innerHTML`），已防 XSS；KV 里存的是原始文本。
 - 没有后台审核/删除接口。需要删某条留言时，目前要去 KV 控制台编辑 `feedback-list` 的值。如需「管理员删除」功能可再加一个受保护的 DELETE 端点。
+
+## 六、用 GitHub Actions 在打 tag 时自动部署
+
+仓库已带 `.github/workflows/deploy.yml`：**推送 `v*` 形式的 tag**（如 `v1.0.0`）会先跑全套 lint + 测试，通过后用 Wrangler 把站点部署到 Cloudflare Pages。日常往分支推代码只触发 `ci.yml`（检查），不会部署——"正式版本才上线"。
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+需要在 GitHub 仓库 **Settings → Secrets and variables → Actions → New repository secret** 添加两个 secret：
+
+- `CLOUDFLARE_API_TOKEN` —— Cloudflare 控制台 → My Profile → API Tokens → Create Token，权限选 **Account → Cloudflare Pages → Edit**。
+- `CLOUDFLARE_ACCOUNT_ID` —— Cloudflare 控制台右侧栏的 Account ID。
+
+并确认 `deploy.yml` 里的 `--project-name=fkpass` 和 `--branch=master` 跟你的 Pages 项目名、生产分支一致；不一致就改这两个值。工作流只上传站点文件（`*.html` + `tokens.css` + `functions/`），`node_modules`、测试、配置都不会被部署。
+
+**避免重复部署：** 如果该 Pages 项目目前用 Cloudflare 的 Git 集成（连了 GitHub 仓库、每次 push 自动构建），它会和本工作流各部署一次。建议在 Pages 项目设置里关闭自动构建（或断开 Git 集成），只保留 tag 触发这一条部署线。

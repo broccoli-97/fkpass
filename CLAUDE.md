@@ -16,6 +16,30 @@ python -m http.server 8000   # then visit http://localhost:8000
 
 The feedback page (`06-feedback.html`) is a real shared message board backed by a Cloudflare Pages Function at `functions/api/messages.js` (route `/api/messages`) plus a KV namespace bound as `FEEDBACK_KV`. The frontend `fetch`es that endpoint (GET to list, POST to add). When the API is unreachable — opening the file as a bare `file://`, local `python -m http.server`, or a missing KV binding — the page degrades to in-memory storage and shows a banner; that is expected, not a bug. Deployment/binding steps are in `CLOUDFLARE-SETUP.md`.
 
+## Tests, linting & CI
+
+Dev tooling only — the published site still has **no build step**. Needs Node 20+.
+
+```bash
+npm install      # one-time: install dev dependencies
+npm run check    # lint (ESLint + Stylelint + html-validate + Prettier) + tests
+npm test         # just the tests (node --test)
+```
+
+- `test/messages.test.js` unit-tests the `/api/messages` function against a fake KV
+  (validation, 400/500 paths, trimming, the `匿名考生` default, the 500-item cap).
+- `test/design-system.test.js` enforces the rules in this file as executable checks — every
+  page links `tokens.css`, no page re-inlines the base layer, no orphan classes, the feedback
+  XSS `textContent` guard, stamp `mix-blend-mode`, and `.dots` wiring. **If you change the
+  system, these keep it honest.** When a linter complains about the deliberately compact
+  style, tune the config (`.stylelintrc.json` / `.htmlvalidate.json` / `eslint.config.js`)
+  rather than reformatting the pages.
+- **CI** — `.github/workflows/ci.yml` runs `npm run check` on every push / PR.
+- **Deploy** — `.github/workflows/deploy.yml` runs the checks, then deploys to Cloudflare
+  Pages, but **only when you push a `v*` tag** (a "formal version"):
+  `git tag v1.0.0 && git push origin v1.0.0`. Needs the `CLOUDFLARE_API_TOKEN` +
+  `CLOUDFLARE_ACCOUNT_ID` repo secrets (see `CLOUDFLARE-SETUP.md`).
+
 ## Authoritative design spec — read before editing any page
 
 `SKILL.md` is the design system's source of truth; `components.md` holds the full copy-paste CSS/HTML for every component; `tokens.css` is the **shared stylesheet every page links** — the canonical runtime source for the tokens, base/desk layer, chrome, and all five layout archetypes. **Read `SKILL.md` first** when creating or restyling any page — it defines hard rules that, if broken, mean the work no longer matches the system. The `.skill` file is just a zip bundle of those three docs for distribution; edit the loose files, not the archive.
@@ -41,7 +65,7 @@ The feedback page (`06-feedback.html`) is a real shared message board backed by 
 - Dark `--desk` background + light `--folder` (kraft-paper) cards — never inverted.
 - `tokens.css` already provides `@media (prefers-reduced-motion: reduce)` and the base mobile breakpoints (760px / 480px) for the shared components; a page only adds breakpoints for its **own** unique components (collapse grids to one column, or allow horizontal scroll with a swipe hint).
 - Stamp elements (`.seal`, `.stamp-sq`, `.stamp-reject`) require `mix-blend-mode: multiply` or they read as stickers, not ink stamps.
-- No JS frameworks or build tooling — plain HTML/CSS, with minimal vanilla JS only where needed (e.g. the feedback board).
+- No JS frameworks or build tooling in the shipped site — plain HTML/CSS + minimal vanilla JS where needed (e.g. the feedback board). (Dev-only test/lint tooling lives in `package.json` and never ships — see "Tests, linting & CI".)
 - Any user-supplied content shown to other visitors must be rendered via `textContent`/DOM APIs, never string-concatenated into `innerHTML` (XSS).
 
 ## When adding a new topic page
