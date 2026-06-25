@@ -22,7 +22,7 @@ function json(data, status = 200) {
 // GET /api/messages → 返回留言数组
 export async function onRequestGet({ env }) {
   const kv = env.FEEDBACK_KV;
-  if (!kv) return json({ error: 'KV 未绑定（FEEDBACK_KV）' }, 500);
+  if (!kv) return json({ error: 'KV 未绑定（请在 Pages 项目 Settings → Bindings 绑定 FEEDBACK_KV）' }, 500);
   const raw = await kv.get(KEY);
   return json(raw ? JSON.parse(raw) : []);
 }
@@ -30,7 +30,7 @@ export async function onRequestGet({ env }) {
 // POST /api/messages  body: { name?, contact?, message } → 追加一条，返回该条
 export async function onRequestPost({ request, env }) {
   const kv = env.FEEDBACK_KV;
-  if (!kv) return json({ error: 'KV 未绑定（FEEDBACK_KV）' }, 500);
+  if (!kv) return json({ error: 'KV 未绑定（请在 Pages 项目 Settings → Bindings 绑定 FEEDBACK_KV）' }, 500);
 
   let body;
   try {
@@ -45,7 +45,7 @@ export async function onRequestPost({ request, env }) {
   const entry = {
     // 服务端生成 id / 时间，作为权威记录（不信任客户端时间）
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    name: String(body.name ?? '').trim().slice(0, MAX_LEN.name),
+    name: String(body.name ?? '').trim().slice(0, MAX_LEN.name) || '匿名考生',
     contact: String(body.contact ?? '').trim().slice(0, MAX_LEN.contact),
     message,
     time: Date.now(),

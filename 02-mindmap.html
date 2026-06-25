@@ -6,61 +6,14 @@
 <title>共同犯罪 · 法考速记卷</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
-  :root{
-    --desk:#1d1712; --folder:#efe4c8; --folder-2:#e2d2a8;
-    --ink:#2a2420; --ink-soft:#6b5e4d; --brass:#b8893b;
-    --accent:#a52422; /* 刑法 = 朱红 */
-    --line:rgba(42,36,32,.16); --shadow:0 14px 30px rgba(0,0,0,.38);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
-      radial-gradient(circle at 80% -10%, rgba(165,36,34,.10), transparent 40%),
-      var(--desk);
-    color:var(--folder); font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
-    min-height:100vh; padding:28px 18px 60px;
-  }
-  ::selection{background:var(--brass); color:#fff;}
-  .page{max-width:980px; margin:0 auto;}
-
-  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:13px;
-    color:var(--folder-2); opacity:.85; padding-bottom:14px; margin-bottom:30px;
-    border-bottom:1px dashed rgba(239,228,200,.25); flex-wrap:wrap;}
-  .crumb b{color:var(--brass); font-weight:700;}
-  .pager{display:flex; gap:16px;}
-  .pager a{color:var(--folder); text-decoration:none; opacity:.75; border-bottom:1px solid transparent;}
-  .pager a:hover{opacity:1; border-color:var(--brass);}
-
-  /* ---------- 根节点 ---------- */
-  .tree-stage{display:flex; flex-direction:column; align-items:center;}
-  .root-node{
-    position:relative; width:fit-content; background:linear-gradient(180deg, var(--folder), var(--folder-2));
-    color:var(--ink); border-radius:14px; padding:22px 40px; text-align:center;
-    box-shadow:var(--shadow);
-  }
-  .root-node::before,.root-node::after{content:""; position:absolute; inset:0; border-radius:14px;
-    background:var(--folder-2); border:1px solid var(--line); z-index:-1;}
-  .root-node::before{transform:rotate(-1.6deg) translate(-6px,5px);}
-  .root-node::after{transform:rotate(1.8deg) translate(8px,7px); opacity:.7;}
+  /* 本页专属：主题色 + 思维导图节点/分支内容样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#a52422; --glow:rgba(165,36,34,.10); }  /* 刑法 = 朱红 */
   .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
     border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
   .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
   .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:320px; margin:0 auto;}
-
-  .stem{width:2px; height:26px; background:var(--brass);}
-  .bus-line{width:92%; max-width:820px; height:2px; background:var(--brass);}
-
-  .branches{display:flex; width:92%; max-width:820px; justify-content:space-between; gap:16px;}
-  .branch{flex:1; display:flex; flex-direction:column; align-items:center; min-width:0;}
-  .branch-stem{width:2px; height:22px; background:var(--brass);}
-
-  .branch-card{
-    width:100%; background:var(--folder); border-radius:12px; padding:18px 16px 16px;
-    box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); border-top:4px solid var(--accent);
-  }
   .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
     display:flex; align-items:center; gap:6px;}
   .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
@@ -69,44 +22,21 @@
   .branch-card li{font-size:12.8px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
   .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
   .branch-card li b{color:var(--ink);}
-  .branch-card .strike{color:#8a3a38; }
-
-  mark{background:linear-gradient(100deg, transparent 0%, var(--brass) 6%, var(--brass) 94%, transparent 100%);
-    background-size:100% 60%; background-repeat:no-repeat; background-position:0 70%; color:var(--ink); font-weight:700; padding:0 3px;}
-
-  /* ---------- 口诀印章 ---------- */
-  .mnemonic{
-    margin-top:38px; display:flex; align-items:center; gap:18px; justify-content:center;
+  .branch-card .strike{color:#8a3a38;}
+  /* 口诀印章条 */
+  .mnemonic{margin-top:38px; display:flex; align-items:center; gap:18px; justify-content:center;
     background:var(--folder); border-radius:12px; padding:18px 26px; box-shadow:0 8px 18px rgba(0,0,0,.28);
-    max-width:620px; margin-left:auto; margin-right:auto; position:relative; color:var(--ink);
-  }
-  .mnemonic .seal{
-    flex:none; width:70px; height:70px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    max-width:620px; margin-left:auto; margin-right:auto; position:relative; color:var(--ink);}
+  .mnemonic .seal{flex:none; width:70px; height:70px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
     display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:14px;
-    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;
-  }
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
   .mnemonic .txt b{font-family:'Ma Shan Zheng',cursive; font-size:22px; color:var(--accent); display:block; margin-bottom:4px;}
   .mnemonic .txt span{font-size:12.5px; color:var(--ink-soft); line-height:1.6;}
-
-  .pagefoot{display:flex; flex-direction:column; align-items:center; gap:12px; margin-top:40px;}
-  .dots{display:flex; gap:8px;}
-  .dots span{width:7px; height:7px; border-radius:50%; background:rgba(239,228,200,.3);}
-  .dots span.active{background:var(--brass); width:20px; border-radius:4px;}
-  .footnav{display:flex; gap:26px; font-size:13px;}
-  .footnav a{color:var(--folder); opacity:.8; text-decoration:none; border-bottom:1px solid var(--brass);}
-
-  @media (max-width:760px){
-    .branches{flex-direction:column; width:100%;}
-    .branch-stem,.bus-line{display:none;}
-    .branch{margin-bottom:4px;}
-    .branch-card{border-left:4px solid var(--accent); border-top:none;}
-    .stem{height:18px;}
-  }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="page reading">
 
   <div class="topbar">
     <div class="crumb">法考速记卷 · <b>刑法</b> · 共同犯罪</div>

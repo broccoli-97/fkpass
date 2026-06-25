@@ -93,11 +93,10 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 ## 强制规则（违反就不算这套风格）
 
 - 背景必须是 `--desk` 深色，卡片必须是 `--folder` 牛皮纸色——不能反过来做成"浅色背景 + 深色卡片"。
-- 每个文件必须**自带完整 `<style>`**（不依赖外部CSS文件），保证单文件可移植、可独立打开发给别人。
-- 必须有 `@media (prefers-reduced-motion: reduce)` 关闭所有动画/过渡。
-- 移动端必须设断点（通常 760px 和 480px），网格/分栏要能收缩成单列，或允许横向滚动并给出滑动提示。
+- 每个页面必须 `<link rel="stylesheet" href="tokens.css">` 引用共享样式表；页面自己的 `<style>` 只保留本页主题色 `:root{--accent:…}`（及少量页面级覆盖）与该页专属组件。公共 token / 组件只改 `tokens.css` 一处即全站生效（页面间通过浏览器缓存共享，加载更快）。不要再把整套基础样式内联进页面。
+- `tokens.css` 已统一提供 `@media (prefers-reduced-motion: reduce)`（关闭所有动画/过渡）和 760/480 基础断点；新页面只需为**自己专属的组件**补断点（网格/分栏收缩成单列，或允许横向滚动并给出滑动提示）。
 - 印章类元素（`.seal` / `.stamp-sq` / `.stamp-reject`）必须配 `mix-blend-mode: multiply`，否则盖在牛皮纸上会显得是"贴纸"而不是"印章"。
-- 不引入大型 JS 框架或构建步骤；纯 HTML + CSS，必要时配少量原生 JS（如留言板对 `window.storage` 的调用）。
+- 不引入大型 JS 框架或构建步骤；纯 HTML + CSS，必要时配少量原生 JS（如留言板对 `fetch('/api/messages')` 的探测调用，见下方"留言板的持久化策略"）。
 - 涉及用户输入并要展示给其他访客的内容（如留言板），渲染时用 `textContent`/DOM API 拼装而不是字符串拼接进 `innerHTML`，避免 XSS。
 
 ## 反模式（写出这些就停下来重做）
@@ -113,7 +112,29 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 - 文件名格式：`NN-版式名.html`（如 `01-grid-overview.html`）；首页固定 `index.html`，404固定 `404.html`，留言板固定 `06-feedback.html`。
 - 每页顶部 `.topbar` 必须有：科目面包屑 + 上一页/下一页（或返回首页）链接。
 - 每页底部 `.pagefoot` 必须有：`.footnav` 文字链接 + `.dots` 进度指示（圆点数 = 当前系列总页数，当前页拉长高亮）。
-- 新增知识点页时记得：插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
+- 新增知识点页时记得：`<link>` 引用 `tokens.css`（页面 `<style>` 只放 `--accent` + 专属样式，别再内联公共基础层）、插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
+
+## 留言板的持久化策略（`06-feedback.html`）
+
+留言板前端会自动探测后端是否可用，**不需要手改代码**就能在不同环境下工作：
+
+1. `fetch('/api/messages')` —— 正式部署到 Cloudflare Pages 后使用，由 `functions/api/messages.js` + 一个 KV namespace 提供，所有访客共享同一份留言。
+2. 纯内存兜底 —— 接口不可达时（直接开 `file://`、本地 `python -m http.server`、或 KV 未绑定）自动降级，仅本次浏览有效、刷新即丢失，并显示警示横幅。**这是预期行为，不是 bug。**
+
+**站点结构里多了一个 `functions/` 目录**，和所有 `.html` 文件平级：
+
+```
+法考速记卷宗/
+├── index.html
+├── 01-grid-overview.html ... 06-feedback.html / 404.html
+└── functions/
+    └── api/
+        └── messages.js     ← Cloudflare Pages Function，部署后自动映射到 /api/messages
+```
+
+`messages.js` 需要在 Cloudflare 控制台绑定一个变量名为 `FEEDBACK_KV` 的 KV namespace（完整部署步骤见 `CLOUDFLARE-SETUP.md`）。新增其他"需要后端"的功能（比如投票、打卡）时，复用同一套思路：`functions/api/xxx.js` + KV/D1 绑定 + 前端 fetch，不要引入额外的第三方服务或独立后端项目。
+
+
 
 ## 何时翻 `references/`
 

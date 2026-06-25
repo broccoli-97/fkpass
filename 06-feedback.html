@@ -6,45 +6,12 @@
 <title>留言板 · 法考速记卷宗</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
-  :root{
-    --desk:#1d1712; --folder:#efe4c8; --folder-2:#e2d2a8;
-    --ink:#2a2420; --ink-soft:#6b5e4d; --brass:#b8893b;
-    --seal:#a52422; --indigo:#2b4960; --jade:#3f6b4f; --warn:#9a6a1e;
-    --accent:#8a6a2f;
-    --line:rgba(42,36,32,.16); --shadow:0 14px 30px rgba(0,0,0,.38);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
-      radial-gradient(circle at 80% -10%, rgba(184,137,59,.12), transparent 40%),
-      var(--desk);
-    color:var(--folder); font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
-    min-height:100vh; padding:28px 18px 80px;
-  }
-  ::selection{background:var(--brass); color:#fff;}
-  .page{max-width:760px; margin:0 auto;}
-
-  .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:13px;
-    color:var(--folder-2); opacity:.85; padding-bottom:14px; margin-bottom:26px;
-    border-bottom:1px dashed rgba(239,228,200,.25); flex-wrap:wrap;}
-  .crumb b{color:var(--brass); font-weight:700;}
-  .pager a{color:var(--folder); text-decoration:none; opacity:.75; border-bottom:1px solid transparent;}
-  .pager a:hover{opacity:1; border-color:var(--brass);}
-
-  .hero{position:relative; background:linear-gradient(180deg, var(--folder), var(--folder-2));
-    border-radius:14px; padding:26px 28px 22px; margin-bottom:26px; box-shadow:var(--shadow); color:var(--ink);}
-  .hero::before,.hero::after{content:""; position:absolute; inset:0; border-radius:14px;
-    background:var(--folder-2); border:1px solid var(--line); z-index:-1;}
-  .hero::before{transform:rotate(-1.3deg) translate(-6px,5px);}
-  .hero::after{transform:rotate(1.6deg) translate(8px,7px); opacity:.7;}
-  .tab{position:absolute; top:-16px; left:26px; background:var(--accent); color:var(--folder);
-    font-family:'Noto Serif SC',serif; font-weight:900; font-size:13px; padding:5px 14px 6px;
-    border-radius:6px 6px 2px 2px; letter-spacing:.08em; box-shadow:0 -2px 6px rgba(0,0,0,.18);}
-  .hero h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(24px,4.2vw,32px); margin:6px 0 8px;}
-  .hero p{font-size:13.5px; color:var(--ink-soft); line-height:1.75; margin:0; max-width:560px;}
+  /* 留言板专属：表单 / 列表 / 提示横幅。公共 token / 顶栏 / 卷首卡见 tokens.css */
+  :root{ --accent:#8a6a2f; --glow:rgba(184,137,59,.12); }  /* 功能页 = 黄铜 */
+  body{padding-bottom:80px;}  /* 给右下角固定首页按钮留出空间 */
+  .hero h1{font-size:clamp(24px,4.2vw,32px);}
 
   .privacy{display:flex; gap:10px; align-items:flex-start; background:rgba(184,137,59,.14);
     border:1px dashed var(--brass); border-radius:10px; padding:10px 14px; font-size:12.5px;
@@ -97,11 +64,10 @@
   footer.note-foot{text-align:center; font-size:12px; color:var(--folder-2); opacity:.55; margin-top:36px;}
 
   @media (max-width:560px){.row2{grid-template-columns:1fr;}}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
 </style>
 </head>
 <body>
-<div class="page">
+<div class="page narrow">
 
   <div class="topbar">
     <div class="crumb">法考速记卷宗 · <b>意见箱</b></div>
@@ -150,7 +116,7 @@
     <div id="list"><div class="loading">正在调取留言…</div></div>
   </section>
 
-  <footer class="note-foot">留言区为公开演示功能 · 法考速记卷宗</footer>
+  <footer class="note-foot">留言区为公开内容，请理性发言 · 法考速记卷宗</footer>
 </div>
 
 <script>
@@ -271,23 +237,23 @@
     }catch(e){ ok = false; }
 
     submitBtn.disabled = false;
-
-    toastEl.classList.add('show');
-    setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
     formEl.reset();
     charnumEl.textContent = '0';
 
     if(ok){
+      // 真正写入服务端，才给绿色"已收到"反馈
+      toastEl.classList.add('show');
+      setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
       online = true;
       fallbackBanner.classList.remove('show');
       await refresh();                 // 重新拉取服务端的权威列表
     }else{
-      // 兜底：API 不可用时，仍把这条留言显示在本次浏览里
+      // 兜底：API 不可用时，仍把这条留言显示在本次浏览里，由红色横幅说明"仅本次有效"
       online = false;
       fallbackBanner.classList.add('show');
       memoryList.push({
         id: Date.now() + '-' + Math.random().toString(36).slice(2,8),
-        name: payload.name,
+        name: payload.name || '匿名考生',
         contact: payload.contact,
         message: payload.message,
         time: Date.now()

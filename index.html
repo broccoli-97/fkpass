@@ -6,26 +6,19 @@
 <title>法考速记卷宗 · 模板首页</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
 <style>
-  :root{
-    --desk:#1d1712; --folder:#efe4c8; --folder-2:#e2d2a8;
-    --ink:#2a2420; --ink-soft:#6b5e4d; --brass:#b8893b;
-    --seal:#a52422; --indigo:#2b4960; --jade:#3f6b4f; --warn:#9a6a1e;
-    --line:rgba(42,36,32,.16); --shadow:0 18px 36px rgba(0,0,0,.4);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  /* 首页（目录页）专属样式。公共 token / 复位 / ::selection 见 tokens.css */
+  :root{ --shadow:0 18px 36px rgba(0,0,0,.4); }  /* 封面用更重的投影 */
+  /* 双科目微光的书桌（刑红 + 民蓝），首页特有 */
   body{
     background:
       repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
       radial-gradient(circle at 70% -10%, rgba(165,36,34,.10), transparent 40%),
       radial-gradient(circle at 10% 10%, rgba(43,73,96,.10), transparent 35%),
       var(--desk);
-    color:var(--folder); font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
-    min-height:100vh; padding:34px 18px 70px;
+    padding:34px 18px 70px;
   }
-  ::selection{background:var(--brass); color:#fff;}
-  .page{max-width:1080px; margin:0 auto;}
 
   /* ---------- 封面区 ---------- */
   .cover{position:relative; text-align:center; padding:54px 24px 46px; margin-bottom:54px;}
@@ -94,7 +87,6 @@
   @media (max-width:760px){
     .principle{grid-template-columns:1fr;}
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
 </style>
 </head>
 <body>

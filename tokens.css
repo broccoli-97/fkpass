@@ -1,12 +1,13 @@
 /*
-  法考速记卷宗 · 设计系统基础样式
+  法考速记卷宗 · 设计系统基础样式（全站唯一样式真相来源）
   ------------------------------------------------------------
-  用法：
+  用法：每个页面在 <head> 里直接外链本文件 ——
     <link rel="stylesheet" href="tokens.css">
-  或者整段复制进页面自己的 <style> 里 ——
-  按 SKILL.md 的"强制规则"，正式产出的每个页面应保持单文件可移植，
-  所以发布前建议把这份文件内联进去，而不是长期外链依赖。
-  这份文件的作用是：作为新页面的起点 + 团队共享的唯一样式真相来源。
+  页面自己的 <style> 只保留两类内容：
+    1) 本页主题色          :root{ --accent: …; }
+    2) 该页专属、别处不复用的组件样式
+  不要再把本文件整段内联进页面——那会产生多份会各自漂移的副本，难以维护。
+  改任何 token / 公共组件，只改这一处，全站生效（页面通过缓存共享，加载更快）。
   ------------------------------------------------------------
 */
 
@@ -17,6 +18,7 @@
   --accent:var(--indigo); /* 每页按主题覆盖：刑法用 --seal，民法用 --indigo，功能页用 --brass */
   --line:rgba(42,36,32,.16);
   --shadow:0 14px 30px rgba(0,0,0,.38);
+  --glow:rgba(184,137,59,.10); /* 书桌一角的微光，默认黄铜；页面可在 :root 覆盖成科目色 */
 }
 
 /* ---------- 基础 / 书桌背景 ---------- */
@@ -25,14 +27,17 @@ html,body{margin:0;padding:0;}
 body{
   background:
     repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0 1px, transparent 1px 48px),
-    radial-gradient(circle at 80% -10%, rgba(184,137,59,.10), transparent 40%),
+    radial-gradient(circle at 80% -10%, var(--glow), transparent 40%),
     var(--desk);
   color:var(--folder);
   font-family:'Noto Sans SC',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
   min-height:100vh; padding:28px 18px 60px;
 }
 ::selection{background:var(--brass); color:#fff;}
-.page{max-width:1080px; margin:0 auto;} /* 网格/对比版式用更宽; 流程图/口诀建议 680-980px */
+.page{max-width:1080px; margin:0 auto;} /* 默认宽版：网格 / 对比 */
+.page.reading{max-width:980px;}  /* 流程图 / 口诀等阅读型版式 */
+.page.narrow{max-width:760px;}   /* 留言板等单栏窄版 */
+.page.doc{max-width:620px; width:100%;}  /* 404 等单卡文书（配合 body 的 flex 居中） */
 
 /* ---------- 顶部导航 ---------- */
 .topbar{display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:13px;
@@ -55,6 +60,8 @@ body{
   border-radius:6px 6px 2px 2px; letter-spacing:.08em; box-shadow:0 -2px 6px rgba(0,0,0,.18);}
 .hero h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,38px); margin:6px 0 10px;}
 .hero-desc,.hero p{font-size:14.5px; line-height:1.75; color:var(--ink-soft); max-width:600px; margin:0;}
+.hero .cite{font-family:'SF Mono',Consolas,monospace; font-size:12px; color:var(--ink-soft);
+  border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:10px;}
 
 .tags{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px;}
 .subject-tag{background:var(--accent); color:#fff; font-size:12px; font-weight:700;
@@ -170,14 +177,6 @@ mark{
 .exit-link.tone-no .exit-tag{background:var(--accent);}
 .exit-link.tone-no .exit-card{border-left:4px solid var(--accent);}
 .dual-exit{display:flex; gap:14px; flex-wrap:wrap;}
-
-/* ---------- 提示横幅 ---------- */
-.privacy{display:flex; gap:10px; align-items:flex-start; background:rgba(184,137,59,.14);
-  border:1px dashed var(--brass); border-radius:10px; padding:10px 14px; font-size:12.5px;
-  color:var(--folder-2); line-height:1.7;}
-.fallback-banner{display:flex; gap:10px; align-items:flex-start; background:rgba(165,36,34,.16);
-  border:1px dashed var(--seal); border-radius:10px; padding:10px 14px; font-size:12.5px;
-  color:var(--folder); line-height:1.7;}
 
 /* ---------- 悬浮反馈按钮 ---------- */
 .fab-feedback{position:fixed; bottom:22px; right:22px; display:flex; align-items:center; gap:8px;
