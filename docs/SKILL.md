@@ -19,11 +19,11 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 
 | 内容特征 | 用这个版式 | 参考文件 |
 |---|---|---|
-| 知识点零散、数量多，互相不强依赖 | 网格卡片总览 | `01-grid-overview.html` |
-| 有明确从属/分支关系的体系概念 | 思维导图（纯CSS堆叠树状结构） | `02-mindmap.html` |
-| 需要逐条判断、有"如果…那么…"链条逻辑 | 流程图/判断链（地铁线式） | `03-flowchart.html` |
-| 容易混淆的 2-3 个平行概念 | 三栏对比表卡 | `04-comparison.html` |
-| 需要精确记忆构成要件，适合编口诀 | 口诀印章 + 关键词卡 | `05-mnemonic.html` |
+| 知识点零散、数量多，互相不强依赖 | 网格卡片总览 | `susong-shixiao.html` |
+| 有明确从属/分支关系的体系概念 | 思维导图（纯CSS堆叠树状结构） | `gongtong-fanzui.html` |
+| 需要逐条判断、有"如果…那么…"链条逻辑 | 流程图/判断链（地铁线式） | `zhengdang-fangwei.html` |
+| 容易混淆的 2-3 个平行概念 | 多列对比表卡 | `xiaoli-santai.html` |
+| 需要精确记忆构成要件，适合编口诀 | 口诀印章 + 关键词卡 | `shanyi-qude.html` |
 
 新知识点先判断"这是哪一类"，再复制对应模板改内容；不要从零设计新版式——除非五种都明显不合适，这时才考虑新版式，并把新版式也补进这份文档的表格里。
 
@@ -52,7 +52,7 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 }
 ```
 
-**科目色映射规则**：每新增一个法律科目，给它指定一个专属 `--accent`，不要复用刑法红或民法蓝（例如商法可用偏紫的蓝灰、行政法可用深橄榄绿）。**站点功能页**（留言板、404、首页CTA横幅）统一用 `--brass`，让用户一眼分清"这是知识内容"还是"这是网站功能"。
+**科目色映射规则**：每新增一个法律科目，给它指定一个专属 `--accent`，不要复用刑法红或民法蓝。现有四科：刑法 `--seal` 朱红、民法 `--indigo` 墨蓝、**刑事诉讼法 `#7a3b55` 绛紫**、**行政法 `#5d6b2f` 橄榄绿**（再扩科目可用偏紫的蓝灰给商法等）。**站点功能页**（留言板、404、首页CTA横幅）统一用 `--brass`，让用户一眼分清"这是知识内容"还是"这是网站功能"。
 
 结论/状态色固定语义，不随科目变化：`--jade` 永远是"好结果"，`--seal` 或对应科目色永远是"坏结果/不成立"，`--warn` 永远是"中间态/有争议/需要减轻"。
 
@@ -133,27 +133,31 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 
 ## 命名与站点结构约定
 
-- 文件名格式：`NN-版式名.html`（如 `01-grid-overview.html`）；首页固定 `index.html`，404固定 `404.html`，留言板固定 `06-feedback.html`。
+- 文件名格式：按**主题**取拼音 slug（如 `zhengdang-fangwei.html`），不带版式名或序号；首页固定 `index.html`，404固定 `404.html`，留言板固定 `feedback.html`。
+- 每页 `<body>` 标注所属科目：`<body data-subject="刑事诉讼法">`。
 - 每页顶部 `.topbar` 必须有：科目面包屑 + 上一页/下一页（或返回首页）链接。
-- 每页底部 `.pagefoot` 必须有：`.footnav` 文字链接 + `.dots` 进度指示（圆点数 = 当前系列总页数，当前页拉长高亮）。
+- 每页底部 `.pagefoot` 必须有：`.footnav` 文字链接 + `.dots` 进度指示（**圆点数 = 本科目系列页数**，当前页拉长高亮；上一/下一在本科目内循环，首页/末页指向 `index.html`）。
 - 新增知识点页时记得：`<link>` 引用 `tokens.css`（页面 `<style>` 只放 `--accent` + 专属样式，别再内联公共基础层）、插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡（首页搜索会自动收录该卡；卡片上加 `data-keywords="别名 法条 拼音"` 可提升搜索命中率）、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
 
-## 留言板的持久化策略（`06-feedback.html`）
+## 留言板的持久化策略（`feedback.html`）
 
 留言板前端会自动探测后端是否可用，**不需要手改代码**就能在不同环境下工作：
 
 1. `fetch('/api/messages')` —— 正式部署到 Cloudflare Pages 后使用，由 `functions/api/messages.js` + 一个 KV namespace 提供，所有访客共享同一份留言。
 2. 纯内存兜底 —— 接口不可达时（直接开 `file://`、本地 `python -m http.server`、或 KV 未绑定）自动降级，仅本次浏览有效、刷新即丢失，并显示警示横幅。**这是预期行为，不是 bug。**
 
-**站点结构里多了一个 `functions/` 目录**，和所有 `.html` 文件平级：
+**站点结构**（站点在 `src/`，`functions/` 在仓库根、部署时一并带上）：
 
 ```
-法考速记卷宗/
-├── index.html
-├── 01-grid-overview.html ... 06-feedback.html / 404.html
-└── functions/
+src/
+├── index.html              ← 目录首页（按科目分组 + 搜索 + 访问量/点赞）
+├── <topic>.html …          ← 各知识点页（主题拼音 slug，按 data-subject 归科目）
+├── 404.html / feedback.html
+└── tokens.css / terms.js
+functions/
     └── api/
-        └── messages.js     ← Cloudflare Pages Function，部署后自动映射到 /api/messages
+        ├── messages.js     ← /api/messages（留言板）
+        └── stats.js        ← /api/stats（访问量 + 点赞，复用同一 KV）
 ```
 
 `messages.js` 需要在 Cloudflare 控制台绑定一个变量名为 `FEEDBACK_KV` 的 KV namespace（完整部署步骤见 `CLOUDFLARE-SETUP.md`）。新增其他"需要后端"的功能（比如投票、打卡）时，复用同一套思路：`functions/api/xxx.js` + KV/D1 绑定 + 前端 fetch，不要引入额外的第三方服务或独立后端项目。

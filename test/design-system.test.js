@@ -169,3 +169,14 @@ test('homepage shows visitor count + like/dislike reactions wired to /api/stats'
   assert.match(html, /id="dislikeBtn"/, 'index.html is missing the dislike button');
   assert.match(html, /\/api\/stats/, 'index.html should talk to /api/stats');
 });
+
+test('homepage groups the catalog by all four subjects', () => {
+  const html = read('index.html');
+  for (const s of ['民法', '刑法', '刑事诉讼法', '行政法']) {
+    assert.match(
+      html,
+      new RegExp(`<section class="subj-group" data-subject="${s}">`),
+      `index.html is missing the ${s} catalog group`,
+    );
+  }
+});
