@@ -89,11 +89,12 @@
   .tcard .go{font-size:12.5px; font-weight:700; color:var(--accent);}
   .tcard .go::after{content:" →"; }
 
-  .c1{--accent:var(--indigo);} .c1 .stag{background:var(--indigo);}
-  .c2{--accent:var(--seal);} .c2 .stag{background:var(--seal);}
-  .c3{--accent:var(--seal);} .c3 .stag{background:var(--seal);}
-  .c4{--accent:var(--indigo);} .c4 .stag{background:var(--indigo);}
-  .c5{--accent:var(--indigo);} .c5 .stag{background:var(--indigo);}
+  /* 科目主题色：每科一个 --accent（刑法红/民法蓝既有；刑诉绛紫、行政橄榄为新科目专属） */
+  .subj-min{--accent:var(--indigo);} .subj-min .stag{background:var(--indigo);}
+  .subj-xing{--accent:var(--seal);} .subj-xing .stag{background:var(--seal);}
+  .subj-xs{--accent:#7a3b55;} .subj-xs .stag{background:#7a3b55;}
+  .subj-xz{--accent:#5d6b2f;} .subj-xz .stag{background:#5d6b2f;}
+  .subj-group{margin-bottom:6px;}
 
   /* ---------- 站点脉搏：访问量 + 点赞/点踩 ---------- */
   .pulse{background:var(--folder); color:var(--ink); border-radius:14px; padding:22px 24px;
@@ -140,7 +141,7 @@
     </div>
     <h1>法考速记卷宗</h1>
     <p class="sub">把厚厚的法考讲义，拆成一张张"卷宗卡片"。每页只讲一个知识点，用关键词高亮、思维导图、决策流程和对比表，把考点的来龙去脉摆在一张图里。</p>
-    <div class="meta">刑法 · 民法 · 持续更新</div>
+    <div class="meta">刑法 · 民法 · 刑诉 · 行政 · 持续更新</div>
   </section>
 
   <section class="principle">
@@ -150,8 +151,10 @@
   </section>
 
   <div class="legend">
-    <span class="item"><span class="sw" style="background:var(--seal);"></span>刑法主题色</span>
-    <span class="item"><span class="sw" style="background:var(--indigo);"></span>民法主题色</span>
+    <span class="item"><span class="sw" style="background:var(--seal);"></span>刑法</span>
+    <span class="item"><span class="sw" style="background:var(--indigo);"></span>民法</span>
+    <span class="item"><span class="sw" style="background:#7a3b55;"></span>刑诉</span>
+    <span class="item"><span class="sw" style="background:#5d6b2f;"></span>行政</span>
     <span class="item">🔖 印章 = 重点 / 易错点</span>
     <span class="item"><mark style="background:var(--brass); color:#2a2420; padding:0 4px; border-radius:2px;">高亮</mark> = 关键词</span>
   </div>
@@ -166,11 +169,11 @@
     <div class="search-hint">输入关键词即时筛选 · 回车直达第一条 · 按 / 快速聚焦</div>
   </div>
 
-  <div class="catalog-title">卷宗目录 <span class="ln"></span></div>
-
+  <section class="subj-group" data-subject="民法">
+  <div class="catalog-title">民法 <span class="ln"></span></div>
   <div class="catalog">
 
-    <a class="tcard c1" href="susong-shixiao.html" data-keywords="时效 抗辩权 中止 中断 最长保护期 民法总则 §188 susong shixiao">
+    <a class="tcard subj-min" href="susong-shixiao.html" data-keywords="时效 抗辩权 中止 中断 最长保护期 民法总则 §188 susong shixiao">
       <div class="top"><span class="idx">卷 01</span><span class="stag">民法</span></div>
       <h3>诉讼时效</h3>
       <div class="style-name">网格速览</div>
@@ -178,32 +181,16 @@
       <span class="go">翻开本卷</span>
     </a>
 
-    <a class="tcard c2" href="gongtong-fanzui.html" data-keywords="共犯 主犯 从犯 教唆犯 帮助犯 刑法 gongtong fanzui">
-      <div class="top"><span class="idx">卷 02</span><span class="stag">刑法</span></div>
-      <h3>共同犯罪</h3>
-      <div class="style-name">思维导图</div>
-      <p>中心主题向四个分支展开，适合体系完整、有明显从属关系的概念群。</p>
-      <span class="go">翻开本卷</span>
-    </a>
-
-    <a class="tcard c3" href="zhengdang-fangwei.html" data-keywords="防卫 防卫过当 不法侵害 特殊正当防卫 无限防卫 刑法 §20 zhengdang fangwei">
-      <div class="top"><span class="idx">卷 03</span><span class="stag">刑法</span></div>
-      <h3>正当防卫认定</h3>
-      <div class="style-name">认定流程图</div>
-      <p>把"如何认定"拆成一连串是/否判断，适合需要逐条排查构成要件的考点。</p>
-      <span class="go">翻开本卷</span>
-    </a>
-
-    <a class="tcard c4" href="xiaoli-santai.html" data-keywords="有效 无效 效力待定 可撤销 合同效力 法律行为 民法 xiaoli santai">
-      <div class="top"><span class="idx">卷 04</span><span class="stag">民法</span></div>
+    <a class="tcard subj-min" href="xiaoli-santai.html" data-keywords="有效 无效 效力待定 可撤销 合同效力 法律行为 民法 xiaoli santai">
+      <div class="top"><span class="idx">卷 02</span><span class="stag">民法</span></div>
       <h3>效力三态对比</h3>
       <div class="style-name">三栏对比</div>
       <p>把容易混淆的平行概念并排摆放，逐行对照，专治"选项里全是相似词"。</p>
       <span class="go">翻开本卷</span>
     </a>
 
-    <a class="tcard c5" href="shanyi-qude.html" data-keywords="善意 无权处分 物权 不动产 动产 民法 §311 shanyi qude">
-      <div class="top"><span class="idx">卷 05</span><span class="stag">民法</span></div>
+    <a class="tcard subj-min" href="shanyi-qude.html" data-keywords="善意 无权处分 物权 不动产 动产 民法 §311 shanyi qude">
+      <div class="top"><span class="idx">卷 03</span><span class="stag">民法</span></div>
       <h3>善意取得</h3>
       <div class="style-name">口诀速记</div>
       <p>先给一句口诀当"钩子"，再用卡片逐字展开构成要件，适合精确记忆型考点。</p>
@@ -211,6 +198,30 @@
     </a>
 
   </div>
+  </section>
+
+  <section class="subj-group" data-subject="刑法">
+  <div class="catalog-title">刑法 <span class="ln"></span></div>
+  <div class="catalog">
+
+    <a class="tcard subj-xing" href="gongtong-fanzui.html" data-keywords="共犯 主犯 从犯 教唆犯 帮助犯 刑法 gongtong fanzui">
+      <div class="top"><span class="idx">卷 01</span><span class="stag">刑法</span></div>
+      <h3>共同犯罪</h3>
+      <div class="style-name">思维导图</div>
+      <p>中心主题向四个分支展开，适合体系完整、有明显从属关系的概念群。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-xing" href="zhengdang-fangwei.html" data-keywords="防卫 防卫过当 不法侵害 特殊正当防卫 无限防卫 刑法 §20 zhengdang fangwei">
+      <div class="top"><span class="idx">卷 02</span><span class="stag">刑法</span></div>
+      <h3>正当防卫认定</h3>
+      <div class="style-name">认定流程图</div>
+      <p>把"如何认定"拆成一连串是/否判断，适合需要逐条排查构成要件的考点。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+  </div>
+  </section>
 
   <div class="search-empty" id="searchEmpty" role="status" aria-live="polite">没有找到匹配的考点，换个关键词试试，或去<a href="feedback.html">留言板</a>点播 👇</div>
 
@@ -264,6 +275,12 @@
         var hit = terms.every(function (t) { return e.text.indexOf(t) !== -1; });
         e.card.style.display = hit ? '' : 'none';
         if (hit) { visible++; }
+      });
+      // 隐藏没有任何可见卡片的科目分组
+      document.querySelectorAll('.subj-group').forEach(function (g) {
+        var vis = 0;
+        g.querySelectorAll('.tcard').forEach(function (c) { if (c.style.display !== 'none') { vis++; } });
+        g.style.display = vis ? '' : 'none';
       });
       empty.classList.toggle('show', q.length > 0 && visible === 0);
     }

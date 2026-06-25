@@ -92,18 +92,28 @@ test('feedback board renders user content via textContent, never innerHTML (XSS 
   assert.match(src, /\.textContent\s*=/, 'should build message nodes via textContent');
 });
 
-test('cross-page wiring: each knowledge page has #knowledge-page dots, exactly one active', () => {
+test('cross-page wiring: per-subject dots (count = subject size, exactly one active)', () => {
+  // Each knowledge page declares its subject; dots are a per-subject progress bar.
+  const bySubject = {};
   for (const f of knowledgePages) {
-    const m = read(f).match(/<div class="dots">([\s\S]*?)<\/div>/);
-    assert.ok(m, `${f} is missing its .dots progress indicator`);
-    const spans = m[1].match(/<span/g) ?? [];
-    const active = m[1].match(/class="active"/g) ?? [];
-    assert.equal(
-      spans.length,
-      knowledgePages.length,
-      `${f}: dot count must equal #knowledge pages`,
-    );
-    assert.equal(active.length, 1, `${f}: exactly one dot must be active`);
+    const html = read(f);
+    const sm = html.match(/<body[^>]*\sdata-subject="([^"]+)"/);
+    assert.ok(sm, `${f} must declare <body data-subject="...">`);
+    (bySubject[sm[1]] ||= []).push(f);
+  }
+  for (const [subject, files] of Object.entries(bySubject)) {
+    for (const f of files) {
+      const m = read(f).match(/<div class="dots">([\s\S]*?)<\/div>/);
+      assert.ok(m, `${f} is missing its .dots progress indicator`);
+      const spans = m[1].match(/<span/g) ?? [];
+      const active = m[1].match(/class="active"/g) ?? [];
+      assert.equal(
+        spans.length,
+        files.length,
+        `${f}: dot count must equal the ${subject} series size (${files.length})`,
+      );
+      assert.equal(active.length, 1, `${f}: exactly one dot must be active`);
+    }
   }
 });
 
