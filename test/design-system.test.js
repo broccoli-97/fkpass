@@ -13,8 +13,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..', 'src');
 const read = (f) => readFileSync(join(root, f), 'utf8');
 
 const htmlPages = readdirSync(root).filter((f) => f.endsWith('.html'));
-// Knowledge pages are the numbered study cards (01–05); 06-feedback is a site page.
-const knowledgePages = htmlPages.filter((f) => /^\d\d-/.test(f) && !/feedback/.test(f));
+// Knowledge pages are the topic cards; everything else is a site page.
+const sitePages = new Set(['index.html', '404.html', 'feedback.html']);
+const knowledgePages = htmlPages.filter((f) => !sitePages.has(f));
 const tokens = read('tokens.css');
 
 const styleBlock = (html) => {
@@ -23,12 +24,13 @@ const styleBlock = (html) => {
 };
 const classesIn = (css) => new Set([...css.matchAll(/\.([A-Za-z][\w-]*)/g)].map((m) => m[1]));
 
-test('site shape: 8 pages, 5 knowledge pages', () => {
-  assert.equal(htmlPages.length, 8, `expected 8 html pages, got ${htmlPages.join(', ')}`);
-  assert.equal(
-    knowledgePages.length,
-    5,
-    `expected 5 knowledge pages, got ${knowledgePages.join(', ')}`,
+test('site shape: the three site pages exist, plus at least one knowledge card', () => {
+  for (const p of sitePages) {
+    assert.ok(htmlPages.includes(p), `missing site page ${p}`);
+  }
+  assert.ok(
+    knowledgePages.length >= 1,
+    `expected at least one knowledge page, got ${knowledgePages.join(', ')}`,
   );
 });
 
@@ -80,7 +82,7 @@ test('no orphan classes: every class used in a page is defined in tokens.css or 
 });
 
 test('feedback board renders user content via textContent, never innerHTML (XSS guard)', () => {
-  const src = read('06-feedback.html');
+  const src = read('feedback.html');
   // Any innerHTML assignment must be a static string literal (loading placeholder / clearing).
   for (const m of src.matchAll(/innerHTML\s*=\s*([^;]+);/g)) {
     const rhs = m[1].trim();

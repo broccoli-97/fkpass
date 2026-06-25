@@ -64,13 +64,13 @@ npm test         # just the tests (node --test)
 
 - **Pages share one linked stylesheet.** Every page links `tokens.css` (`<link rel="stylesheet" href="tokens.css">`) — the single source of truth for the `:root` token set (`--desk`, `--folder`, `--ink`, `--brass`, `--seal`, `--indigo`, `--jade`, `--warn`, `--glow`, …), the base/desk layer, the shared chrome (topbar, hero, pagefoot/dots/footnav), and all five layout archetypes. A page's own inline `<style>` holds **only** its per-page `--accent` (plus rare overrides like `--glow`/`--shadow`), an optional `.page` width modifier (`.reading` 980 / `.narrow` 760 / `.doc` 620), and components unique to that one page. **Change a token or shared component once in `tokens.css` and it propagates to every page.** Trade-off (a deliberate decision): a page only renders with `tokens.css` beside it — fine when served or opened in-folder, but a lone `.html` emailed by itself will be unstyled.
 
-- **One topic = one page = one layout.** Files are named `NN-layoutname.html`. Five layout archetypes exist, each with a reference template; pick by content shape rather than inventing a new one:
-  - `01-grid-overview.html` — many loosely-related points → card grid
-  - `02-mindmap.html` — hierarchical concepts → pure-CSS stacked tree (no JS coordinate math)
-  - `03-flowchart.html` — if/then decision chains → animated "subway line" track
-  - `04-comparison.html` — 2–3 confusable parallel concepts → multi-column compare grid
-  - `05-mnemonic.html` — exact memorization → mnemonic stamp + keyword cards
-  - Plus site pages: `index.html` (catalog), `404.html`, `06-feedback.html` (message board).
+- **One topic = one page; name the file by its topic.** Each knowledge point is its own small HTML file named by a **pinyin topic slug** (e.g. `zhengdang-fangwei.html`), not by its layout — so the collection scales and URLs stay meaningful. **Do not group several topics into one file**: every page shares the cached `tokens.css`, so one-file-per-topic keeps each page tiny and fast (the reader downloads only the card they open). Five **layout archetypes** exist; pick the one matching the content shape and copy its current reference page rather than inventing a new layout:
+  - card grid (many loosely-related points) — ref `susong-shixiao.html`
+  - mindmap, pure-CSS stacked tree, no JS coordinate math (hierarchical concepts) — ref `gongtong-fanzui.html`
+  - flowchart, animated "subway line" track (if/then decision chains) — ref `zhengdang-fangwei.html`
+  - multi-column compare grid (2–3 confusable parallel concepts) — ref `xiaoli-santai.html`
+  - mnemonic stamp + keyword cards (exact memorization) — ref `shanyi-qude.html`
+  - Plus site pages: `index.html` (catalog), `404.html`, `feedback.html` (message board).
 
 - **Color carries meaning, not decoration.** Subject themes: red `--seal` = criminal law, blue `--indigo` = civil law; new subjects get their **own** accent (never reuse those two). Outcome colors are fixed regardless of subject: `--jade` = valid/pass/good, `--seal` = invalid/warning conclusion, `--warn` = disputed/middle state. `--brass` is reserved for **site-function pages** (feedback, 404, homepage CTA) so users can tell "knowledge content" from "site chrome" at a glance. Don't apply an accent color that doesn't map to one of these meanings.
 
