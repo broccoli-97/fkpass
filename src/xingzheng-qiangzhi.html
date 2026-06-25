@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行政强制 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 两列对比 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#5d6b2f; --glow:rgba(93,107,47,.12); }  /* 行政法 = 橄榄绿 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:118px 1fr 1fr; min-width:680px;}
+  .cmp .head{background:var(--accent);}
+  .cell b{color:var(--ink);}
+  .errnote{margin-top:28px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:880px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  @media (max-width:760px){ .errnote{flex-direction:column;} }
+</style>
+</head>
+<body data-subject="行政法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>行政法</b> · 行政强制</div>
+    <div class="pager"><a href="xingzheng-chufa.html">← 上一主题</a><a href="xingzheng-fuyi.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 06</div>
+    <h1>行政强制：措施 vs 执行</h1>
+    <div class="cite">行政强制法</div>
+    <p>两个概念别混：<b>强制措施</b>是过程中的"临时控制"，<b>强制执行</b>是对不履行决定的"逼你履行"。设定权限和实施主体差别最大。</p>
+  </section>
+
+  <div class="hint">← 左右滑动查看完整对比 →</div>
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head">行政强制措施</div>
+      <div class="head">行政强制执行</div>
+
+      <div class="lbl">定位</div>
+      <div class="cell">行政过程中<b>临时性</b>地限制人身或控制财物</div>
+      <div class="cell">对<b>不履行</b>行政决定者，强制其履行义务</div>
+
+      <div class="lbl">典型种类</div>
+      <div class="cell">限制人身自由；<b>查封</b>场所设施财物；<b>扣押</b>财物；<b>冻结</b>存款汇款</div>
+      <div class="cell">加处<b>罚款/滞纳金</b>；<b>划拨</b>存款；<b>拍卖</b>；<b>代履行</b>；排除妨碍、强制拆除</div>
+
+      <div class="lbl">设定权限</div>
+      <div class="cell">法律设定；尚无法律时<b>行政法规</b>可设查封、扣押、冻结</div>
+      <div class="cell"><mark>只能由法律设定</mark></div>
+
+      <div class="lbl">实施主体</div>
+      <div class="cell">有强制权的行政机关，<b>不得委托</b>；由行政执法人员实施</div>
+      <div class="cell">有执行权的机关自行执行；<b>无执行权</b>的<mark>申请人民法院</mark>强制执行</div>
+
+      <div class="lbl">程序</div>
+      <div class="cell">出示证件、通知到场、听取陈述申辩、制作笔录</div>
+      <div class="cell"><b>催告</b> → 陈述申辩 → 作出强制执行决定 → 执行</div>
+
+    </div>
+  </div>
+
+  <div class="errnote">
+    <div class="seal">易错<br>提醒</div>
+    <div>
+      <h4>"加处罚款/滞纳金"有天花板</h4>
+      <p>金钱给付义务的<b>加处罚款或滞纳金，数额不得超出金钱给付义务（本金）的数额</b>。还要记住：大多数行政机关<mark>没有</mark>强制执行权，须<b>申请法院</b>执行（非诉执行）；只有法律明确授予执行权的才能自己执行。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingzheng-chufa.html">上一主题：行政处罚</a><a href="xingzheng-fuyi.html">下一主题：行政复议</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

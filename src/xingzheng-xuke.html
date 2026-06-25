@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行政许可 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 思维导图节点/分支样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#5d6b2f; --glow:rgba(93,107,47,.12); }  /* 行政法 = 橄榄绿 */
+  .root-node .cite{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; display:inline-block; margin-bottom:8px;}
+  .root-node h1{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(26px,4.5vw,34px); margin:0 0 6px;}
+  .root-node .sub{font-size:13px; color:var(--ink-soft); max-width:340px; margin:0 auto;}
+  .branch-card h3{font-family:'Noto Serif SC',serif; font-size:15.5px; font-weight:700; margin:0 0 10px;
+    display:flex; align-items:center; gap:6px;}
+  .branch-card .tag{font-size:10.5px; font-family:'SF Mono',Consolas,monospace; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:5px; padding:1px 6px; margin-left:auto; white-space:nowrap;}
+  .branch-card ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .branch-card li{font-size:12.6px; line-height:1.55; color:var(--ink-soft); padding-left:13px; position:relative;}
+  .branch-card li::before{content:"·"; position:absolute; left:0; color:var(--accent); font-weight:900;}
+  .branch-card li b{color:var(--ink);}
+  @media (max-width:760px){ .branch{margin-bottom:4px;} .stem{height:18px;} }
+</style>
+</head>
+<body data-subject="行政法">
+<div class="page reading">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>行政法</b> · 行政许可</div>
+    <div class="pager"><a href="xingzheng-xingwei-xiaoli.html">← 上一主题</a><a href="xingzheng-chufa.html">下一主题 →</a></div>
+  </div>
+
+  <div class="tree-stage">
+
+    <div class="root-node">
+      <div class="cite">行政许可法</div>
+      <h1>行政许可</h1>
+      <div class="sub">本质是"解禁"：对普遍禁止的事项，经申请、审查后准许特定人去做</div>
+    </div>
+
+    <div class="stem"></div>
+    <div class="bus-line"></div>
+
+    <div class="branches">
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>① 概念特征</h3>
+          <ul>
+            <li><b>依申请</b>的行为，无申请无许可</li>
+            <li>对外、<b>赋予</b>权利或资格</li>
+            <li>是"<mark>解禁</mark>"，不是给付，也不是登记确认</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>② 设定权限</h3>
+          <ul>
+            <li><b>法律</b>、<b>行政法规</b>可设定</li>
+            <li><b>地方性法规</b>可设定（无上位法时）</li>
+            <li><b>省级政府规章</b>可设<mark>临时性</mark>许可，满 1 年须提请制定地方性法规</li>
+            <li>规章以下规范性文件<b>一律不得</b>设定</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>③ 程序与期限<span class="tag">§42</span></h3>
+          <ul>
+            <li>申请 → 受理 → 审查 → 决定</li>
+            <li>一般 <b>20 日</b>内决定；不能作出的经负责人批准延 <b>10 日</b>并告知</li>
+            <li>涉及公共利益重大许可，可<b>听证</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="branch">
+        <div class="branch-stem"></div>
+        <div class="branch-card">
+          <h3>④ 特别程序</h3>
+          <ul>
+            <li>有限资源/特定行业：<b>招标、拍卖</b>等竞争方式</li>
+            <li>资格资质：<b>考试</b>择优</li>
+            <li>设备设施：<b>检验、检测、检疫</b></li>
+            <li>企业设立登记等：<b>登记</b></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingzheng-xingwei-xiaoli.html">上一主题：行政行为及效力</a><a href="xingzheng-chufa.html">下一主题：行政处罚</a></div>
+    <div class="dots"><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

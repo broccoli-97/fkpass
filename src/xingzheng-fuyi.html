@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行政复议 · 法考速记卷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* 本页专属：主题色 + 判断链页面级样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#5d6b2f; --glow:rgba(93,107,47,.12); }  /* 行政法 = 橄榄绿 */
+  .page{max-width:680px;}
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .track-cap{display:flex; align-items:center; gap:8px; padding-left:54px; font-size:11.5px;
+    color:var(--folder-2); opacity:.75; margin-bottom:8px;}
+  .track-cap.end{margin-top:2px; margin-bottom:0;}
+  .dual-exit{display:flex; gap:14px; flex-wrap:wrap;}
+  .dual-exit .exit-link{min-width:200px;}
+  .final-stamp{margin:30px auto 0; width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(180deg,var(--folder),var(--folder-2)); box-shadow:0 8px 18px rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;}
+  .final-seal{width:84px; height:84px; border-radius:50%; border:3px double var(--accent);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:17px; transform:rotate(-8deg); opacity:.9;
+    mix-blend-mode:multiply; line-height:1.2;}
+  @media (max-width:480px){ .track-cap{padding-left:0;} }
+</style>
+</head>
+<body data-subject="行政法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb">法考速记卷 · <b>行政法</b> · 行政复议</div>
+    <div class="pager"><a href="xingzheng-qiangzhi.html">← 上一主题</a><a href="xingzheng-susong-shouan.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 07</div>
+    <h1>行政复议：先复议，还是先起诉？</h1>
+    <div class="cite">行政复议法（2023 修订，2024-01-01 施行）</div>
+    <p>对行政行为不服，第一步永远是问：<b>法律有没有规定"复议前置"？</b>有，就必须先复议；没有，复议和诉讼任你选。</p>
+  </section>
+
+  <div class="track-cap">▶ 对行政行为不服，开始判断</div>
+
+  <div class="flow-track">
+
+    <div class="step">
+      <div class="marker">1</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">前置判断</span><div class="qtext">法律是否规定该事项<b>复议前置</b>（如自然资源确权、纳税争议等）？</div></div>
+        <div class="path-line">
+          <span class="continue-tag">否 → 可自由选择</span>
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">是</span>
+            <div class="exit-card"><span class="ic">⚠️</span><div><b>复议前置</b><span>必须先申请行政复议，对复议决定不服，才能再提起行政诉讼</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">2</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">路径选择</span><div class="qtext">非前置情形，你走哪条路？</div></div>
+        <div class="dual-exit">
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">A</span>
+            <div class="exit-card"><span class="ic">⚖️</span><div><b>直接起诉</b><span>自知道行为之日起 6 个月内向法院起诉</span></div></div>
+          </div>
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">B</span>
+            <div class="exit-card"><span class="ic">📨</span><div><b>先申请复议</b><span>不服复议决定，再起诉（复议机关可作共同被告）</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">3</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">期限 · 管辖</span><div class="qtext">申请复议找谁、何时申请？</div></div>
+        <div class="path-line">
+          <span class="continue-tag">→ 进入复议审理</span>
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">规则</span>
+            <div class="exit-card"><span class="ic">📍</span><div><b>60 日内 · 政府统一管辖</b><span>一般自知道行为之日起 60 日内申请；2024 新法以<b>县级以上地方政府统一管辖</b>为主</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">4</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">复议决定</span><div class="qtext">复议机关能作出什么决定？</div></div>
+        <div class="path-line">
+          <span class="continue-tag">→ 不服可再诉</span>
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">类型</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>维持 / 履行 / 撤销·变更·确认违法或无效 / 责令重作</b><span>复议期间原行为<b>不停止执行</b>（法定情形除外）</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="track-cap end">🏁 不服复议决定的，一般在收到决定书之日起 15 日内提起行政诉讼</div>
+
+  <div class="final-stamp"><div class="final-seal">前置先复议<br>否则可选</div></div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingzheng-qiangzhi.html">上一主题：行政强制</a><a href="xingzheng-susong-shouan.html">下一主题：诉讼受案范围</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>
