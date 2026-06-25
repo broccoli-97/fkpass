@@ -398,3 +398,28 @@ mark{
 ```
 
 `.dots` 的圆点总数 = 知识点系列总页数（目前是5个主题页，不含首页/404/留言板），新增主题页时要同步在**所有**主题页里补一个 `<span>`。
+
+## 词条释义浮层（term lightbox）
+
+可点术语 → 毛玻璃浮层（术语飞到左栏、右栏展开详解）。**CSS 已在 `tokens.css`、逻辑已在 `terms.js`，这里只给可直接复制的 HTML 用法**——新增词条不必碰 CSS/JS。
+
+```html
+<!-- A. 页面 <head> 引一次脚本 -->
+<script src="terms.js" defer></script>
+
+<!-- B. 正文里把术语写成按钮（data-cite 选填） -->
+义务人即取得<button class="term" type="button" data-term="抗辩权"
+  data-cite="民法典 §192">抗辩权</button>的制度。
+
+<!-- C. 页面任意处放同名模板（内容随意写，可用 <b>/<mark>/<ul>/.term-more） -->
+<template class="term-detail" data-term="抗辩权">
+  <p>诉讼时效届满并不消灭实体权利，而是赋予义务人<b>抗辩权</b>……</p>
+  <h4>延伸 · 易考点</h4>
+  <ul>
+    <li><mark>法院不得依职权主动适用</mark>诉讼时效，须当事人主张。</li>
+  </ul>
+  <p class="term-more">对比记忆：除斥期间消灭实体权利，诉讼时效消灭胜诉权。</p>
+</template>
+```
+
+约定：`data-term` 同页唯一；同一术语可多处出现（多个按钮共用一个模板）；颜色自动跟随该页 `--accent`；`prefers-reduced-motion` 下跳过动画直接展示。完整工作示例见 `src/susong-shixiao.html`。

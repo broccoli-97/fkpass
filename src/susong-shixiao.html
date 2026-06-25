@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tokens.css">
+<script src="terms.js" defer></script>
 <style>
   /* 本页专属：主题色 + 少量页面级覆盖。公共 token / 组件见 tokens.css */
   :root{ --accent:#2b4960; }  /* 民法 = 墨蓝 */
@@ -40,7 +41,7 @@
       <span class="cite-chip">§188 – §199</span>
       <span class="freq">🔥 几乎每年必考</span>
     </div>
-    <p class="hero-desc">权利人在法定期间内不行使请求权，义务人即取得<b>抗辩权</b>的制度。备考核心只有三件事：<b>算对起点</b>、<b>分清中止/中断</b>、<b>记住例外</b>。</p>
+    <p class="hero-desc">权利人在法定期间内不行使请求权，义务人即取得<button class="term" type="button" data-term="抗辩权" data-cite="民法典 §192">抗辩权</button>的制度。备考核心只有三件事：<b>算对起点</b>、<b>分清中止/中断</b>、<b>记住例外</b>。</p>
   </section>
 
   <section class="grid">
@@ -50,7 +51,7 @@
       <h3><span class="ico">⏳</span>普通时效期间</h3>
       <div class="bignum"><span class="n">3</span><span class="u">年</span></div>
       <p>自<mark>知道或应当知道</mark>权利受损害及义务人之日起计算。法律另有规定的，从其规定。</p>
-      <div class="note">最长保护期：自权利受侵害之日起超过 <b>20年</b> 的，法院不予保护；权利人可申请延长。</div>
+      <div class="note"><button class="term" type="button" data-term="最长保护期" data-cite="民法典 §188 II">最长保护期</button>：自权利受侵害之日起超过 <b>20年</b> 的，法院不予保护；权利人可申请延长。</div>
     </article>
 
     <article class="card">
@@ -65,7 +66,7 @@
       <h3><span class="ico">⏸</span>诉讼时效中止</h3>
       <ul class="cond-list">
         <li><span class="dot">·</span>仅发生在时效期间的<mark>最后6个月</mark>内</li>
-        <li><span class="dot">·</span>因不可抗力或其他障碍不能行使请求权</li>
+        <li><span class="dot">·</span>因<button class="term" type="button" data-term="不可抗力" data-cite="民法典 §180">不可抗力</button>或其他障碍不能行使请求权</li>
       </ul>
       <div class="note">效果：障碍消除之日起<b>满6个月</b>，诉讼时效期间届满（之前经过的时间不归零）。</div>
     </article>
@@ -117,5 +118,39 @@
   </div>
 
 </div>
+
+<!-- 词条释义模板：点同名 .term 按钮即在浮层右栏展开。新增词条只需复制一段、改 data-term 与内容。 -->
+<template class="term-detail" data-term="抗辩权">
+  <p>诉讼时效届满，<b>并不消灭实体权利</b>，而是赋予义务人一项可以拒绝履行的<b>抗辩权</b>——即"胜诉权消灭、实体权利仍在"。</p>
+  <p>于是债务沦为<b>自然债务</b>：债务人若已自愿履行，事后<b>不得</b>以"不知时效已过"为由请求返还。</p>
+  <h4>延伸 · 易考点</h4>
+  <ul>
+    <li>抗辩权须由当事人<b>主动主张</b>，<mark>法院不得依职权主动适用</mark>诉讼时效。</li>
+    <li>义务人在届满后作出<b>同意履行</b>的表示（签收催款、承诺还款等），视为放弃抗辩权，不得反悔。</li>
+  </ul>
+  <p class="term-more">对比记忆：<b>除斥期间</b>届满消灭的是实体权利本身（如撤销权）；<b>诉讼时效</b>届满消灭的只是请求法院保护的胜诉权。</p>
+</template>
+
+<template class="term-detail" data-term="不可抗力">
+  <p><b>不可抗力</b>指不能预见、不能避免<u>且</u>不能克服的客观情况，例如地震、洪水、战争、政府征用等。</p>
+  <p>作为诉讼时效<b>中止</b>的法定事由，它须发生在时效期间的<mark>最后6个月内</mark>才产生中止效果；障碍消除之日起满6个月，时效期间届满。</p>
+  <h4>延伸 · 三个相邻概念别混</h4>
+  <ul>
+    <li><b>意外事件</b>——主观上无法预见，但不要求"不能避免/克服"，多见于刑法。</li>
+    <li><b>情势变更</b>——合同成立后客观情况重大变化，调整的是合同效力，与时效无关。</li>
+  </ul>
+  <p class="term-more">答题提醒：见到"不可抗力"，先确认它落在<b>最后6个月</b>的时间窗口内，否则不构成中止。</p>
+</template>
+
+<template class="term-detail" data-term="最长保护期">
+  <p>普通时效从"<mark>知道或应当知道</mark>"起算（<b>主观标准</b>）；若权利人长期不知情，岂非永不起算？<b>20年最长保护期</b>正是对此的兜底。</p>
+  <p>它<b>自权利受到损害之日起</b>计算（<b>客观标准</b>，与是否知情无关），超过20年的，法院原则上<b>不予保护</b>。</p>
+  <h4>延伸 · 易考点</h4>
+  <ul>
+    <li>20年是<b>最长</b>保护期，<u>不是</u>普通时效；两者起算标准（主观/客观）不同，常被设计成陷阱。</li>
+    <li>有特殊情况的，权利人可<b>申请人民法院延长</b>——是"可申请延长"，并非自动延长。</li>
+  </ul>
+</template>
+
 </body>
 </html>

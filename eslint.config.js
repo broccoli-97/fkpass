@@ -25,6 +25,20 @@ export default [
     },
   },
 
+  // Browser-side shared scripts shipped with the site (e.g. terms.js).
+  {
+    files: ['src/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'script',
+      globals: { ...globals.browser },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      'no-empty': ['error', { allowEmptyCatch: true }],
+    },
+  },
+
   // Node-side tests + this config file.
   {
     files: ['test/**/*.js', 'eslint.config.js'],

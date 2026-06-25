@@ -27,7 +27,7 @@ jobs:
       - name: Assemble publish directory (only the static site + Pages Functions)
         run: |
           mkdir -p dist
-          cp src/*.html src/tokens.css dist/
+          cp src/*.html src/*.css src/*.js dist/
           cp -r functions dist/functions
 
       - name: Deploy to Cloudflare Pages

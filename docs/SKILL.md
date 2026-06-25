@@ -87,8 +87,32 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 | `.tree-stage` + `.bus-line` | 思维导图：纯CSS堆叠连接线，不用JS算坐标 | 02 |
 | `.flow-track` + `.marker` + `.exit-link` | 流程图：动画流动虚线主轴 + 岔路结论卡 | 03 |
 | `.privacy` / `.fallback-banner` | 提示横幅（说明性/警示性文字条） | 06 |
+| `.term` + 释义浮层 | 行内可点术语 → 毛玻璃浮层，术语飞到左栏、右栏展开详解/延伸 | 任意知识页（需引 `terms.js`） |
 | `.fab-feedback` | 悬浮留言入口，固定右下角 | 所有页 |
 | `.dots` + `.footnav` | 页面间"翻卷"导航条 | 所有页 |
+
+## 词条释义浮层（可复用的"法条交叉引用"）
+
+把正文里的术语/法条做成可点链接，点开后**背景毛玻璃模糊、术语飞到左栏、右栏展开详解与延伸知识**。这是一套"行内 `.term` 按钮 + 同名 `<template>` + 共享 `terms.js`"的三段式，样式全部在 `tokens.css`、逻辑全部在 `terms.js`，颜色走 `var(--accent)` 自动跟随每页主题色——**新增词条只写两小段 HTML，不必碰 CSS/JS**。
+
+```html
+<!-- 1) <head> 里引脚本（每个用到词条的页面一次即可） -->
+<script src="terms.js" defer></script>
+
+<!-- 2) 正文里把术语写成按钮（data-cite 选填，显示在左栏法条小标签） -->
+义务人即取得<button class="term" type="button" data-term="抗辩权"
+  data-cite="民法典 §192">抗辩权</button>的制度。
+
+<!-- 3) 页面任意处放同名模板，里面是作者自己写的可信 HTML -->
+<template class="term-detail" data-term="抗辩权">
+  <p>……正文解释，<b>加粗</b>、<mark>高亮</mark>随意……</p>
+  <h4>延伸 · 易考点</h4>
+  <ul><li>……</li></ul>
+  <p class="term-more">……金棕色补充框，放对比/口诀/提醒……</p>
+</template>
+```
+
+规则：`data-term` 在同一页内唯一；同一个术语可在正文出现多次（多个按钮共用一个模板）。模板内容是**作者写的**，用 `cloneNode` 注入——这与"用户输入必须 `textContent`"的 XSS 规则不冲突（那条只针对要展示给其他访客的用户输入）。`prefers-reduced-motion` 下自动跳过飞入动画、直接展示。
 
 ## 强制规则（违反就不算这套风格）
 

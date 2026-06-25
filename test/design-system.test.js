@@ -106,3 +106,38 @@ test('cross-page wiring: each knowledge page has #knowledge-page dots, exactly o
     assert.equal(active.length, 1, `${f}: exactly one dot must be active`);
   }
 });
+
+test('term links: any page using .term / .term-detail loads the shared terms.js', () => {
+  for (const f of htmlPages) {
+    const html = read(f);
+    const usesTerms = /class="term"/.test(html) || /class="term-detail"/.test(html);
+    if (usesTerms) {
+      assert.match(
+        html,
+        /<script[^>]+src="terms\.js"/,
+        `${f} uses term links but does not load terms.js`,
+      );
+    }
+  }
+});
+
+test('term links: every .term button has a matching .term-detail template (and vice versa)', () => {
+  for (const f of htmlPages) {
+    const html = read(f);
+    const used = [...html.matchAll(/<button[^>]*class="term"[^>]*data-term="([^"]+)"/g)].map(
+      (m) => m[1],
+    );
+    const defined = [
+      ...html.matchAll(/<template[^>]*class="term-detail"[^>]*data-term="([^"]+)"/g),
+    ].map((m) => m[1]);
+    for (const k of used) {
+      assert.ok(defined.includes(k), `${f}: .term "${k}" has no matching .term-detail template`);
+    }
+    for (const k of defined) {
+      assert.ok(
+        used.includes(k),
+        `${f}: .term-detail template "${k}" is never referenced by a .term`,
+      );
+    }
+  }
+});

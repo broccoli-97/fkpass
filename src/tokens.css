@@ -209,3 +209,62 @@ mark{
 
 /* ---------- 无障碍：尊重"减少动态效果"系统设置 ---------- */
 @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important;}}
+
+/* ---------- 词条链接 + 释义浮层（frosted-glass term lightbox） ----------
+   行内可点术语，点开后背景毛玻璃模糊、术语飞到左栏、右栏展开详解。
+   逻辑见 terms.js（页面需 <script src="terms.js" defer>）；
+   作者只写 <button class="term" data-term="X"> 和同名 <template class="term-detail" data-term="X">。
+   所有颜色走 var(--accent)，自动跟随每页主题色。 */
+.term{display:inline; font:inherit; line-height:inherit; color:var(--accent); background:none;
+  border:none; padding:0 1px; margin:0; cursor:pointer; font-weight:700;
+  border-bottom:1.5px dashed var(--accent); border-radius:2px; transition:background .15s ease;}
+.term::after{content:"\203A"; font-weight:900; margin-left:2px; opacity:.65;}
+.term:hover,.term:focus-visible{background:color-mix(in srgb, var(--accent) 16%, transparent); outline:none;}
+
+.term-detail{display:none;}  /* <template> 本就不渲染；显式声明以备校验 */
+
+.term-overlay{position:fixed; inset:0; z-index:120; display:flex; align-items:center; justify-content:center;
+  padding:5vh 4vw; background:rgba(20,16,12,.45); backdrop-filter:blur(14px) saturate(118%);
+  opacity:0; transition:opacity .35s ease;}
+.term-overlay[hidden]{display:none;}
+.term-overlay.open{opacity:1;}
+
+.term-spread{position:relative; display:flex; width:min(940px,100%); max-height:88vh;
+  background:var(--folder); color:var(--ink); border-radius:16px; overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);}
+.term-aside{flex:0 0 36%; min-width:0; padding:34px 28px; display:flex; flex-direction:column; gap:12px;
+  background:linear-gradient(180deg, var(--folder), var(--folder-2)); border-right:1px solid var(--line);
+  transition:transform .45s cubic-bezier(.22,.61,.36,1), opacity .4s ease;}
+.term-kicker{font-family:'Noto Serif SC',serif; font-weight:700; font-size:11px; letter-spacing:.18em;
+  color:var(--accent); opacity:.85;}
+.term-title{font-family:'Noto Serif SC',serif; font-weight:900; font-size:clamp(24px,3vw,32px);
+  margin:0; color:var(--ink); line-height:1.25;}
+.term-cite{font-family:'SF Mono',Consolas,monospace; font-size:12px; color:var(--ink-soft);
+  border:1px solid var(--ink-soft); border-radius:6px; padding:2px 9px; align-self:flex-start;}
+.term-aside::after{content:""; margin-top:auto; height:3px; width:46px; border-radius:2px;
+  background:var(--accent); opacity:.55;}
+
+.term-panel{flex:1; min-width:0; padding:32px 32px 30px; overflow:auto;
+  transition:transform .4s ease .08s, opacity .4s ease .08s;}
+.term-panel>:first-child{margin-top:0;}
+.term-panel p{font-size:14px; line-height:1.85; color:var(--ink-soft); margin:0 0 14px;}
+.term-panel b{color:var(--ink);}
+.term-panel h4{font-family:'Noto Serif SC',serif; font-size:14px; color:var(--ink); margin:20px 0 10px;
+  padding-top:14px; border-top:1px dashed var(--line);}
+.term-panel ul{margin:0 0 14px; padding-left:20px;}
+.term-panel li{font-size:13.5px; line-height:1.8; color:var(--ink-soft); margin-bottom:5px;}
+.term-more{background:rgba(184,137,59,.12); border-left:3px solid var(--brass); border-radius:8px;
+  padding:12px 14px; margin:14px 0 0; font-size:13px; line-height:1.75; color:var(--ink-soft);}
+
+.term-close{position:absolute; top:12px; right:14px; width:34px; height:34px; border-radius:50%;
+  border:none; background:rgba(42,36,32,.06); color:var(--ink-soft); font-size:22px; line-height:1;
+  cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s ease;}
+.term-close:hover{background:rgba(42,36,32,.14); color:var(--ink);}
+
+@media (max-width:760px){
+  .term-spread{flex-direction:column; width:100%; max-height:90vh;}
+  .term-aside{flex:none; flex-direction:row; flex-wrap:wrap; align-items:center; gap:8px 12px;
+    padding:22px; border-right:none; border-bottom:1px solid var(--line);}
+  .term-aside::after{display:none;}
+  .term-panel{padding:22px 22px 26px;}
+}
