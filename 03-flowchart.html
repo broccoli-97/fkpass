@@ -16,10 +16,14 @@
     color:var(--folder-2); opacity:.75; margin-bottom:8px;}
   .track-cap.end{margin-top:2px; margin-bottom:0;}
   .dual-exit .exit-link{min-width:200px;}
-  /* 终局印章 */
-  .final-seal{margin:30px auto 0; width:96px; height:96px; border-radius:50%; border:3px double var(--accent);
+  /* 终局印章：盖在一枚牛皮纸圆垫上 —— multiply 需要浅色纸面才显色；
+     直接盖在深色书桌上会与桌面相乘发黑、几乎看不见。纸垫与卡片同为 --folder，颜色不随浏览器主题变化。 */
+  .final-stamp{margin:30px auto 0; width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(180deg,var(--folder),var(--folder-2)); box-shadow:0 8px 18px rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;}
+  .final-seal{width:84px; height:84px; border-radius:50%; border:3px double var(--accent);
     color:var(--accent); display:flex; align-items:center; justify-content:center; text-align:center;
-    font-family:'Ma Shan Zheng',cursive; font-size:18px; transform:rotate(-8deg); opacity:.85;
+    font-family:'Ma Shan Zheng',cursive; font-size:17px; transform:rotate(-8deg); opacity:.9;
     mix-blend-mode:multiply; line-height:1.2;}
   @media (max-width:480px){ .track-cap{padding-left:0;} }
 </style>
@@ -134,7 +138,7 @@
 
   <div class="track-cap end">🏁 判断结束</div>
 
-  <div class="final-seal">六步<br>判断<br>链</div>
+  <div class="final-stamp"><div class="final-seal">六步<br>判断<br>链</div></div>
 
   <div class="pagefoot">
     <div class="footnav"><a href="02-mindmap.html">上一主题：共同犯罪</a><a href="04-comparison.html">下一主题：效力三态</a></div>
