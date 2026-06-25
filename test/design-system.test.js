@@ -170,9 +170,21 @@ test('homepage shows visitor count + like/dislike reactions wired to /api/stats'
   assert.match(html, /\/api\/stats/, 'index.html should talk to /api/stats');
 });
 
-test('homepage groups the catalog by all four subjects', () => {
+test('homepage groups the catalog by every subject family', () => {
   const html = read('index.html');
-  for (const s of ['民法', '刑法', '刑事诉讼法', '行政法']) {
+  const subjects = [
+    '理论法',
+    '民法',
+    '刑法',
+    '刑事诉讼法',
+    '行政法',
+    '民事诉讼法',
+    '商法',
+    '经济法',
+    '知识产权法',
+    '国际法',
+  ];
+  for (const s of subjects) {
     assert.match(
       html,
       new RegExp(`<section class="subj-group" data-subject="${s}">`),
