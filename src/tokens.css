@@ -44,6 +44,10 @@ body{
   color:var(--folder-2); opacity:.85; padding-bottom:14px; margin-bottom:26px;
   border-bottom:1px dashed rgba(239,228,200,.25); flex-wrap:wrap;}
 .crumb b{color:var(--brass); font-weight:700;}
+/* 面包屑首段是站名，点它回首页（任意页面都能一键返回目录） */
+.crumb a{color:inherit; text-decoration:none; border-bottom:1px dotted rgba(239,228,200,.45);
+  transition:color .15s ease, border-color .15s ease;}
+.crumb a:hover{color:var(--brass); border-color:var(--brass);}
 .pager{display:flex; gap:16px;}
 .pager a{color:var(--folder); text-decoration:none; opacity:.75; border-bottom:1px solid transparent;}
 .pager a:hover{opacity:1; border-color:var(--brass);}
