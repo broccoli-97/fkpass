@@ -118,6 +118,23 @@
   .subj-gjf{--accent:#8f5066;} .subj-gjf .stag{background:#8f5066;}
   .subj-group{margin-bottom:6px;}
 
+  /* ---------- 科目分组折叠（默认收起，点标题展开） ---------- */
+  .subj-fold{margin:0;}
+  .subj-fold>summary{cursor:pointer; list-style:none; transition:color .15s ease;}
+  .subj-fold>summary::-webkit-details-marker{display:none;}
+  .subj-fold>summary::after{content:"▸"; flex:none; font-size:13px; color:var(--folder-2);
+    opacity:.7; transition:transform .2s ease;}
+  .subj-fold[open]>summary::after{transform:rotate(90deg);}
+  .subj-fold:not([open])>summary{margin-bottom:0;}
+  .subj-fold>summary:hover{color:var(--brass);}
+  .count{font-family:'SF Mono',Consolas,monospace; font-size:11.5px; font-weight:700; color:var(--brass);
+    background:rgba(184,137,59,.14); border-radius:99px; padding:2px 9px; flex:none; letter-spacing:.02em;}
+  .fold-ctrl{display:flex; justify-content:flex-end; margin-bottom:14px;}
+  .fold-ctrl button{font-family:inherit; font-size:12.5px; font-weight:700; color:var(--folder-2);
+    background:none; border:1px solid rgba(239,228,200,.25); border-radius:99px; padding:5px 14px; cursor:pointer;
+    transition:color .15s ease, border-color .15s ease;}
+  .fold-ctrl button:hover{color:var(--brass); border-color:var(--brass);}
+
   /* ---------- 站点脉搏：访问量 + 点赞/点踩 ---------- */
   .pulse{background:var(--folder); color:var(--ink); border-radius:14px; padding:22px 24px;
     box-shadow:0 10px 22px rgba(0,0,0,.3); text-align:center; margin-bottom:30px;}
@@ -188,8 +205,11 @@
     <div class="search-hint">输入关键词即时筛选 · 回车直达第一条 · 按 / 快速聚焦</div>
   </div>
 
+  <div class="fold-ctrl"><button type="button" id="foldToggle">展开全部</button></div>
+
   <section class="subj-group" data-subject="理论法">
-  <div class="catalog-title">理论法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">理论法 <span class="count">5 卷</span><span class="ln"></span></summary>
   <div class="catalog">
 
     <a class="tcard subj-llf" href="lilun-fazhi.html" data-keywords="理论法 法治理论 习近平法治思想 全面依法治国 五大体系 十六字方针 lilun fazhi">
@@ -233,14 +253,32 @@
     </a>
 
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="民法">
-  <div class="catalog-title">民法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">民法 <span class="count">10 卷</span><span class="ln"></span></summary>
   <div class="catalog">
 
-    <a class="tcard subj-min" href="susong-shixiao.html" data-keywords="时效 抗辩权 中止 中断 最长保护期 民法总则 §188 susong shixiao">
+    <a class="tcard subj-min" href="minshi-falv-xingwei.html" data-keywords="民事法律行为 意思表示 成立 生效 附条件 附期限 民法总则 falv xingwei">
       <div class="top"><span class="idx">卷 01</span><span class="stag">民法</span></div>
+      <h3>民事法律行为</h3>
+      <div class="style-name">思维导图</div>
+      <p>以意思表示为核心：成立看事实、生效看价值，附条件附期限一图理清。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-min" href="daili.html" data-keywords="代理 委托代理 法定代理 无权代理 表见代理 复代理 转委托 民法 daili">
+      <div class="top"><span class="idx">卷 02</span><span class="stag">民法</span></div>
+      <h3>代理</h3>
+      <div class="style-name">网格速览</div>
+      <p>委托/法定代理；无权代理（效力待定）与表见代理（直接有效）之分。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-min" href="susong-shixiao.html" data-keywords="时效 抗辩权 中止 中断 最长保护期 民法总则 §188 susong shixiao">
+      <div class="top"><span class="idx">卷 03</span><span class="stag">民法</span></div>
       <h3>诉讼时效</h3>
       <div class="style-name">网格速览</div>
       <p>一页铺开 6 张小卡片，适合知识点零散但数量多的章节，方便横向扫读、快速定位。</p>
@@ -248,30 +286,96 @@
     </a>
 
     <a class="tcard subj-min" href="xiaoli-santai.html" data-keywords="有效 无效 效力待定 可撤销 合同效力 法律行为 民法 xiaoli santai">
-      <div class="top"><span class="idx">卷 02</span><span class="stag">民法</span></div>
+      <div class="top"><span class="idx">卷 04</span><span class="stag">民法</span></div>
       <h3>效力三态对比</h3>
       <div class="style-name">三栏对比</div>
       <p>把容易混淆的平行概念并排摆放，逐行对照，专治"选项里全是相似词"。</p>
       <span class="go">翻开本卷</span>
     </a>
 
+    <a class="tcard subj-min" href="wuquan-biandong.html" data-keywords="物权变动 不动产登记 动产交付 占有改定 登记对抗 特殊动产 公示公信 wuquan biandong">
+      <div class="top"><span class="idx">卷 05</span><span class="stag">民法</span></div>
+      <h3>物权变动</h3>
+      <div class="style-name">网格速览</div>
+      <p>不动产登记生效·动产交付生效·特殊动产登记对抗，三者别记反。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
     <a class="tcard subj-min" href="shanyi-qude.html" data-keywords="善意 无权处分 物权 不动产 动产 民法 §311 shanyi qude">
-      <div class="top"><span class="idx">卷 03</span><span class="stag">民法</span></div>
+      <div class="top"><span class="idx">卷 06</span><span class="stag">民法</span></div>
       <h3>善意取得</h3>
       <div class="style-name">口诀速记</div>
       <p>先给一句口诀当"钩子"，再用卡片逐字展开构成要件，适合精确记忆型考点。</p>
       <span class="go">翻开本卷</span>
     </a>
 
+    <a class="tcard subj-min" href="danbao-wuquan.html" data-keywords="担保物权 抵押权 质权 留置权 登记对抗 占有 担保制度司法解释 danbao wuquan">
+      <div class="top"><span class="idx">卷 07</span><span class="stag">民法</span></div>
+      <h3>担保物权</h3>
+      <div class="style-name">三栏对比</div>
+      <p>抵押·质押·留置：占有转移与设立方式并排对照（含 2021 担保解释）。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-min" href="hetong-dingli.html" data-keywords="合同 要约 承诺 要约邀请 格式条款 缔约过失 合同成立 生效 hetong dingli">
+      <div class="top"><span class="idx">卷 08</span><span class="stag">民法</span></div>
+      <h3>合同的订立与效力</h3>
+      <div class="style-name">网格速览</div>
+      <p>要约/承诺·要约邀请·格式条款·缔约过失责任，订约全流程速记。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-min" href="weiyue-zeren.html" data-keywords="违约责任 违约金 定金 损害赔偿 可预见 预期违约 不可抗力 严格责任 weiyue zeren">
+      <div class="top"><span class="idx">卷 09</span><span class="stag">民法</span></div>
+      <h3>违约责任</h3>
+      <div class="style-name">网格速览</div>
+      <p>无过错责任·损害赔偿可预见规则·违约金与定金（择一主张）。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-min" href="qinquan-zeren.html" data-keywords="侵权责任 过错 过错推定 无过错 高空抛物 产品责任 数人侵权 连带 qinquan zeren">
+      <div class="top"><span class="idx">卷 10</span><span class="stag">民法</span></div>
+      <h3>侵权责任</h3>
+      <div class="style-name">网格速览</div>
+      <p>三大归责·构成要件·数人侵权·特殊侵权与高空抛物一页扫读。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
   </div>
+  </details>
   </section>
 
   <section class="subj-group" data-subject="刑法">
-  <div class="catalog-title">刑法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">刑法 <span class="count">8 卷</span><span class="ln"></span></summary>
   <div class="catalog">
 
-    <a class="tcard subj-xing" href="gongtong-fanzui.html" data-keywords="共犯 主犯 从犯 教唆犯 帮助犯 刑法 gongtong fanzui">
+    <a class="tcard subj-xing" href="fanzui-goucheng.html" data-keywords="犯罪构成 四要件 两阶层 犯罪客体 犯罪主体 刑事责任年龄 12岁 14岁 fanzui goucheng">
       <div class="top"><span class="idx">卷 01</span><span class="stag">刑法</span></div>
+      <h3>犯罪构成</h3>
+      <div class="style-name">思维导图</div>
+      <p>四要件：客体·客观·主体·主观，叠加刑事责任年龄三档，一图理清成立标准。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-xing" href="fanzui-zhuguan.html" data-keywords="犯罪主观方面 故意 过失 直接故意 间接故意 过于自信 疏忽大意 意外事件 fanzui zhuguan">
+      <div class="top"><span class="idx">卷 02</span><span class="stag">刑法</span></div>
+      <h3>犯罪主观方面</h3>
+      <div class="style-name">网格速览</div>
+      <p>故意与过失四分；间接故意与过于自信过失的经典辨析一表说清。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-xing" href="fanzui-xingtai.html" data-keywords="犯罪未完成形态 犯罪未遂 犯罪中止 犯罪预备 既遂 着手 得逞 自动性 fanzui xingtai">
+      <div class="top"><span class="idx">卷 03</span><span class="stag">刑法</span></div>
+      <h3>犯罪未完成形态</h3>
+      <div class="style-name">网格速览</div>
+      <p>既遂·预备·未遂·中止，着手·得逞·自动性三连问一表辨清。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-xing" href="gongtong-fanzui.html" data-keywords="共犯 主犯 从犯 教唆犯 帮助犯 刑法 gongtong fanzui">
+      <div class="top"><span class="idx">卷 04</span><span class="stag">刑法</span></div>
       <h3>共同犯罪</h3>
       <div class="style-name">思维导图</div>
       <p>中心主题向四个分支展开，适合体系完整、有明显从属关系的概念群。</p>
@@ -279,18 +383,44 @@
     </a>
 
     <a class="tcard subj-xing" href="zhengdang-fangwei.html" data-keywords="防卫 防卫过当 不法侵害 特殊正当防卫 无限防卫 刑法 §20 zhengdang fangwei">
-      <div class="top"><span class="idx">卷 02</span><span class="stag">刑法</span></div>
+      <div class="top"><span class="idx">卷 05</span><span class="stag">刑法</span></div>
       <h3>正当防卫认定</h3>
       <div class="style-name">认定流程图</div>
       <p>把"如何认定"拆成一连串是/否判断，适合需要逐条排查构成要件的考点。</p>
       <span class="go">翻开本卷</span>
     </a>
 
+    <a class="tcard subj-xing" href="zuishu-xingtai.html" data-keywords="罪数形态 想象竞合 法条竞合 牵连犯 连续犯 吸收犯 一罪 数罪 zuishu xingtai">
+      <div class="top"><span class="idx">卷 06</span><span class="stag">刑法</span></div>
+      <h3>罪数形态</h3>
+      <div class="style-name">网格速览</div>
+      <p>想象竞合·法条竞合·牵连·连续·吸收犯，处断规则与三分法。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-xing" href="xingfa-tixi.html" data-keywords="刑罚 主刑 附加刑 管制 拘役 有期徒刑 无期 死刑 死缓 罚金 xingfa tixi">
+      <div class="top"><span class="idx">卷 07</span><span class="stag">刑法</span></div>
+      <h3>刑罚体系</h3>
+      <div class="style-name">网格速览</div>
+      <p>主刑五种 + 附加刑四种，期限数字、死刑限制适用与死缓。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
+    <a class="tcard subj-xing" href="liangxing-qingjie.html" data-keywords="量刑情节 自首 坦白 立功 累犯 缓刑 数罪并罚 从轻 减轻 liangxing qingjie">
+      <div class="top"><span class="idx">卷 08</span><span class="stag">刑法</span></div>
+      <h3>量刑情节</h3>
+      <div class="style-name">网格速览</div>
+      <p>自首立功·累犯·缓刑·数罪并罚，从重/从轻/减轻/免除的边界。</p>
+      <span class="go">翻开本卷</span>
+    </a>
+
   </div>
+  </details>
   </section>
 
   <section class="subj-group" data-subject="刑事诉讼法">
-  <div class="catalog-title">刑事诉讼法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">刑事诉讼法 <span class="count">10 卷</span><span class="ln"></span></summary>
   <div class="catalog">
 
     <a class="tcard subj-xs" href="xingsu-yuanze.html" data-keywords="刑诉 基本原则 分工负责 法律监督 无罪推定 未经判决不得定罪 §12 yuanze">
@@ -374,10 +504,12 @@
     </a>
 
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="行政法">
-  <div class="catalog-title">行政法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">行政法 <span class="count">10 卷</span><span class="ln"></span></summary>
   <div class="catalog">
 
     <a class="tcard subj-xz" href="xingzheng-yuanze.html" data-keywords="行政法 基本原则 依法行政 比例原则 信赖保护 程序正当 yuanze">
@@ -461,10 +593,12 @@
     </a>
 
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="民事诉讼法">
-  <div class="catalog-title">民事诉讼法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">民事诉讼法 <span class="count">1 卷</span><span class="ln"></span></summary>
   <div class="catalog">
     <a class="tcard subj-msf" href="minshi-susong.html" data-keywords="民事诉讼法 民诉 管辖 举证责任 高度盖然性 小额诉讼 仲裁 一裁终局 minshi susong">
       <div class="top"><span class="idx">概览</span><span class="stag">民诉</span></div>
@@ -474,10 +608,12 @@
       <span class="go">翻开本卷</span>
     </a>
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="商法">
-  <div class="catalog-title">商法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">商法 <span class="count">1 卷</span><span class="ln"></span></summary>
   <div class="catalog">
     <a class="tcard subj-shf" href="shangfa.html" data-keywords="商法 公司法 有限责任公司 认缴 5年 人格否认 揭开面纱 2024 shangfa gongsifa">
       <div class="top"><span class="idx">核心</span><span class="stag">商法</span></div>
@@ -487,10 +623,12 @@
       <span class="go">翻开本卷</span>
     </a>
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="经济法">
-  <div class="catalog-title">经济法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">经济法 <span class="count">1 卷</span><span class="ln"></span></summary>
   <div class="catalog">
     <a class="tcard subj-jjf" href="jingjifa.html" data-keywords="经济法 反垄断 反不正当竞争 消费者权益 退一赔三 劳动合同法 环境法 jingjifa">
       <div class="top"><span class="idx">概览</span><span class="stag">经济</span></div>
@@ -500,10 +638,12 @@
       <span class="go">翻开本卷</span>
     </a>
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="知识产权法">
-  <div class="catalog-title">知识产权法 <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">知识产权法 <span class="count">1 卷</span><span class="ln"></span></summary>
   <div class="catalog">
     <a class="tcard subj-zcf" href="zhishichanquan.html" data-keywords="知识产权 著作权 专利 商标 保护期 续展 独创性 新颖性 zhishichanquan zhichan">
       <div class="top"><span class="idx">三权</span><span class="stag">知产</span></div>
@@ -513,10 +653,12 @@
       <span class="go">翻开本卷</span>
     </a>
   </div>
+    </details>
   </section>
 
   <section class="subj-group" data-subject="国际法">
-  <div class="catalog-title">国际法（三国法） <span class="ln"></span></div>
+  <details class="subj-fold">
+  <summary class="catalog-title">国际法（三国法） <span class="count">3 卷</span><span class="ln"></span></summary>
   <div class="catalog">
 
     <a class="tcard subj-gjf" href="guoji-gongfa.html" data-keywords="国际公法 国际法 国家主体 管辖权 条约法 海洋法 领海 专属经济区 外交豁免 gongfa">
@@ -544,6 +686,7 @@
     </a>
 
   </div>
+    </details>
   </section>
 
   <div class="search-empty" id="searchEmpty" role="status" aria-live="polite">没有找到匹配的考点，换个关键词试试，或去<a href="feedback.html">留言板</a>点播 👇</div>
@@ -599,12 +742,15 @@
         e.card.style.display = hit ? '' : 'none';
         if (hit) { visible++; }
       });
-      // 隐藏没有任何可见卡片的科目分组
+      // 隐藏没有任何可见卡片的科目分组；搜索时自动展开命中的分组，清空时收起
       document.querySelectorAll('.subj-group').forEach(function (g) {
         var vis = 0;
         g.querySelectorAll('.tcard').forEach(function (c) { if (c.style.display !== 'none') { vis++; } });
         g.style.display = vis ? '' : 'none';
+        var det = g.querySelector('details.subj-fold');
+        if (det) { det.open = q.length > 0 && vis > 0; }
       });
+      if (!q) { var t = document.getElementById('foldToggle'); if (t) { t.textContent = '展开全部'; } }
       empty.classList.toggle('show', q.length > 0 && visible === 0);
     }
 
@@ -631,6 +777,19 @@
       var a = document.activeElement;
       var typing = a && /^(INPUT|TEXTAREA)$/.test(a.tagName);
       if (e.key === '/' && !typing) { e.preventDefault(); input.focus(); }
+    });
+  })();
+</script>
+<script>
+  // 科目分组：一键展开 / 收起全部
+  (function () {
+    var btn = document.getElementById('foldToggle');
+    if (!btn) { return; }
+    btn.addEventListener('click', function () {
+      var dets = [].slice.call(document.querySelectorAll('.subj-fold'));
+      var anyClosed = dets.some(function (d) { return !d.open; });
+      dets.forEach(function (d) { d.open = anyClosed; });
+      btn.textContent = anyClosed ? '收起全部' : '展开全部';
     });
   })();
 </script>
