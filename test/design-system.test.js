@@ -44,6 +44,45 @@ test('every page links the shared tokens.css', () => {
   }
 });
 
+test('every page carries SEO basics: meta description + favicon; shareable pages add OG cards', () => {
+  for (const f of htmlPages) {
+    const html = read(f);
+    assert.match(
+      html,
+      /<meta\s+name="description"\s+content="[^"]+">/,
+      `${f} is missing a meta description`,
+    );
+    assert.match(
+      html,
+      /<link\s+rel="icon"[^>]*href="favicon\.svg"/,
+      `${f} is missing the favicon link`,
+    );
+    if (f === '404.html') {
+      // The error page is never shared and must stay out of the index — no OG card.
+      assert.match(html, /<meta\s+name="robots"\s+content="noindex">/, '404.html must be noindex');
+      continue;
+    }
+    for (const prop of ['og:title', 'og:description', 'og:image', 'og:url']) {
+      assert.match(
+        html,
+        new RegExp(`<meta\\s+property="${prop}"\\s+content="[^"]+">`),
+        `${f} is missing its ${prop} Open Graph tag`,
+      );
+    }
+    assert.match(
+      html,
+      /<meta\s+name="twitter:card"\s+content="summary_large_image">/,
+      `${f} is missing its twitter:card tag`,
+    );
+  }
+});
+
+test('promotion assets ship in src/: sitemap, robots, favicon, OG image', () => {
+  for (const f of ['sitemap.xml', 'robots.txt', 'favicon.svg', 'og-cover.png']) {
+    assert.ok(htmlPages.length && readdirSync(root).includes(f), `src/${f} is missing`);
+  }
+});
+
 test('no page re-inlines the shared base layer (it lives only in tokens.css)', () => {
   for (const f of htmlPages) {
     const css = styleBlock(read(f));
