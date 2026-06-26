@@ -130,7 +130,6 @@ mark{
 
 ```html
 <article class="card">
-  <span class="num">01</span>
   <h3><span class="ico">⏳</span>卡片标题</h3>
   <p>正文说明，<mark>关键词</mark>用高亮笔标出。</p>
   <div class="note">补充/例外说明，放在虚线分隔下面。</div>
@@ -141,8 +140,6 @@ mark{
 .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
 .card{position:relative; background:var(--folder); border-radius:12px; padding:22px 20px 20px;
   box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); border-top:4px solid var(--accent);}
-.card .num{position:absolute; top:14px; right:16px; font-family:'Noto Serif SC',serif;
-  font-size:12px; color:var(--ink-soft); opacity:.55;}
 .card h3{font-family:'Noto Serif SC',serif; font-size:18px; font-weight:700; margin:0 0 12px;
   display:flex; align-items:center; gap:8px;}
 .card p{font-size:13.5px; line-height:1.7; color:var(--ink-soft); margin:0 0 8px;}

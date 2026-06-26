@@ -95,8 +95,6 @@ mark{
 .card{position:relative; background:var(--folder); border-radius:12px; padding:22px 20px 20px;
   box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); border-top:4px solid var(--accent);}
 .card.wide{grid-column:span 2;}
-.card .num{position:absolute; top:14px; right:16px; font-family:'Noto Serif SC',serif;
-  font-size:12px; color:var(--ink-soft); opacity:.55;}
 .card h3{font-family:'Noto Serif SC',serif; font-size:18px; font-weight:700; margin:0 0 12px;
   display:flex; align-items:center; gap:8px;}
 .card h3 .ico{font-size:17px; line-height:1;}
