@@ -14,13 +14,14 @@ src/         the published site — 8 HTML pages + tokens.css (kept flat: every
 functions/   Cloudflare Pages Function — api/messages.js (must stay at repo root)
 docs/        design spec (SKILL.md, components.md), CLOUDFLARE-SETUP.md, the .skill bundle
 test/        node --test suites (design-system + messages API)
-.github/     CI (every push/PR) + deploy (on v* tags)
+.github/     CI (lint + tests on every push/PR — does NOT deploy)
 ```
 
 Linter configs (`.stylelintrc.json`, `.htmlvalidate.json`, `.prettierrc.json`,
-`eslint.config.js`) stay at the root so the tools auto-discover them. The deploy
-workflow flattens `src/*` + `functions/` into `dist/`, so the **deployed URL of
-every page is unchanged by this layout** (e.g. `/01-grid-overview.html`).
+`eslint.config.js`) stay at the root so the tools auto-discover them. Cloudflare Pages'
+Git integration serves `src/` directly as the build output (with `functions/` auto-detected
+at the repo root), so the **deployed URL of every page is `/<name>.html`** (e.g.
+`/01-grid-overview.html`).
 
 ## Commands
 
@@ -50,11 +51,12 @@ npm test         # just the tests (node --test)
   system, these keep it honest.** When a linter complains about the deliberately compact
   style, tune the config (`.stylelintrc.json` / `.htmlvalidate.json` / `eslint.config.js`)
   rather than reformatting the pages.
-- **CI** — `.github/workflows/ci.yml` runs `npm run check` on every push / PR.
-- **Deploy** — `.github/workflows/deploy.yml` runs the checks, then deploys to Cloudflare
-  Pages, but **only when you push a `v*` tag** (a "formal version"):
-  `git tag v1.0.0 && git push origin v1.0.0`. Needs the `CLOUDFLARE_API_TOKEN` +
-  `CLOUDFLARE_ACCOUNT_ID` repo secrets (see `docs/CLOUDFLARE-SETUP.md`).
+- **CI** — `.github/workflows/ci.yml` runs `npm run check` on every push / PR. This is a
+  **quality gate only — it does not deploy.**
+- **Deploy** — handled by **Cloudflare Pages' Git integration**, not GitHub Actions. The repo
+  is connected to a Pages project that auto-builds and deploys on every push to the production
+  branch (build output dir `src`, `functions/` auto-detected; see `docs/CLOUDFLARE-SETUP.md`).
+  There is no `deploy.yml` — Cloudflare's own pipeline would double-deploy alongside it.
 
 ## Authoritative design spec — read before editing any page
 
@@ -64,7 +66,7 @@ npm test         # just the tests (node --test)
 
 - **Pages share one linked stylesheet.** Every page links `tokens.css` (`<link rel="stylesheet" href="tokens.css">`) — the single source of truth for the `:root` token set (`--desk`, `--folder`, `--ink`, `--brass`, `--seal`, `--indigo`, `--jade`, `--warn`, `--glow`, …), the base/desk layer, the shared chrome (topbar, hero, pagefoot/dots/footnav), and all five layout archetypes. A page's own inline `<style>` holds **only** its per-page `--accent` (plus rare overrides like `--glow`/`--shadow`), an optional `.page` width modifier (`.reading` 980 / `.narrow` 760 / `.doc` 620), and components unique to that one page. **Change a token or shared component once in `tokens.css` and it propagates to every page.** Trade-off (a deliberate decision): a page only renders with `tokens.css` beside it — fine when served or opened in-folder, but a lone `.html` emailed by itself will be unstyled.
 
-- **Clickable term glossary (`terms.js` + `tokens.css` + per-page templates).** Inline `<button class="term" data-term="X">` elements open a frosted-glass overlay where the term flies to the left and a detail panel expands on the right. It's a reusable three-part split: styling lives in `tokens.css` (`.term`, `.term-overlay`, `.term-spread`, …), behaviour in the shared **`src/terms.js`** (linked like the stylesheet: `<script src="terms.js" defer></script>`, builds the overlay once + delegates clicks + runs the FLIP animation), and content in per-page `<template class="term-detail" data-term="X">` blocks the author writes. Matching is by `data-term` value (unique per page). The template HTML is author-trusted and injected via `cloneNode` — distinct from the feedback board's user-input XSS rule. Pages opt in by linking `terms.js`; `feedback.html`/`404.html`/etc. don't need it. Reference implementation: `src/susong-shixiao.html`. **The deploy step copies `src/*.js` into `dist/`**, so a new shared script ships automatically.
+- **Clickable term glossary (`terms.js` + `tokens.css` + per-page templates).** Inline `<button class="term" data-term="X">` elements open a frosted-glass overlay where the term flies to the left and a detail panel expands on the right. It's a reusable three-part split: styling lives in `tokens.css` (`.term`, `.term-overlay`, `.term-spread`, …), behaviour in the shared **`src/terms.js`** (linked like the stylesheet: `<script src="terms.js" defer></script>`, builds the overlay once + delegates clicks + runs the FLIP animation), and content in per-page `<template class="term-detail" data-term="X">` blocks the author writes. Matching is by `data-term` value (unique per page). The template HTML is author-trusted and injected via `cloneNode` — distinct from the feedback board's user-input XSS rule. Pages opt in by linking `terms.js`; `feedback.html`/`404.html`/etc. don't need it. Reference implementation: `src/susong-shixiao.html`. **A new shared `src/*.js` ships automatically** — Cloudflare serves `src/` directly, so any script beside the pages is published with them.
 
 - **One topic = one page; name the file by its topic.** Each knowledge point is its own small HTML file named by a **pinyin topic slug** (e.g. `zhengdang-fangwei.html`), not by its layout — so the collection scales and URLs stay meaningful. **Do not group several topics into one file**: every page shares the cached `tokens.css`, so one-file-per-topic keeps each page tiny and fast (the reader downloads only the card they open). Five **layout archetypes** exist; pick the one matching the content shape and copy its current reference page rather than inventing a new layout:
   - card grid (many loosely-related points) — ref `susong-shixiao.html`

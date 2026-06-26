@@ -54,20 +54,14 @@ wrangler pages dev . --kv FEEDBACK_KV
 - 留言在前端用 `textContent` 渲染（非 `innerHTML`），已防 XSS；KV 里存的是原始文本。
 - 没有后台审核/删除接口。需要删某条留言时，目前要去 KV 控制台编辑 `feedback-list` 的值。如需「管理员删除」功能可再加一个受保护的 DELETE 端点。
 
-## 六、用 GitHub Actions 在打 tag 时自动部署
+## 六、自动部署（Cloudflare Git 集成）
 
-仓库已带 `.github/workflows/deploy.yml`：**推送 `v*` 形式的 tag**（如 `v1.0.0`）会先跑全套 lint + 测试，通过后用 Wrangler 把站点部署到 Cloudflare Pages。日常往分支推代码只触发 `ci.yml`（检查），不会部署——"正式版本才上线"。
+本仓库**通过 Cloudflare Pages 的 Git 集成自动部署**：在第三步把 Pages 项目连上这个 GitHub 仓库后，**每次推送到生产分支（`master`）Cloudflare 都会自动重新构建并上线**，非生产分支会生成预览部署。无需 GitHub Actions、无需打 tag、无需在 GitHub 配 `CLOUDFLARE_*` secret。
 
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git push            # 推到 master，Cloudflare 自动构建并发布
 ```
 
-需要在 GitHub 仓库 **Settings → Secrets and variables → Actions → New repository secret** 添加两个 secret：
+仓库里**只保留** `.github/workflows/ci.yml`：它在每次 push / PR 跑 lint + 测试，是**质量闸门，不负责部署**。原先那条「打 `v*` tag 用 Wrangler 部署」的 `deploy.yml` 已删除——它会和 Cloudflare 的 Git 集成各部署一次，属重复。
 
-- `CLOUDFLARE_API_TOKEN` —— Cloudflare 控制台 → My Profile → API Tokens → Create Token，权限选 **Account → Cloudflare Pages → Edit**。
-- `CLOUDFLARE_ACCOUNT_ID` —— Cloudflare 控制台右侧栏的 Account ID。
-
-并确认 `deploy.yml` 里的 `--project-name=fkpass` 和 `--branch=master` 跟你的 Pages 项目名、生产分支一致；不一致就改这两个值。工作流只上传站点文件（`src/*.html` + `src/*.css` + `src/*.js` + `functions/`），`node_modules`、测试、配置都不会被部署。
-
-**避免重复部署：** 如果该 Pages 项目目前用 Cloudflare 的 Git 集成（连了 GitHub 仓库、每次 push 自动构建），它会和本工作流各部署一次。建议在 Pages 项目设置里关闭自动构建（或断开 Git 集成），只保留 tag 触发这一条部署线。
+> 如果哪天想反过来用 GitHub Actions 控制部署（例如「只有打 tag 才上线」），就在 Pages 项目设置里**关掉自动构建 / 断开 Git 集成**，再加回一个 Wrangler 部署工作流——两条部署线只能留一条，否则重复部署。

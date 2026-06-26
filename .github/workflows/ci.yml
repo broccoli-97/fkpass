@@ -1,7 +1,8 @@
 name: CI
 
 # Quality gate: lint (ESLint + Stylelint + html-validate + Prettier) and tests,
-# on every push and pull request. Does NOT deploy — see deploy.yml.
+# on every push and pull request. Does NOT deploy — deployment is handled by
+# Cloudflare Pages' Git integration (auto-build on push). See docs/CLOUDFLARE-SETUP.md.
 on:
   push:
     branches: ['**']
