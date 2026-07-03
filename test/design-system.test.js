@@ -209,6 +209,101 @@ test('homepage shows visitor count + like/dislike reactions wired to /api/stats'
   assert.match(html, /\/api\/stats/, 'index.html should talk to /api/stats');
 });
 
+test('quick-jump drawer: every page except the homepage loads the shared sidebar.js', () => {
+  for (const f of htmlPages) {
+    const html = read(f);
+    if (f === 'index.html') {
+      assert.ok(
+        !/<script[^>]+src="sidebar\.js"/.test(html),
+        'index.html IS the catalog and must not load sidebar.js',
+      );
+      continue;
+    }
+    assert.match(
+      html,
+      /<script\s+src="sidebar\.js"\s+defer><\/script>/,
+      `${f} must load the shared sidebar.js (quick-jump drawer)`,
+    );
+  }
+});
+
+// The drawer's SITE_MAP is a strict-JSON literal inside sidebar.js — parse it once here.
+const siteMap = () => {
+  const m = read('sidebar.js').match(/var SITE_MAP = (\[[\s\S]*?\]);\s*\n\s*\/\* SITE_MAP:END/);
+  assert.ok(m, 'sidebar.js must define SITE_MAP between the SITE_MAP:BEGIN/:END markers');
+  return JSON.parse(m[1]);
+};
+
+test('quick-jump drawer: SITE_MAP mirrors the homepage catalog (families, pages, titles, order)', () => {
+  const home = read('index.html');
+  const homeGroups = [
+    ...home.matchAll(/<section class="subj-group" data-subject="([^"]+)">([\s\S]*?)<\/section>/g),
+  ].map(([, subject, body]) => ({
+    subject,
+    pages: [...body.matchAll(/<a class="tcard[^"]*" href="([^"]+)"[\s\S]*?<h3>([^<]+)<\/h3>/g)].map(
+      ([, href, title]) => ({ href, title: title.trim() }),
+    ),
+  }));
+  assert.deepEqual(
+    siteMap().map((g) => ({ subject: g.subject, pages: g.pages })),
+    homeGroups,
+    'sidebar.js SITE_MAP must list the same subject families and pages, in the same order, as the index.html catalog',
+  );
+});
+
+test('quick-jump drawer: SITE_MAP covers every knowledge page, grouped by its data-subject', () => {
+  const bySubject = {};
+  for (const f of knowledgePages) {
+    const sm = read(f).match(/<body[^>]*\sdata-subject="([^"]+)"/);
+    (bySubject[sm[1]] ||= []).push(f);
+  }
+  const map = siteMap();
+  for (const g of map) {
+    assert.deepEqual(
+      g.pages.map((p) => p.href).sort(),
+      (bySubject[g.subject] ?? []).sort(),
+      `SITE_MAP "${g.subject}" must list exactly the pages tagged data-subject="${g.subject}"`,
+    );
+  }
+  assert.equal(
+    map.reduce((n, g) => n + g.pages.length, 0),
+    knowledgePages.length,
+    'SITE_MAP must cover every knowledge page',
+  );
+});
+
+test('quick-jump drawer: each SITE_MAP accent matches the homepage subject color', () => {
+  const home = read('index.html');
+  const homeCss = styleBlock(home);
+  // Resolve var(--x) accents (e.g. 民法/刑法) against the tokens.css :root block.
+  // ^-anchored: the tokens.css header comment shows a ":root{ --accent: …; }" example.
+  const rootVars = Object.fromEntries(
+    [...tokens.match(/^:root\{([\s\S]*?)\}/m)[1].matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)].map(
+      (m) => [m[1], m[2].trim()],
+    ),
+  );
+  const resolve = (v) => {
+    const m = v.trim().match(/^var\(--([\w-]+)\)$/);
+    return (m ? rootVars[m[1]] : v).trim().toLowerCase();
+  };
+  const groups = [
+    ...home.matchAll(/<section class="subj-group" data-subject="([^"]+)">([\s\S]*?)<\/section>/g),
+  ];
+  for (const g of siteMap()) {
+    const [, , body] = groups.find(([, subject]) => subject === g.subject) ?? [];
+    assert.ok(body, `homepage has no subj-group for ${g.subject}`);
+    const cls = body.match(/class="tcard (subj-[\w-]+)"/)?.[1];
+    assert.ok(cls, `no subj-* class on the ${g.subject} catalog cards`);
+    const accent = homeCss.match(new RegExp(`\\.${cls}\\{--accent:([^;}]+)`))?.[1];
+    assert.ok(accent, `homepage style block does not map .${cls} to an accent`);
+    assert.equal(
+      g.accent.toLowerCase(),
+      resolve(accent),
+      `SITE_MAP accent for ${g.subject} must match the homepage .${cls} color`,
+    );
+  }
+});
+
 test('homepage groups the catalog by every subject family', () => {
   const html = read('index.html');
   const subjects = [

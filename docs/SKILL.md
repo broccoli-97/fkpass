@@ -87,6 +87,7 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 | `.privacy` / `.fallback-banner` | 提示横幅（说明性/警示性文字条） | 06 |
 | `.term` + 释义浮层 | 行内可点术语 → 毛玻璃浮层，术语飞到左栏、右栏展开详解/延伸 | 任意知识页（需引 `terms.js`） |
 | `.fab-feedback` | 悬浮留言入口，固定右下角 | 所有页 |
+| `.sb-tab` + 卷宗目录抽屉 | 左缘固定把手 → 滑出全站分科目卷宗清单，当前页高亮、一键跳转 | 除首页外所有页（需引 `sidebar.js`） |
 | `.dots` + `.footnav` | 页面间"翻卷"导航条 | 所有页 |
 
 ## 词条释义浮层（可复用的"法条交叉引用"）
@@ -112,6 +113,17 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 
 规则：`data-term` 在同一页内唯一；同一个术语可在正文出现多次（多个按钮共用一个模板）。模板内容是**作者写的**，用 `cloneNode` 注入——这与"用户输入必须 `textContent`"的 XSS 规则不冲突（那条只针对要展示给其他访客的用户输入）。`prefers-reduced-motion` 下自动跳过飞入动画、直接展示。
 
+## 卷宗目录侧栏（全站快速跳转）
+
+页面左缘固定一个黄铜"卷宗目录"把手（站点功能件，与 `.fab-feedback` 同一 `--brass` 语义），点开后从左侧滑出牛皮纸抽屉：按科目族分组列出全站知识点卷，分组色标用各科目族专属 accent，当前页所在科目自动展开、条目高亮"当前"。读者在任何一页都能直接跳去其他考点，不必先退回首页。
+
+```html
+<!-- 每页 <head> 一行即可（首页除外——首页本身就是目录）；把手和抽屉由脚本注入，页面零 HTML -->
+<script src="sidebar.js" defer></script>
+```
+
+样式全部在 `tokens.css`（`.sb-*` 一节），全站清单在 `sidebar.js` 顶部的 `SITE_MAP`（严格 JSON）。**新增知识点页时，把新卷追加进 `SITE_MAP` 对应科目族**——测试会把它与 `index.html` 目录（科目/卷宗/标题/顺序/配色）和各页 `data-subject` 逐条比对，漏改任何一处 `npm test` 都会失败。ESC / 点遮罩关闭；`prefers-reduced-motion` 下不播滑入动画。
+
 ## 强制规则（违反就不算这套风格）
 
 - 背景必须是 `--desk` 深色，卡片必须是 `--folder` 牛皮纸色——不能反过来做成"浅色背景 + 深色卡片"。
@@ -135,7 +147,7 @@ description: 法考速记卷宗网站的设计系统——案卷/书桌风背景
 - 每页 `<body>` 标注所属科目：`<body data-subject="刑事诉讼法">`。
 - 每页顶部 `.topbar` 必须有：科目面包屑 + 上一页/下一页（或返回首页）链接。
 - 每页底部 `.pagefoot` 必须有：`.footnav` 文字链接 + `.dots` 进度指示（**圆点数 = 本科目系列页数**，当前页拉长高亮；上一/下一在本科目内循环，首页/末页指向 `index.html`）。
-- 新增知识点页时记得：`<link>` 引用 `tokens.css`（页面 `<style>` 只放 `--accent` + 专属样式，别再内联公共基础层）、插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡（首页搜索会自动收录该卡；卡片上加 `data-keywords="别名 法条 拼音"` 可提升搜索命中率）、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
+- 新增知识点页时记得：`<link>` 引用 `tokens.css`（页面 `<style>` 只放 `--accent` + 专属样式，别再内联公共基础层）、引 `<script src="sidebar.js" defer></script>` 并在 `sidebar.js` 的 `SITE_MAP` 对应科目族里追加一行 `{ "href": …, "title": … }`、插入 `.dots` 序列、更新前后页 `.footnav` 链接、在 `index.html` 的 `.catalog` 里加一张目录卡（首页搜索会自动收录该卡；卡片上加 `data-keywords="别名 法条 拼音"` 可提升搜索命中率）、在本文件最上面的"何时用哪种版式"表格里补一行（如果是全新版式）。
 
 ## 留言板的持久化策略（`feedback.html`）
 
@@ -151,7 +163,7 @@ src/
 ├── index.html              ← 目录首页（按科目分组 + 搜索 + 访问量/点赞）
 ├── <topic>.html …          ← 各知识点页（主题拼音 slug，按 data-subject 归科目）
 ├── 404.html / feedback.html
-└── tokens.css / terms.js
+└── tokens.css / terms.js / sidebar.js
 functions/
     └── api/
         ├── messages.js     ← /api/messages（留言板）

@@ -420,3 +420,21 @@ mark{
 ```
 
 约定：`data-term` 同页唯一；同一术语可多处出现（多个按钮共用一个模板）；颜色自动跟随该页 `--accent`；`prefers-reduced-motion` 下跳过动画直接展示。完整工作示例见 `src/susong-shixiao.html`。
+
+## 卷宗目录侧栏（quick-jump drawer）
+
+左缘固定"卷宗目录"把手 → 从左滑出牛皮纸抽屉，按科目族分组列出全站知识点卷（当前页高亮"当前"、所在科目自动展开；ESC / 点遮罩关闭）。**CSS 已在 `tokens.css`（`.sb-*` 一节），逻辑与全站清单已在 `sidebar.js`，页面零 HTML**——把手和抽屉由脚本注入：
+
+```html
+<!-- 每页 <head> 一行（首页除外——首页本身就是目录） -->
+<script src="sidebar.js" defer></script>
+```
+
+新增知识点页时，在 `sidebar.js` 顶部 `SITE_MAP` 的对应科目族里追加一行（**严格 JSON**：双引号、无尾逗号）：
+
+```js
+{ "href": "xin-zhuti.html", "title": "新主题标题" }
+```
+
+约定：`SITE_MAP` 的科目族、卷宗、标题、顺序、accent 必须与 `index.html` 目录一致，且每卷的 `href` 要对上该页的 `data-subject`——`test/design-system.test.js` 会逐条比对，漏改哪边 `npm test` 都会失败。分组色标自动用该科目族专属 accent；把手与"当前"高亮走站点功能色 `--brass` 语义（抽屉内当前条目用本科目 accent）。
+
