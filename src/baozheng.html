@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保证 · 法考速记卷</title>
+<meta name="description" content="保证两栏对比：一般保证与连带保证、约定不明按一般保证（民法典新规）、先诉抗辩权四例外、保证期间6个月与除斥性质、混合担保顺序。法考民法。">
+<link rel="canonical" href="https://fkpass.pages.dev/baozheng.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="保证 · 法考速记卷">
+<meta property="og:description" content="保证两栏对比：一般保证与连带保证、约定不明按一般保证（民法典新规）、先诉抗辩权四例外、保证期间6个月与除斥性质、混合担保顺序。法考民法。">
+<meta property="og:url" content="https://fkpass.pages.dev/baozheng.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="保证 · 法考速记卷">
+<meta name="twitter:description" content="保证两栏对比：一般保证与连带保证、约定不明按一般保证（民法典新规）、先诉抗辩权四例外、保证期间6个月与除斥性质、混合担保顺序。法考民法。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 两栏对比列宽 / 色彩变体 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#2b4960; --glow:rgba(43,73,96,.14); }  /* 民法 = 墨蓝 */
+  .page{max-width:980px;}
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:120px 1fr 1fr; min-width:640px;}  /* 本页只对比两列 */
+  .head.c-gen{background:var(--accent);}
+  .head.c-joint{background:var(--seal);}
+  .cell.c-gen{border-top:4px solid var(--accent);}
+  .cell.c-joint{border-top:4px solid var(--seal);}
+  .cell ul{margin:0; padding-left:15px;}
+  .cell li{margin-bottom:3px;}
+  .errnote{margin-top:32px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:820px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--warn); color:var(--warn);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0 0 8px; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  .errnote p:last-child{margin-bottom:0;}
+  @media (max-width:760px){ .errnote{flex-direction:column;} }
+</style>
+</head>
+<body data-subject="民法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>民法</b> · 保证</div>
+    <div class="pager"><a href="danbao-wuquan.html">← 上一主题</a><a href="hetong-dingli.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 09</div>
+    <h1>保证：一般 vs 连带</h1>
+    <div class="cite">民法典 §681–§702 · 担保制度解释</div>
+    <p>物保之外的"人保"。民法典把默认规则整个翻了面：<mark>没有约定或约定不明 → 一般保证</mark>（担保法时代是连带）。两栏对比＋一个 6 个月的<b>保证期间</b>，就是全部考点。</p>
+  </section>
+
+  <div class="hint">← 左右滑动查看完整对比 →</div>
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head c-gen">一般保证<small>§687</small></div>
+      <div class="head c-joint">连带责任保证<small>§688</small></div>
+
+      <div class="lbl">如何成立</div>
+      <div class="cell c-gen">当事人约定债务人不能履行时由保证人承担；<mark>没有约定或约定不明 → 一般保证</mark>（民法典改写旧规则）</div>
+      <div class="cell c-joint">须<b>明确约定</b>承担连带责任（"连带"二字或同义表述）</div>
+
+      <div class="lbl">核心权利</div>
+      <div class="cell c-gen">享有<mark>先诉抗辩权</mark>：主合同未经<b>审判或仲裁</b>，并就债务人财产依法<b>强制执行仍不能履行</b>前，有权拒绝承担</div>
+      <div class="cell c-joint"><b>无先诉抗辩权</b>：债务人到期不履行，债权人可以<b>直接</b>请求保证人在保证范围内担责</div>
+
+      <div class="lbl">先诉抗辩权丧失</div>
+      <div class="cell c-gen"><ul>
+        <li>债务人<b>下落不明</b>且无财产可供执行</li>
+        <li>法院已受理债务人<b>破产</b>案件</li>
+        <li>债权人有证据证明债务人财产<b>不足以履行</b>全部债务或<b>丧失履行能力</b></li>
+        <li>保证人<b>书面表示放弃</b>该权利</li>
+      </ul></div>
+      <div class="cell c-joint">——（本来就没有）</div>
+
+      <div class="lbl">保证期间内的动作</div>
+      <div class="cell c-gen">债权人须在保证期间内<mark>对债务人提起诉讼或申请仲裁</mark>；没做 → 保证人<b>免责</b></div>
+      <div class="cell c-joint">债权人须在保证期间内<mark>请求保证人承担保证责任</mark>；没做 → 保证人<b>免责</b></div>
+
+      <div class="lbl">保证债务时效起算</div>
+      <div class="cell c-gen">自保证人<b>拒绝承担保证责任的权利消灭之日</b>（先诉程序走完）起算</div>
+      <div class="cell c-joint">自债权人<b>请求保证人承担保证责任之日</b>起算</div>
+
+    </div>
+  </div>
+
+  <div class="errnote">
+    <div class="seal">六个<br>月</div>
+    <div>
+      <h4>保证期间：约定不明一律 6 个月，且是除斥期间</h4>
+      <p>没有约定或约定不明确 → 主债务履行期届满之日起 <mark>6 个月</mark>；约定的期间<b>早于或等于</b>主债务履行期 → 视为没有约定，仍是 6 个月；约定"保证人承担责任直至本息还清为止"→ 视为约定不明，还是 6 个月。保证期间<b>不发生中止、中断和延长</b>——过期＝保证债务消灭。</p>
+      <p><b>混合担保</b>（§392）：有约定按约定；无约定或不明时，<mark>债务人自己提供物保的 → 先执行该物保</mark>；第三人提供物保的 → 债权人可任选物保或保证。承担了担保责任的第三人可向<b>债务人</b>追偿，相互之间原则上<b>不能</b>追偿。另记：<b>机关法人、以公益为目的的非营利法人</b>不得当保证人。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="danbao-wuquan.html">上一主题：担保物权</a><a href="hetong-dingli.html">下一主题：合同的订立与效力</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

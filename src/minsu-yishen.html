@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一审程序 · 法考速记卷</title>
+<meta name="description" content="民诉一审流程链：起诉四条件→7日立案→审前准备→繁简分流（简易/小额）→开庭→宣判审限，附撤诉、缺席判决、中止终结。法考民事诉讼法。">
+<link rel="canonical" href="https://fkpass.pages.dev/minsu-yishen.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="第一审程序 · 法考速记卷">
+<meta property="og:description" content="民诉一审流程链：起诉四条件→7日立案→审前准备→繁简分流（简易/小额）→开庭→宣判审限，附撤诉、缺席判决、中止终结。法考民事诉讼法。">
+<meta property="og:url" content="https://fkpass.pages.dev/minsu-yishen.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第一审程序 · 法考速记卷">
+<meta name="twitter:description" content="民诉一审流程链：起诉四条件→7日立案→审前准备→繁简分流（简易/小额）→开庭→宣判审限，附撤诉、缺席判决、中止终结。法考民事诉讼法。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 流程图判断链的少量页面级样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#2f6168; --glow:rgba(47,97,104,.14); }  /* 民事诉讼法 = 黛青 */
+  .page{max-width:680px;}  /* 流程图：更窄的判断链阅读宽度 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .track-cap{display:flex; align-items:center; gap:8px; padding-left:54px; font-size:11.5px;
+    color:var(--folder-2); opacity:.75; margin-bottom:8px;}
+  .track-cap.end{margin-top:2px; margin-bottom:0;}
+  .track-cap.mid{margin-top:30px;}
+  .q-note{font-size:12px; font-weight:400; color:var(--ink-soft); line-height:1.65; margin-top:6px;}
+  .fork-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px;}
+  .fork-card{background:var(--folder); border-radius:10px; border-left:4px solid var(--accent);
+    padding:12px 14px; font-size:12.4px; line-height:1.65; color:var(--ink-soft);
+    box-shadow:0 8px 18px rgba(0,0,0,.28);}
+  .fork-card b{color:var(--ink);}
+  .fork-card .fk-title{display:block; font-family:'Noto Serif SC',serif; font-weight:700;
+    font-size:13.5px; color:var(--ink); margin-bottom:3px;}
+  .fork-card.good{border-left-color:var(--jade);}
+  .fork-card.good .fk-title{color:var(--jade);}
+  .fork-card.warn{border-left-color:var(--warn);}
+  .fork-card.warn .fk-title{color:var(--warn);}
+  .final-stamp{margin:30px auto 0; width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(180deg,var(--folder),var(--folder-2)); box-shadow:0 8px 18px rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;}
+  .final-seal{width:84px; height:84px; border-radius:50%; border:3px double var(--accent);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:16px; transform:rotate(-8deg); opacity:.9;
+    mix-blend-mode:multiply; line-height:1.2;}
+  @media (max-width:480px){ .track-cap{padding-left:0;} }
+</style>
+</head>
+<body data-subject="民事诉讼法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>民事诉讼法</b> · 第一审程序</div>
+    <div class="pager"><a href="minsu-baoquan.html">← 上一主题</a><a href="minsu-ershen-zaishen.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 06</div>
+    <h1>第一审程序</h1>
+    <div class="cite">民事诉讼法 §122–§166</div>
+    <p>沿着案件的时间轴走一遍：<b>起诉 → 立案 → 审前准备 → 繁简分流 → 开庭 → 宣判</b>。程序题的数字坑最多——把 <mark>7 日、15 日、30 日、3 / 6 个月</mark>钉在各自的站点上。</p>
+  </section>
+
+  <div class="track-cap">▶ 案件进站</div>
+
+  <div class="flow-track">
+
+    <div class="step">
+      <div class="marker">1</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 1 站 · 起诉</span>
+          <div class="qtext">是否同时满足起诉四条件？</div>
+          <div class="q-note">①原告与本案有<b>直接利害关系</b>；②有<b>明确的被告</b>；③有具体的诉讼请求和事实、理由；④属于受案范围＋受诉法院有管辖权。</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">符合 → 立案</span>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">缺一</span>
+            <div class="exit-card"><span class="ic">🚫</span><div><b>7 日内裁定不予受理</b><span>原告不服可以<b>上诉</b>（三种可上诉裁定之一）；受理后才发现的，裁定<b>驳回起诉</b></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">2</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 2 站 · 立案登记</span>
+          <div class="qtext">符合条件 → <mark>7 日内</mark>立案并通知当事人</div>
+          <div class="q-note">立案登记制：对符合条件的起诉<b>有案必立</b>；不能当场判定的先接收材料。</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">进入审前准备</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">3</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 3 站 · 审理前的准备</span>
+          <div class="qtext">送达、答辩、举证期限一步接一步</div>
+          <div class="q-note">立案之日起 <b>5 日内</b>送达起诉状副本 → 被告 <mark>15 日内</mark>答辩（不答辩不影响审理）→ 指定举证期限：普通程序<b>不少于 15 日</b>；开庭 <b>3 日前</b>通知当事人。</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">无异议 → 分流</span>
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">异议</span>
+            <div class="exit-card"><span class="ic">⚠️</span><div><b>管辖权异议</b><span>应在<b>提交答辩状期间</b>提出；裁定驳回的<b>可以上诉</b></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">4</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 4 站 · 繁简分流</span>
+          <div class="qtext">走普通程序，还是简易 / 小额？</div>
+          <div class="q-note">简易程序：<b>基层法院及其派出法庭</b>＋事实清楚、权利义务关系明确、争议不大；双方也可<b>约定适用</b>。基层法院的简单案件还可<b>普通程序独任审理</b>。</div>
+        </div>
+        <div class="dual-exit">
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">简易</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>3 个月审结</b><span>经本院院长批准可延长 <b>1 个月</b>；审理中发现案情复杂 → 转普通程序</span></div></div>
+          </div>
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">小额</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>一审终审</b><span>标的额 ≤ 各省上年度就业人员年平均工资 <mark>50%</mark> 的简单金钱给付案件<b>应当</b>适用；50%–2 倍之间可<b>约定</b>适用；2 个月审结（可延 1 个月）</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">5</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 5 站 · 开庭审理</span>
+          <div class="qtext">法庭调查 → 法庭辩论 → 依法调解 → 评议宣判</div>
+          <div class="q-note">公开审理为原则；涉国家秘密、个人隐私<b>不公开</b>，离婚案件当事人申请可不公开。</div>
+        </div>
+        <div class="dual-exit">
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">原告缺席</span>
+            <div class="exit-card"><span class="ic">⚠️</span><div><b>按撤诉处理</b><span>经传票传唤，无正当理由拒不到庭或未经许可中途退庭；被告<b>反诉</b>的，可以缺席判决</span></div></div>
+          </div>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">被告缺席</span>
+            <div class="exit-card"><span class="ic">🚫</span><div><b>缺席判决</b><span>被告经传票传唤无正当理由拒不到庭，或未经法庭许可中途退庭</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">6</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 6 站 · 宣判与审限</span>
+          <div class="qtext">普通程序 <mark>6 个月</mark>审结</div>
+          <div class="q-note">特殊情况经<b>本院院长</b>批准延长 6 个月；还需延长的，<b>报请上级法院</b>批准。当庭宣判 → <b>10 日内</b>发送判决书；判决书送达之日起 <b>15 日</b>不上诉即生效。原告在<mark>宣判前</mark>可申请撤诉，是否准许由法院裁定。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="track-cap end">🏁 一审终结</div>
+
+  <div class="track-cap mid">🔀 中途岔道 · 岔路结论卡</div>
+
+  <div class="fork-grid">
+    <div class="fork-card warn"><span class="fk-title">延期审理</span>必须到庭的当事人有正当理由没有到庭、当事人临时提出回避申请、需要通知新证人 / 调取新证据 / 重新鉴定勘验等 → <b>本次开庭推迟</b>，审限不重算。</div>
+    <div class="fork-card warn"><span class="fk-title">诉讼中止</span>一方<b>死亡需等继承人表态</b>、丧失诉讼行为能力尚未确定法代、本案须以<b>另一案结果为依据</b>而该案未审结等 → 程序暂停，原因消除后恢复。</div>
+    <div class="fork-card"><span class="fk-title">诉讼终结</span>原告死亡没有继承人或继承人放弃诉讼权利；追索赡养费、扶养费、抚育费案件的当事人死亡等 → 程序<b>彻底结束</b>。</div>
+    <div class="fork-card good"><span class="fk-title">先行判决</span>部分事实已经清楚 → 可以就该部分<b>先行判决</b>，其余继续审理。</div>
+  </div>
+
+  <div class="final-stamp"><div class="final-seal">七日立<br>六月结<br>小额终</div></div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="minsu-baoquan.html">上一主题：保全与先予执行</a><a href="minsu-ershen-zaishen.html">下一主题：民诉二审与再审</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span class="active"></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>

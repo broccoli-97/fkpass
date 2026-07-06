@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>刑法因果关系 · 法考速记卷</title>
+<meta name="description" content="刑法因果关系判断链：条件说→介入因素三标准（危险大小·异常性·作用力），附特殊体质、被害人自陷、医疗介入等经典案型。法考刑法难点。">
+<link rel="canonical" href="https://fkpass.pages.dev/yinguo-guanxi.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="刑法因果关系 · 法考速记卷">
+<meta property="og:description" content="刑法因果关系判断链：条件说→介入因素三标准（危险大小·异常性·作用力），附特殊体质、被害人自陷、医疗介入等经典案型。法考刑法难点。">
+<meta property="og:url" content="https://fkpass.pages.dev/yinguo-guanxi.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="刑法因果关系 · 法考速记卷">
+<meta name="twitter:description" content="刑法因果关系判断链：条件说→介入因素三标准（危险大小·异常性·作用力），附特殊体质、被害人自陷、医疗介入等经典案型。法考刑法难点。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 流程图判断链的少量页面级样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#a52422; --glow:rgba(165,36,34,.12); }  /* 刑法 = 朱红 */
+  .page{max-width:680px;}  /* 流程图：更窄的判断链阅读宽度 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .track-cap{display:flex; align-items:center; gap:8px; padding-left:54px; font-size:11.5px;
+    color:var(--folder-2); opacity:.75; margin-bottom:8px;}
+  .track-cap.end{margin-top:2px; margin-bottom:0;}
+  .track-cap.mid{margin-top:30px;}
+  .q-note{font-size:12px; font-weight:400; color:var(--ink-soft); line-height:1.65; margin-top:6px;}
+  .fork-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px;}
+  .fork-card{background:var(--folder); border-radius:10px; border-left:4px solid var(--accent);
+    padding:12px 14px; font-size:12.4px; line-height:1.65; color:var(--ink-soft);
+    box-shadow:0 8px 18px rgba(0,0,0,.28);}
+  .fork-card b{color:var(--ink);}
+  .fork-card .fk-title{display:block; font-family:'Noto Serif SC',serif; font-weight:700;
+    font-size:13.5px; color:var(--ink); margin-bottom:3px;}
+  .fork-card.good{border-left-color:var(--jade);}
+  .fork-card.good .fk-title{color:var(--jade);}
+  .fork-card.warn{border-left-color:var(--warn);}
+  .fork-card.warn .fk-title{color:var(--warn);}
+  .final-stamp{margin:30px auto 0; width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(180deg,var(--folder),var(--folder-2)); box-shadow:0 8px 18px rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;}
+  .final-seal{width:84px; height:84px; border-radius:50%; border:3px double var(--accent);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:16px; transform:rotate(-8deg); opacity:.9;
+    mix-blend-mode:multiply; line-height:1.2;}
+  @media (max-width:480px){ .track-cap{padding-left:0;} }
+</style>
+</head>
+<body data-subject="刑法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>刑法</b> · 因果关系</div>
+    <div class="pager"><a href="fanzui-goucheng.html">← 上一主题</a><a href="fanzui-zhuguan.html">下一主题 →</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 02</div>
+    <h1>因果关系判断链</h1>
+    <div class="cite">犯罪构成客观要件 · 学理通说</div>
+    <p>案例题最难缠的一环。套路只有两步：先用条件说问一句<b>"没有它，结果还会发生吗"</b>；出现介入因素时，再用<mark>危险大小 · 异常与否 · 作用大小</mark>三把尺子量一遍，决定结果算谁的。</p>
+  </section>
+
+  <div class="track-cap">▶ 开始判断</div>
+
+  <div class="flow-track">
+
+    <div class="step">
+      <div class="marker">1</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 1 问 · 条件关系</span>
+          <div class="qtext">没有该行为，结果还会发生吗？（无 A 则无 B）</div>
+          <div class="q-note">注意<b>假定的因果关系</b>不否定条件关系：死刑执行前被害人父亲抢先按下按钮——"反正也会死"不能开脱，仍有因果关系。</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">有条件关系 → 下一问</span>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">无</span>
+            <div class="exit-card"><span class="ic">🚫</span><div><b>因果关系不成立</b><span>结果不能归属于该行为；若行为本身有致险性，考虑<b>未遂</b>而非既遂</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">2</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 2 问 · 介入因素</span>
+          <div class="qtext">行为与结果之间是否插入了第三方行为、被害人自身行为或自然事件？</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">有介入 → 下一问</span>
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">无</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>直接归属</b><span>行为与结果之间没有"插队者"，因果关系成立</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">3</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 3 问 · 三把尺子</span>
+          <div class="qtext">介入因素<mark>异常</mark>吗？对结果的<mark>作用大</mark>吗？</div>
+          <div class="q-note">①先前行为制造的危险有多大；②介入因素在当时情境下是否<b>异常</b>（是不是先前行为通常会引起的）；③介入因素对结果的<b>作用力</b>是否独立、重大。</div>
+        </div>
+        <div class="dual-exit">
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">不异常</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>因果关系不中断</b><span>介入因素是先前行为通常引发的（追赶致逃跑坠亡、重伤后并发症）→ 结果仍归<b>先前行为</b></span></div></div>
+          </div>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">异常且作用大</span>
+            <div class="exit-card"><span class="ic">🚫</span><div><b>因果关系中断</b><span>独立、异常且足以单独造成结果（下毒后被仇家开枪打死）→ 结果归<b>介入者</b>，先前行为论未遂</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="track-cap end">🏁 归属确定 · 再查主观（故意 / 过失 / 意外）</div>
+
+  <div class="track-cap mid">📂 经典案型 · 岔路结论卡</div>
+
+  <div class="fork-grid">
+    <div class="fork-card good"><span class="fk-title">特殊体质</span>轻推血友病人致死：<b>因果关系肯定</b>（条件说），但刑事责任另查<b>主观</b>——无预见可能性的，属<mark>意外事件</mark>，不成立过失致人死亡。</div>
+    <div class="fork-card good"><span class="fk-title">被害人被迫自陷</span>持刀追砍，被害人跳河 / 跳楼身亡：逃跑是遇险时的<b>正常反应</b>，不异常 → 因果关系<b>不中断</b>。</div>
+    <div class="fork-card warn"><span class="fk-title">被害人自由选择</span>强奸后被害人数日后羞愤自杀：自杀出于<b>自由意志</b>、非行为直接引发 → 不认定"致人死亡"的加重结果。</div>
+    <div class="fork-card warn"><span class="fk-title">医疗介入</span>致<b>致命伤</b>后医生轻微失误，死亡仍归伤害行为；仅致<b>轻伤</b>却因重大医疗事故死亡 → 介入异常且作用大，因果<b>中断</b>。</div>
+    <div class="fork-card"><span class="fk-title">二重的因果（择一竞合）</span>甲、乙互不知情，各投<b>足以致死</b>的毒药：条件说修正，两行为与死亡<b>均有因果</b>，各成立既遂。</div>
+    <div class="fork-card"><span class="fk-title">重叠的因果</span>甲、乙各投 50% 致死量，合并致死：单独都不足致死、合并才致死 → <b>肯定因果关系</b>（累积因果）。</div>
+  </div>
+
+  <div class="final-stamp"><div class="final-seal">无A无B<br>介入三问</div></div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="fanzui-goucheng.html">上一主题：犯罪构成</a><a href="fanzui-zhuguan.html">下一主题：犯罪主观方面</a></div>
+    <div class="dots"><span></span><span class="active"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+</div>
+</body>
+</html>
