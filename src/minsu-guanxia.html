@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>民诉管辖 · 法考速记卷</title>
+<meta name="description" content="民诉管辖判断链：级别管辖→专属管辖→协议管辖→特殊地域→原告就被告，附移送、指定、管辖权异议与应诉管辖。法考民事诉讼法。">
+<link rel="canonical" href="https://fkpass.pages.dev/minsu-guanxia.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="民诉管辖 · 法考速记卷">
+<meta property="og:description" content="民诉管辖判断链：级别管辖→专属管辖→协议管辖→特殊地域→原告就被告，附移送、指定、管辖权异议与应诉管辖。法考民事诉讼法。">
+<meta property="og:url" content="https://fkpass.pages.dev/minsu-guanxia.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="民诉管辖 · 法考速记卷">
+<meta name="twitter:description" content="民诉管辖判断链：级别管辖→专属管辖→协议管辖→特殊地域→原告就被告，附移送、指定、管辖权异议与应诉管辖。法考民事诉讼法。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 流程图判断链的少量页面级样式。公共 token / 组件见 tokens.css */
+  :root{ --accent:#2f6168; --glow:rgba(47,97,104,.14); }  /* 民事诉讼法 = 黛青 */
+  .page{max-width:680px;}  /* 流程图：更窄的判断链阅读宽度 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .track-cap{display:flex; align-items:center; gap:8px; padding-left:54px; font-size:11.5px;
+    color:var(--folder-2); opacity:.75; margin-bottom:8px;}
+  .track-cap.end{margin-top:2px; margin-bottom:0;}
+  .track-cap.mid{margin-top:30px;}
+  .q-note{font-size:12px; font-weight:400; color:var(--ink-soft); line-height:1.65; margin-top:6px;}
+  .dual-exit .exit-link{min-width:200px;}
+  /* 岔路结论卡：管辖确定之后还会变动的五种情形 */
+  .fork-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px;}
+  .fork-card{background:var(--folder); border-radius:10px; border-left:4px solid var(--accent);
+    padding:12px 14px; font-size:12.4px; line-height:1.65; color:var(--ink-soft);
+    box-shadow:0 8px 18px rgba(0,0,0,.28);}
+  .fork-card b{color:var(--ink);}
+  .fork-card .fk-title{display:block; font-family:'Noto Serif SC',serif; font-weight:700;
+    font-size:13.5px; color:var(--ink); margin-bottom:3px;}
+  .fork-card.good{border-left-color:var(--jade);}
+  .fork-card.good .fk-title{color:var(--jade);}
+  .fork-card.warn{border-left-color:var(--warn);}
+  .fork-card.warn .fk-title{color:var(--warn);}
+  /* 终局印章：盖在牛皮纸圆垫上（multiply 需浅色纸面才显色，不能直接盖深色书桌） */
+  .final-stamp{margin:30px auto 0; width:96px; height:96px; border-radius:50%;
+    background:linear-gradient(180deg,var(--folder),var(--folder-2)); box-shadow:0 8px 18px rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;}
+  .final-seal{width:84px; height:84px; border-radius:50%; border:3px double var(--accent);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'Ma Shan Zheng',cursive; font-size:16px; transform:rotate(-8deg); opacity:.9;
+    mix-blend-mode:multiply; line-height:1.2;}
+  @media (max-width:480px){ .track-cap{padding-left:0;} }
+</style>
+</head>
+<body data-subject="民事诉讼法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>民事诉讼法</b> · 管辖</div>
+    <div class="pager"><a href="minshi-susong.html">← 上一主题</a><a href="index.html">🏠 目录</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 02</div>
+    <h1>民诉管辖</h1>
+    <div class="cite">民事诉讼法 §18–§39 · 民诉解释</div>
+    <p>"这个案子归哪个法院管？"先定级别，再沿着优先级往下问地域：<b>专属 → 协议 → 特殊 → 一般</b>。任何一站命中，管辖法院就地确定；一路问到底，才落回"原告就被告"的兜底原则。</p>
+  </section>
+
+  <div class="track-cap">▶ 开始判断</div>
+
+  <div class="flow-track">
+
+    <div class="step">
+      <div class="marker">0</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 0 站 · 级别管辖</span>
+          <div class="qtext">这案子归哪一级法院审？</div>
+          <div class="q-note">原则：第一审民事案件由<b>基层人民法院</b>管辖。</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">一般 → 基层法院，往下定地域</span>
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">中院</span>
+            <div class="exit-card"><span class="ic">⚠️</span><div><b>中级法院管一审</b><span>①重大涉外案件；②在本辖区有重大影响的案件；③海事、海商案件（由海事法院——专门法院——管辖）</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">1</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 1 问 · 优先级最高</span>
+          <div class="qtext">是否落入<mark>专属管辖</mark>三类案件？</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">否 → 下一问</span>
+          <div class="exit-link tone-no">
+            <span class="conn">↳</span><span class="exit-tag">是</span>
+            <div class="exit-card"><span class="ic">📌</span><div><b>专属法院独占，协议管辖无效</b><span>不动产纠纷→不动产所在地；港口作业纠纷→港口所在地；继承遗产纠纷→被继承人死亡时住所地或主要遗产所在地</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">2</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 2 问 · 意思自治</span>
+          <div class="qtext">有无有效的<mark>协议管辖</mark>？</div>
+          <div class="q-note">须<b>书面</b>约定；可选被告住所地、合同履行地、合同签订地、原告住所地、标的物所在地等<b>与争议有实际联系</b>的地点；不得违反级别管辖与专属管辖。</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">无 → 下一问</span>
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">有</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>从约定</b><span>协议有效即按约定的法院确定管辖</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">3</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 3 问 · 特殊地域管辖</span>
+          <div class="qtext">属于合同、侵权、保险、票据、运输等特殊类型纠纷？</div>
+        </div>
+        <div class="path-line">
+          <span class="continue-tag">否 → 落回兜底</span>
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">是</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b>按特殊规则择一起诉</b><span>合同纠纷→被告住所地或<b>合同履行地</b>；侵权纠纷→<b>侵权行为地</b>（实施地＋结果地）或被告住所地；保险、票据、运输等另有专条</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="marker">4</div>
+      <div class="step-main">
+        <div class="q-card"><span class="qn">第 4 站 · 一般地域管辖</span>
+          <div class="qtext">哪一站都没命中——兜底原则该向谁的住所地法院起诉？</div>
+        </div>
+        <div class="dual-exit">
+          <div class="exit-link tone-good">
+            <span class="conn">↳</span><span class="exit-tag">原则</span>
+            <div class="exit-card"><span class="ic">✅</span><div><b><mark>原告就被告</mark></b><span>被告住所地法院管辖；经常居住地与住所地不一致的，由<b>经常居住地</b>法院管辖</span></div></div>
+          </div>
+          <div class="exit-link tone-warn">
+            <span class="conn">↳</span><span class="exit-tag">例外</span>
+            <div class="exit-card"><span class="ic">⚠️</span><div><b><mark>被告就原告</mark></b><span>对不在我国领域内居住、下落不明或宣告失踪、被采取强制性教育措施、被监禁的人提起的<b>身份关系</b>诉讼→原告住所地（经常居住地）法院管</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="track-cap end">🏁 管辖法院确定</div>
+
+  <div class="track-cap mid">🔀 定了还会变 · 岔路结论卡</div>
+
+  <div class="fork-grid">
+    <div class="fork-card"><span class="fk-title">移送管辖</span>受理后发现<b>无管辖权</b>→裁定移送有管辖权的法院；受移送的法院<b>不得再自行移送</b>（只移送一次），认为无管辖权的报请上级指定。</div>
+    <div class="fork-card"><span class="fk-title">指定管辖</span>有管辖权的法院因特殊原因<b>不能行使</b>管辖权，或法院之间管辖争议<b>协商不成</b>→报请共同上级法院指定管辖。</div>
+    <div class="fork-card"><span class="fk-title">管辖权转移</span>经上级法院决定或同意，案件在<b>上下级法院之间</b>转移审理——只变<b>级别</b>不变地域，是级别管辖的变通。</div>
+    <div class="fork-card warn"><span class="fk-title">管辖权异议</span>当事人应在<b>提交答辩状期间</b>提出；法院<b>先审查、后审理</b>，异议成立裁定移送，不成立裁定驳回——该裁定<b>可以上诉</b>。</div>
+    <div class="fork-card good"><span class="fk-title">应诉管辖</span>当事人未提异议并<b>应诉答辩</b>的，视为受诉法院有管辖权；但<b>违反级别管辖、专属管辖</b>的除外。</div>
+  </div>
+
+  <div class="final-stamp"><div class="final-seal">先专属<br>次协议<br>后法定</div></div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="minshi-susong.html">上一主题：民事诉讼法</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+
+<a class="fab-feedback" href="feedback.html" title="留言反馈" style="position:fixed; bottom:22px; right:22px; display:flex; align-items:center; gap:8px; background:var(--brass); color:#2a2420; text-decoration:none; padding:12px 16px; border-radius:999px; box-shadow:0 10px 24px rgba(0,0,0,.4); font-size:13px; font-weight:700; z-index:50; border:2px solid rgba(255,255,255,.25);">💬 留言反馈</a>
+</body>
+</html>

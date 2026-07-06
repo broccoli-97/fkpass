@@ -28,7 +28,8 @@
         { "href": "falixue.html", "title": "法理学" },
         { "href": "xianfa.html", "title": "宪法" },
         { "href": "fazhishi.html", "title": "中国法律史" },
-        { "href": "zhiye-daode.html", "title": "司法制度与法律职业道德" }
+        { "href": "zhiye-daode.html", "title": "司法制度与法律职业道德" },
+        { "href": "lifa-fa.html", "title": "立法法与立法体制" }
       ]
     },
     {
@@ -44,7 +45,8 @@
         { "href": "danbao-wuquan.html", "title": "担保物权" },
         { "href": "hetong-dingli.html", "title": "合同的订立与效力" },
         { "href": "weiyue-zeren.html", "title": "违约责任" },
-        { "href": "qinquan-zeren.html", "title": "侵权责任" }
+        { "href": "qinquan-zeren.html", "title": "侵权责任" },
+        { "href": "hunyin-jiacheng.html", "title": "婚姻家庭与继承" }
       ]
     },
     {
@@ -58,7 +60,8 @@
         { "href": "zhengdang-fangwei.html", "title": "正当防卫认定" },
         { "href": "zuishu-xingtai.html", "title": "罪数形态" },
         { "href": "xingfa-tixi.html", "title": "刑罚体系" },
-        { "href": "liangxing-qingjie.html", "title": "量刑情节" }
+        { "href": "liangxing-qingjie.html", "title": "量刑情节" },
+        { "href": "caichan-fanzui.html", "title": "财产犯罪对比" }
       ]
     },
     {
@@ -74,7 +77,8 @@
         { "href": "xingsu-feifa-zhengju-paichu.html", "title": "非法证据排除" },
         { "href": "xingsu-zhencha.html", "title": "侦查程序" },
         { "href": "xingsu-bu-qisu.html", "title": "提起公诉与不起诉" },
-        { "href": "xingsu-shenpan.html", "title": "刑事审判程序" }
+        { "href": "xingsu-shenpan.html", "title": "刑事审判程序" },
+        { "href": "xingsu-ershen-zaishen.html", "title": "二审与再审程序" }
       ]
     },
     {
@@ -90,28 +94,41 @@
         { "href": "xingzheng-fuyi.html", "title": "行政复议" },
         { "href": "xingzheng-susong-shouan.html", "title": "诉讼受案范围" },
         { "href": "xingzheng-susong.html", "title": "行政诉讼" },
-        { "href": "xingzheng-peichang.html", "title": "行政赔偿" }
+        { "href": "xingzheng-peichang.html", "title": "行政赔偿" },
+        { "href": "xingzheng-xinxi-gongkai.html", "title": "政府信息公开" }
       ]
     },
     {
       "subject": "民事诉讼法",
       "accent": "#2f6168",
-      "pages": [{ "href": "minshi-susong.html", "title": "民事诉讼法" }]
+      "pages": [
+        { "href": "minshi-susong.html", "title": "民事诉讼法" },
+        { "href": "minsu-guanxia.html", "title": "民诉管辖" }
+      ]
     },
     {
       "subject": "商法",
       "accent": "#684a7a",
-      "pages": [{ "href": "shangfa.html", "title": "商法 · 公司法核心" }]
+      "pages": [
+        { "href": "shangfa.html", "title": "商法 · 公司法核心" },
+        { "href": "pochanfa.html", "title": "企业破产法" }
+      ]
     },
     {
       "subject": "经济法",
       "accent": "#9a5a38",
-      "pages": [{ "href": "jingjifa.html", "title": "经济法" }]
+      "pages": [
+        { "href": "jingjifa.html", "title": "经济法" },
+        { "href": "laodong-hetong.html", "title": "劳动合同法" }
+      ]
     },
     {
       "subject": "知识产权法",
       "accent": "#2c6e84",
-      "pages": [{ "href": "zhishichanquan.html", "title": "著作权 · 专利 · 商标" }]
+      "pages": [
+        { "href": "zhishichanquan.html", "title": "著作权 · 专利 · 商标" },
+        { "href": "shangbiao.html", "title": "商标法" }
+      ]
     },
     {
       "subject": "国际法",
@@ -119,7 +136,8 @@
       "pages": [
         { "href": "guoji-gongfa.html", "title": "国际公法" },
         { "href": "guoji-sifa.html", "title": "国际私法" },
-        { "href": "guoji-jingjifa.html", "title": "国际经济法" }
+        { "href": "guoji-jingjifa.html", "title": "国际经济法" },
+        { "href": "shewai-zhongcai.html", "title": "涉外仲裁与司法协助" }
       ]
     }
   ];

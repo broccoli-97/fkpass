@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财产犯罪对比 · 法考速记卷</title>
+<meta name="description" content="财产犯罪四栏对比：盗窃·抢劫·诈骗·侵占的行为方式、数额门槛与既遂标准，附转化型抢劫与抢劫八种加重。法考刑法速记。">
+<link rel="canonical" href="https://fkpass.pages.dev/caichan-fanzui.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="财产犯罪对比 · 法考速记卷">
+<meta property="og:description" content="财产犯罪四栏对比：盗窃·抢劫·诈骗·侵占的行为方式、数额门槛与既遂标准，附转化型抢劫与抢劫八种加重。法考刑法速记。">
+<meta property="og:url" content="https://fkpass.pages.dev/caichan-fanzui.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="财产犯罪对比 · 法考速记卷">
+<meta name="twitter:description" content="财产犯罪四栏对比：盗窃·抢劫·诈骗·侵占的行为方式、数额门槛与既遂标准，附转化型抢劫与抢劫八种加重。法考刑法速记。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 四列对比网格 / 补充卡 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:var(--seal); --glow:rgba(165,36,34,.12); }  /* 刑法 = 朱红 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:92px repeat(4,1fr); min-width:920px;}
+  .cmp .head{background:var(--accent);}
+  .cell ul{margin:0; padding-left:15px;}
+  .cell li{margin-bottom:3px;}
+  /* 补充卡：转化型抢劫 / 携带凶器抢夺 / 八种加重 */
+  .exgrid{margin-top:30px; display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .exnote{background:var(--folder); border-radius:12px; padding:18px 20px 16px;
+    box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); border-top:4px solid var(--accent);}
+  .exnote.wide{grid-column:1/-1;}
+  .exnote h4{margin:0 0 8px; font-family:'Noto Serif SC',serif; font-size:15px;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .exnote p{margin:0 0 6px; font-size:13px; color:var(--ink-soft); line-height:1.75;}
+  .exnote ul{margin:6px 0 0; padding-left:17px; font-size:12.8px; color:var(--ink-soft); line-height:1.75;}
+  .exnote li{margin-bottom:2px;}
+  /* 易错提示卡 */
+  .errnote{margin-top:28px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:880px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--warn); color:var(--warn);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0 0 8px; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  .errnote p:last-child{margin-bottom:0;}
+  @media (max-width:760px){
+    .exgrid{grid-template-columns:1fr;}
+    .errnote{flex-direction:column;}
+  }
+</style>
+</head>
+<body data-subject="刑法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>刑法</b> · 财产犯罪</div>
+    <div class="pager"><a href="liangxing-qingjie.html">← 上一主题</a><a href="index.html">🏠 目录</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 09</div>
+    <h1>财产犯罪：盗窃 · 抢劫 · 诈骗 · 侵占</h1>
+    <div class="cite">刑法 §263 – §270</div>
+    <p>四个罪名年年同台出现在案例题里。定罪的钥匙只有一把：看<mark>财物占有是怎么转移的</mark>——被偷走、被抢走、被骗走，还是<b>本来就在行为人手里</b>。</p>
+  </section>
+
+  <div class="hint">← 左右滑动查看完整对比 →</div>
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head">盗窃罪<small>§264</small></div>
+      <div class="head">抢劫罪<small>§263,§269</small></div>
+      <div class="head">诈骗罪<small>§266</small></div>
+      <div class="head">侵占罪<small>§270</small></div>
+
+      <div class="lbl">行为方式</div>
+      <div class="cell">违反<b>占有人意志</b>，以<mark>平和手段</mark>将他人占有的财物转移为自己占有；<b>不限于秘密窃取</b>，公开"平和取走"也是盗窃</div>
+      <div class="cell"><mark>当场</mark>以暴力、胁迫或其他方法<b>压制被害人反抗</b>，<mark>当场</mark>取得财物——"<b>两个当场</b>"缺一不可</div>
+      <div class="cell">虚构事实、隐瞒真相 → 对方陷入<b>错误认识</b> → 基于错误认识<mark>处分财产</mark>（须有<b>处分意识</b>）→ 行为人取得财物</div>
+      <div class="cell">先<b>合法持有</b>（代为保管物、遗忘物、埋藏物）→ <mark>变持有为所有</mark>，且<mark>拒不退还 / 拒不交出</mark></div>
+
+      <div class="lbl">数额 / 情节门槛</div>
+      <div class="cell">数额较大；或不问数额的四种行为类型：<ul>
+        <li><b>多次盗窃</b>（2年内3次）</li>
+        <li><b>入户盗窃</b></li>
+        <li><b>携带凶器盗窃</b></li>
+        <li><b>扒窃</b></li>
+      </ul></div>
+      <div class="cell"><mark>无数额要求</mark>——抢到一元也构罪；行为本身即侵犯人身 + 财产双重法益</div>
+      <div class="cell">数额较大（数额犯）；电信网络诈骗有独立的从严认定标准</div>
+      <div class="cell">数额较大 + 拒不退还；<mark>告诉才处理</mark>——刑法分则中唯一的<b>绝对亲告罪</b></div>
+
+      <div class="lbl">既遂标准</div>
+      <div class="cell">通说采<b>失控说</b>（辅以控制说）：被害人<mark>失去对财物的控制</mark>即既遂，小件财物揣入口袋即可</div>
+      <div class="cell">取得财物<b>或</b>致人轻伤以上，二者居一即既遂（人身、财产任一结果实现）</div>
+      <div class="cell">被害人基于错误认识处分财产、行为人或第三人<b>实际取得财产</b>时既遂</div>
+      <div class="cell"><b>拒不退还 / 拒不交出</b>时犯罪成立，通说认为无未遂形态之争</div>
+
+      <div class="lbl">一句话记忆</div>
+      <div class="cell"><b>违背意志，平和取财</b></div>
+      <div class="cell"><b>当场压制，当场拿钱</b></div>
+      <div class="cell"><b>骗你"自愿"交出去</b></div>
+      <div class="cell"><b>合法拿到，赖着不还</b></div>
+
+    </div>
+  </div>
+
+  <div class="exgrid">
+
+    <div class="exnote">
+      <h4>转化型抢劫 <span class="cite-chip">§269</span></h4>
+      <p>犯<b>盗窃、诈骗、抢夺</b>（前提仅限这三罪），为了<mark>窝藏赃物、抗拒抓捕、毁灭罪证</mark>，<mark>当场</mark>使用暴力或以暴力相威胁的 → <b>以抢劫罪论处</b>。</p>
+      <p>"当场"包括现场及被<b>紧追不舍</b>的延续过程；先行的盗、骗、夺未达数额较大，但情节较重的，仍可转化。</p>
+    </div>
+
+    <div class="exnote">
+      <h4>抢夺与"携带凶器抢夺" <span class="cite-chip">§267</span></h4>
+      <p><b>抢夺</b>：乘人不备、<mark>公然夺取</mark>，暴力针对<b>物</b>而非人（夺包不打人）。介于盗窃与抢劫之间。</p>
+      <p>§267② 法律拟制：<mark>携带凶器抢夺</mark>的，直接<b>以抢劫罪论处</b>——无需实际使用或向被害人显示凶器。</p>
+    </div>
+
+    <div class="exnote wide">
+      <h4>抢劫八种加重情形 <span class="cite-chip">§263</span><small>（10年以上、无期或死刑）</small></h4>
+      <ul>
+        <li><b>入户</b>抢劫（入户目的须具违法性；入户盗窃转化为抢劫的也算）</li>
+        <li>在<b>公共交通工具上</b>抢劫（含拦截机动车抢劫旅客）</li>
+        <li>抢劫<b>银行或者其他金融机构</b>（指抢经营资金、有价证券、客户资金）</li>
+        <li><b>多次抢劫</b>（3次以上）或抢劫<b>数额巨大</b></li>
+        <li>抢劫<b>致人重伤、死亡</b>（含过失致死；为劫财而<b>故意杀人</b>的，也以抢劫罪一罪定罪处罚）</li>
+        <li><b>冒充军警人员</b>抢劫（<b>真</b>军警显示身份抢劫的不属本项，依法从重处罚）</li>
+        <li><mark>持枪</mark>抢劫（须是真枪，含显示持有；假枪不算）</li>
+        <li>抢劫<b>军用物资</b>或<b>抢险、救灾、救济物资</b></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="errnote">
+    <div class="seal">易错<br>提醒</div>
+    <div>
+      <h4>诈骗 vs 盗窃：只问一件事——被害人有没有"处分行为"</h4>
+      <p>有基于错误认识的<mark>处分行为 + 处分意识</mark>才是诈骗；<b>调包</b>（用假货换真货）、利用<b>机器</b>取财（ATM、自动售货机<mark>不能被骗</mark>）都缺少"人"的处分 → 定<b>盗窃</b>。"骗"只是取财的幌子时，仍是盗窃。</p>
+      <p><b>抢夺 vs 盗窃</b>：抢夺是对<b>物</b>暴力、乘人不备<b>公然</b>夺取；平和地当着面拿走（对方来不及反应也未被压制）按<b>公开盗窃</b>处理——"秘密性"早已不是盗窃的构成要件。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="liangxing-qingjie.html">上一主题：量刑情节</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二审与再审程序 · 法考速记卷</title>
+<meta name="description" content="二审与再审两栏对比：上诉10日裁定5日、全面审查、上诉不加刑、发回重审只能一次；再审抗诉必须再审、一般不停止执行。法考刑诉速记。">
+<link rel="canonical" href="https://fkpass.pages.dev/xingsu-ershen-zaishen.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="二审与再审程序 · 法考速记卷">
+<meta property="og:description" content="二审与再审两栏对比：上诉10日裁定5日、全面审查、上诉不加刑、发回重审只能一次；再审抗诉必须再审、一般不停止执行。法考刑诉速记。">
+<meta property="og:url" content="https://fkpass.pages.dev/xingsu-ershen-zaishen.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="二审与再审程序 · 法考速记卷">
+<meta name="twitter:description" content="二审与再审两栏对比：上诉10日裁定5日、全面审查、上诉不加刑、发回重审只能一次；再审抗诉必须再审、一般不停止执行。法考刑诉速记。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 两列对比 / 易错卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#7a3b55; --glow:rgba(122,59,85,.12); }  /* 刑事诉讼法 = 绛紫 */
+  .hero h1{font-size:clamp(26px,4.5vw,34px); margin:6px 0 8px;}
+  .cmp{grid-template-columns:118px 1fr 1fr; min-width:680px;}
+  .cmp .head{background:var(--accent);}
+  .cell ul{margin:0; padding-left:15px;}
+  .cell li{margin-bottom:4px;}
+  .errnote{margin-top:28px; display:flex; gap:18px; align-items:flex-start; background:var(--folder);
+    border-radius:12px; padding:18px 22px; box-shadow:0 8px 18px rgba(0,0,0,.28); color:var(--ink); max-width:880px;}
+  .errnote .seal{flex:none; width:74px; height:74px; border-radius:50%; border:2.5px double var(--accent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'Ma Shan Zheng',cursive; font-size:15px;
+    transform:rotate(-9deg); opacity:.88; mix-blend-mode:multiply; text-align:center; line-height:1.15;}
+  .errnote h4{margin:0 0 6px; font-family:'Noto Serif SC',serif; font-size:15px;}
+  .errnote p{margin:0; font-size:13px; color:var(--ink-soft); line-height:1.7;}
+  @media (max-width:760px){
+    /* 两栏对比收缩为单列：隐藏表头，每格用 ::before 自带栏目标签 */
+    .cmp{grid-template-columns:1fr; min-width:0;}
+    .cmp .head{display:none;}
+    .cmp .lbl:first-child{display:none;}
+    .cmp .lbl{padding:12px 4px 0;}
+    .cell.c-es::before,.cell.c-zs::before{display:block; font-family:'Noto Serif SC',serif;
+      font-weight:900; font-size:12px; color:var(--accent); margin-bottom:6px;}
+    .cell.c-es::before{content:"二审 · 上诉审";}
+    .cell.c-zs::before{content:"再审 · 审判监督";}
+    .errnote{flex-direction:column;}
+  }
+</style>
+</head>
+<body data-subject="刑事诉讼法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>刑事诉讼法</b> · 二审与再审</div>
+    <div class="pager"><a href="xingsu-shenpan.html">← 上一主题</a><a href="index.html">🏠 目录</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 11</div>
+    <h1>二审与再审：上诉审 vs 审判监督</h1>
+    <div class="cite">刑事诉讼法 §227–§247 / §252–§258</div>
+    <p>一句话定性：<b>二审改的是"还没生效"的裁判，再审纠的是"已经生效"的错案。</b>谁能启动、多少天、能不能加刑，逐格对照，考场不再串门。</p>
+  </section>
+
+  <div class="table-scroll">
+    <div class="cmp">
+
+      <div class="lbl"></div>
+      <div class="head">第二审程序<small>§227–§247</small></div>
+      <div class="head">审判监督（再审）<small>§252–§258</small></div>
+
+      <div class="lbl">性质定位</div>
+      <div class="cell c-es"><b>上诉审</b>：针对<b>尚未生效</b>的一审判决、裁定，是"两审终审"中的第二个审级</div>
+      <div class="cell c-zs"><b>审判监督程序</b>：对<mark>已生效</mark>裁判确有错误的<b>纠错程序</b>，不是一个独立审级</div>
+
+      <div class="lbl">谁能启动</div>
+      <div class="cell c-es"><ul>
+        <li><b>上诉</b>：被告人、自诉人及其法定代理人——<b>不需要任何理由</b></li>
+        <li>辩护人、近亲属<b>经被告人同意</b>可以提出上诉</li>
+        <li><b>抗诉</b>：地方各级检察院认为同级一审裁判<b>确有错误</b></li>
+      </ul></div>
+      <div class="cell c-zs"><ul>
+        <li>各级法院院长发现错误 → 提交<b>审判委员会</b>处理</li>
+        <li>最高法 / 上级法院：<b>提审</b>或<b>指令再审</b></li>
+        <li>最高检 / 上级检察院<b>抗诉</b> → <mark>必须再审</mark></li>
+        <li>当事人及其法定代理人、近亲属的<b>申诉</b>只是<b>材料来源</b>，不必然启动</li>
+      </ul></div>
+
+      <div class="lbl">法定期限</div>
+      <div class="cell c-es">不服<b>判决</b>：<mark>10 日</mark>；不服<b>裁定</b>：<mark>5 日</mark>——都从<b>接到文书的第二日</b>起算。二审一般应在<b>2 个月</b>内审结</div>
+      <div class="cell c-zs">申诉一般应在<b>刑罚执行完毕后 2 年内</b>提出；超过 2 年但<b>可能宣告无罪</b>等法定情形的，仍应当受理。决定再审的，<b>3 个月</b>内审结（至多延长至 6 个月）</div>
+
+      <div class="lbl">审理方式</div>
+      <div class="cell c-es"><mark>全面审查</mark>：不受上诉、抗诉<b>范围</b>限制。应当<b>开庭</b>：对一审事实证据有异议可能影响定罪量刑的上诉案、被告人被判<b>死刑</b>的上诉案、检察院<b>抗诉</b>案；其余可以不开庭</div>
+      <div class="cell c-zs"><b>另行组成合议庭</b>。原来是<b>一审</b>案件 → 按一审程序审理，新判决<b>可以上诉、抗诉</b>；原来是<b>二审</b>案件或上级法院<b>提审</b> → 按二审程序审理，新判决是<b>终审</b>。再审期间<mark>一般不停止</mark>原判决、裁定的执行</div>
+
+      <div class="lbl">处理结果</div>
+      <div class="cell c-es"><ul>
+        <li>原判认定事实、适用法律正确且量刑适当 → <b>驳回上诉/抗诉，维持原判</b></li>
+        <li>适用法律有错误或量刑不当 → <b>改判</b></li>
+        <li>事实不清、证据不足 → 查清后改判，或撤销原判<b>发回重审</b>（<mark>只能发回一次</mark>）</li>
+      </ul></div>
+      <div class="cell c-zs">依所适用的一审 / 二审程序作出新的判决、裁定：错案纠正（含改判无罪），原判正确的<b>裁定驳回</b>、维持原判</div>
+
+      <div class="lbl">加刑限制</div>
+      <div class="cell c-es"><mark>上诉不加刑</mark>：只有<b>被告人一方</b>上诉的，二审不得加重被告人的刑罚；发回重审的，除有<b>新的犯罪事实</b>且检察院<b>补充起诉</b>外，原审法院也不得加刑。检察院<b>抗诉</b>或<b>自诉人上诉</b>的 → <b>不受限制</b></div>
+      <div class="cell c-zs">除检察院<b>抗诉</b>的以外，再审一般<b>不得加重</b>原审被告人的刑罚（"再审不加刑"）</div>
+
+    </div>
+  </div>
+
+  <div class="errnote">
+    <div class="seal">易错<br>提醒</div>
+    <div>
+      <h4>别把"死刑复核"混进两者</h4>
+      <p>死刑复核既不是二审也不是再审，而是<b>独立的特别程序</b>：死刑立即执行由<b>最高人民法院</b>核准，死缓由高级人民法院核准。另一个高频坑：<mark>当事人申诉 ≠ 启动再审</mark>——申诉只是引起法院、检察院审查的材料来源，能直接开启再审的只有法院系统（院长提交审委会、提审、指令再审）和检察院<b>抗诉</b>。</p>
+    </div>
+  </div>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="xingsu-shenpan.html">上一主题：刑事审判程序</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>

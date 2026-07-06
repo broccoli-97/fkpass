@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>涉外仲裁与司法协助 · 法考速记卷</title>
+<meta name="description" content="涉外仲裁与司法协助速记：涉外送达与取证、外国判决承认执行（条约或互惠）、纽约公约两项保留与拒绝事由、报核制度。法考三国法。">
+<link rel="canonical" href="https://fkpass.pages.dev/shewai-zhongcai.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="涉外仲裁与司法协助 · 法考速记卷">
+<meta property="og:description" content="涉外仲裁与司法协助速记：涉外送达与取证、外国判决承认执行（条约或互惠）、纽约公约两项保留与拒绝事由、报核制度。法考三国法。">
+<meta property="og:url" content="https://fkpass.pages.dev/shewai-zhongcai.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="涉外仲裁与司法协助 · 法考速记卷">
+<meta name="twitter:description" content="涉外仲裁与司法协助速记：涉外送达与取证、外国判决承认执行（条约或互惠）、纽约公约两项保留与拒绝事由、报核制度。法考三国法。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 纽约公约横卡。公共 token / 组件见 tokens.css */
+  :root{ --accent:#8f5066; --glow:rgba(143,80,102,.13); }  /* 国际法 = 绛红紫 */
+  .card.full{grid-column:1 / -1;}
+  /* 签名元素：纽约公约"两项保留"双方章 + 拒绝事由分栏 */
+  .ny-cols{display:grid; grid-template-columns:150px 1fr 1fr; gap:18px; align-items:start; margin-top:4px;}
+  .rsv-stamps{display:flex; flex-direction:column; gap:14px; align-items:center; padding-top:4px;}
+  .rsv-stamps .stamp-sq{transform:rotate(-7deg);}
+  .rsv-stamps .stamp-sq + .stamp-sq{transform:rotate(5deg);}
+  .ny-col h4{font-family:'Noto Serif SC',serif; font-size:14px; font-weight:700; color:var(--ink);
+    margin:0 0 10px; padding-bottom:6px; border-bottom:2px solid var(--accent);}
+  @media (max-width:760px){
+    .ny-cols{grid-template-columns:1fr;}
+    .rsv-stamps{flex-direction:row; justify-content:center;}
+  }
+</style>
+</head>
+<body data-subject="国际法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>国际法</b> · 涉外仲裁</div>
+    <div class="pager"><a href="guoji-jingjifa.html">← 上一主题</a><a href="index.html">🏠 目录</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">卷 04</div>
+    <h1>涉外仲裁与司法协助</h1>
+    <div class="tags">
+      <span class="subject-tag">三国法</span>
+      <span class="cite-chip">民诉法·涉外编 / 纽约公约 Art.V</span>
+      <span class="freq">🔥 三国法程序题主战场</span>
+    </div>
+    <p class="hero-desc">涉外案子怎么"送出去、取回来、认下来"。三条主线：<mark>司法协助</mark>（送达 + 取证）、外国<mark>判决</mark>靠<b>条约或互惠</b>、外国<mark>仲裁裁决</mark>靠<b>《纽约公约》</b>——三条路径的审查标准各不相同，混着记必错。</p>
+  </section>
+
+  <section class="grid">
+
+    <article class="card">
+      <h3><span class="ico">🧭</span>涉外管辖 · 特别规定</h3>
+      <p>涉外案件优先适用民诉法<b>涉外编的特别规定</b>，没有规定的才用一般规定。</p>
+      <ul class="cond-list">
+        <li><span class="dot">①</span><b>协议管辖</b>：书面协议选择我国法院即可管辖（2023 修法后<mark>不再要求"实际联系"</mark>）</li>
+        <li><span class="dot">②</span><b>应诉管辖</b>：被告未提管辖异议并<mark>应诉答辩或提出反诉</mark>的，视为我国法院有管辖权</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">⏱️</span>期间 · 被告在国内无住所</h3>
+      <div class="bignum"><span class="n">30</span><span class="u">日 ×2</span></div>
+      <ul class="cond-list">
+        <li><span class="dot">①</span><b>答辩期</b>：收到起诉状副本后 <mark>30 日</mark>，可申请<b>延期</b>，是否准许由法院决定</li>
+        <li><span class="dot">②</span><b>上诉期</b>：不服一审判决 <mark>30 日</mark>，同样可申请延期</li>
+      </ul>
+      <div class="note">审理期限<b>不受</b>一审普通程序 6 个月一般审限的限制——涉外期间"整体放宽"。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">🔍</span>调查取证（司法协助之二）</h3>
+      <p>原则：依<b>条约</b>规定的途径，没有条约的走<b>外交途径</b>。</p>
+      <p>我国驻外<b>使领馆</b>可以向具有<mark>中国国籍</mark>的当事人、证人取证，但两条红线：<b>不得违反所在国法律</b>、<b>不得采取强制措施</b>。</p>
+      <div class="note">外国机构、个人未经我国主管机关准许，不得在我国境内直接送达、取证——单方跨境取证是禁区。</div>
+    </article>
+
+    <article class="card wide">
+      <h3><span class="ico">📮</span>涉外送达（司法协助之一）· 七条途径</h3>
+      <ul class="cond-list">
+        <li><span class="dot">①</span>依<b>条约</b>途径——《<mark>海牙送达公约</mark>》缔约国间走中央机关转递</li>
+        <li><span class="dot">②</span><b>外交途径</b>——无条约时的兜底官方渠道</li>
+        <li><span class="dot">③</span>受送达人是<mark>中国籍</mark>的，可委托我国<b>使领馆</b>代为送达</li>
+        <li><span class="dot">④</span>向其<b>有权接收的诉讼代理人</b>，或在我国境内设立的<b>代表机构 / 有权接收的分支机构、业务代办人</b>送达</li>
+        <li><span class="dot">⑤</span><b>邮寄</b>送达——以受送达人<mark>所在国法律允许</mark>为前提</li>
+        <li><span class="dot">⑥</span><b>电子送达</b>——能够<mark>确认收悉</mark>的方式（所在国法律禁止的除外）</li>
+        <li><span class="dot">⑦</span>以上都不行 → <b>公告送达</b>：公告发出满 <mark>60 日</mark>即视为送达</li>
+      </ul>
+      <div class="note">⚠️ 新旧对照易考：涉外公告送达期间原为 <b>3 个月</b>，2023 年民诉法修正后缩短为 <mark>60 日</mark>——题目给"满三个月视为送达"按旧法处理即为错项。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">⚖️</span>外国法院判决的承认与执行</h3>
+      <p>审查依据：<mark>条约或互惠关系</mark>——两者都没有，原则上驳回申请（离婚判决除外）。</p>
+      <p>实质门槛：不违反我国<b>法律基本原则</b>、不损害<b>国家主权、安全和社会公共利益</b>的，裁定承认与执行。</p>
+      <div class="note"><b>离婚判决从宽</b>：当事人可直接向我国法院申请承认外国离婚判决，<mark>不以条约或互惠为前提</mark>。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">🤝</span>仲裁协议 · 独立性与"或裁或审"</h3>
+      <p><b>独立性</b>：仲裁条款独立存在，合同的变更、解除、终止或<mark>无效不影响仲裁条款的效力</mark>。</p>
+      <p><b>或裁或审</b>：有效仲裁协议<mark>排除法院管辖</mark>；一方起诉、对方在<b>首次开庭前</b>未以存在仲裁协议为由提出异议的，视为放弃仲裁协议。</p>
+      <div class="note">仲裁协议效力的准据法三层次：当事人<b>约定的法律</b> → 无约定则<b>仲裁机构所在地或仲裁地</b>法律 → 都没有则<b>法院地法</b>。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">🚫</span>我国涉外仲裁裁决 · 不予执行</h3>
+      <p>法院审查<mark>仅限程序性事项</mark>，<b>不审实体</b>：</p>
+      <ul class="cond-list">
+        <li><span class="dot">①</span>没有仲裁条款 / 仲裁协议</li>
+        <li><span class="dot">②</span>未获指定仲裁员或进行程序的<b>通知</b>，或非因自身原因未能陈述意见</li>
+        <li><span class="dot">③</span>仲裁庭<b>组成</b>或仲裁<b>程序</b>与仲裁规则不符</li>
+        <li><span class="dot">④</span><b>超裁</b>——裁决事项超出仲裁协议范围或仲裁机构权限</li>
+      </ul>
+      <div class="note"><b>报核制度</b>：拟不予执行或撤销涉外仲裁裁决的，须<mark>逐级上报至最高人民法院</mark>，最高法答复后方可裁定——"否定涉外裁决，最高法把关"。</div>
+    </article>
+
+    <article class="card full">
+      <h3><span class="ico">🗽</span>《纽约公约》· 承认及执行外国仲裁裁决</h3>
+      <div class="ny-cols">
+        <div class="rsv-stamps">
+          <span class="stamp-sq"><span>互惠</span><span>保留</span></span>
+          <span class="stamp-sq"><span>商事</span><span>保留</span></span>
+        </div>
+        <div class="ny-col">
+          <h4>我国加入时的两项保留</h4>
+          <p><b>互惠保留</b>：只对在<mark>另一缔约国领土内</mark>作出的裁决适用公约——非缔约国裁决不走公约渠道。</p>
+          <p><b>商事保留</b>：只对按我国法律属于<mark>商事</mark>法律关系（含契约性与非契约性）的争议适用——婚姻家庭、行政争议等不适用。</p>
+          <p class="note">两项保留是判断"某裁决能否依公约在我国执行"的<b>第一道门</b>，先过保留、再看拒绝事由。</p>
+        </div>
+        <div class="ny-col">
+          <h4>拒绝承认与执行的事由（Art.V）</h4>
+          <ul class="cond-list">
+            <li><span class="dot">①</span>当事人<b>无行为能力</b>，或仲裁协议<b>无效</b>（须由被申请人举证）</li>
+            <li><span class="dot">②</span>未获指定仲裁员或仲裁程序的<b>适当通知</b>，或未能申辩</li>
+            <li><span class="dot">③</span><b>超裁</b>（可分的，未超裁部分仍可执行）</li>
+            <li><span class="dot">④</span>仲裁庭<b>组成</b>或程序与协议 / 仲裁地法不符</li>
+            <li><span class="dot">⑤</span>裁决<b>尚未生效</b>，或已被仲裁地国撤销、停止执行</li>
+          </ul>
+          <p class="note">法院<mark>依职权主动审查</mark>的只有两项：争议依执行地国法<b>不可仲裁</b> + 违反执行地国<b>公共政策</b>——①–⑤都要靠被申请人主张并举证。</p>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="guoji-jingjifa.html">上一主题：国际经济法</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span></span><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>

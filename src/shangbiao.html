@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商标法 · 法考速记卷</title>
+<meta name="description" content="商标法速记：申请在先与先用权、绝对/相对禁止条款、注册程序与异议、撤三、驰名商标跨类保护、侵权与合法来源抗辩。法考知识产权法。">
+<link rel="canonical" href="https://fkpass.pages.dev/shangbiao.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="法考速记卷宗">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="商标法 · 法考速记卷">
+<meta property="og:description" content="商标法速记：申请在先与先用权、绝对/相对禁止条款、注册程序与异议、撤三、驰名商标跨类保护、侵权与合法来源抗辩。法考知识产权法。">
+<meta property="og:url" content="https://fkpass.pages.dev/shangbiao.html">
+<meta property="og:image" content="https://fkpass.pages.dev/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="商标法 · 法考速记卷">
+<meta name="twitter:description" content="商标法速记：申请在先与先用权、绝对/相对禁止条款、注册程序与异议、撤三、驰名商标跨类保护、侵权与合法来源抗辩。法考知识产权法。">
+<meta name="twitter:image" content="https://fkpass.pages.dev/og-cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<script src="sidebar.js" defer></script>
+<style>
+  /* 本页专属：主题色 + 注册流程步骤条 / 撤三角章。公共 token / 组件见 tokens.css */
+  :root{ --accent:#2c6e84; --glow:rgba(44,110,132,.14); }  /* 知识产权法 = 青 */
+  /* 签名元素：注册流程"档案传递"步骤条 */
+  .steps{display:flex; align-items:stretch; gap:8px; flex-wrap:wrap; margin:2px 0 12px;}
+  .steps .st{flex:1 1 0; min-width:118px; background:var(--folder-2); border:1px solid var(--line);
+    border-radius:9px; padding:9px 11px 8px; position:relative;}
+  .steps .st .no{font-family:'SF Mono',Consolas,monospace; font-size:10.5px; color:var(--accent);
+    letter-spacing:.06em; display:block; margin-bottom:3px;}
+  .steps .st b{font-family:'Noto Serif SC',serif; font-size:13.5px; color:var(--ink); display:block;}
+  .steps .st small{font-size:11px; color:var(--ink-soft); line-height:1.5; display:block; margin-top:2px;}
+  .steps .arw{flex:none; align-self:center; color:var(--accent); font-weight:900; font-size:15px; opacity:.75;}
+  /* 撤三角章：钉在卡片右上角（tokens.css 的 .stamp-sq 为居中通用样式） */
+  .card .stamp-sq{position:absolute; top:14px; right:14px; width:54px; height:54px;
+    font-size:17px; transform:rotate(8deg);}
+  @media (max-width:760px){
+    .steps{flex-direction:column;}
+    .steps .arw{transform:rotate(90deg); align-self:flex-start; margin-left:18px;}
+  }
+</style>
+</head>
+<body data-subject="知识产权法">
+<div class="page">
+
+  <div class="topbar">
+    <div class="crumb"><a href="index.html" title="返回首页目录">法考速记卷</a> · <b>知识产权法</b> · 商标法</div>
+    <div class="pager"><a href="zhishichanquan.html">← 上一主题</a><a href="index.html">🏠 目录</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="tab">商标</div>
+    <h1>商标法</h1>
+    <div class="tags">
+      <span class="subject-tag">商标法（2019 修正）</span>
+      <span class="cite-chip">§10–§13 · §33 · §49 · §57–§59</span>
+      <span class="freq">🔥 知产必考程序线</span>
+    </div>
+    <p class="hero-desc">比"三权对比"再深一层：命题人最爱把<b>程序期限</b>、<b>撤三</b>、<b>驰名商标</b>和<b>合理使用</b>混在一道题里。抓住四条线——<mark>怎么取得、什么不能注册、注册后怎么丢、别人用了算不算侵权</mark>。</p>
+  </section>
+
+  <section class="grid">
+
+    <article class="card">
+      <h3><span class="ico">🥇</span>取得原则</h3>
+      <p><mark>自愿注册 + 申请在先</mark>。两人申请同一/近似商标，先申请者得；<b>同日申请</b>时按顺序定输赢：</p>
+      <ul class="cond-list">
+        <li><span class="dot">①</span><b>使用在先</b>者初步审定</li>
+        <li><span class="dot">②</span>同日使用/均未使用 → <b>协商</b></li>
+        <li><span class="dot">③</span>协商不成 → <mark>抽签</mark>决定</li>
+      </ul>
+      <div class="note"><b>先用权抗辩</b>（§59Ⅲ）：他人申请注册前已使用<u>且有一定影响</u>的未注册商标，可在<mark>原使用范围内</mark>继续使用；注册人只能要求其<b>附加区别标识</b>，无权禁用。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">✨</span>显著性</h3>
+      <p>文字、图形、字母、数字、三维标志、颜色组合以及<mark>声音</mark>均可注册（§8）——声音商标是 2013 年后新增，<b>气味、味道</b>仍不行。</p>
+      <p>缺乏固有显著性的标志，<mark>经使用取得显著特征</mark>并便于识别的，可以注册（§11Ⅱ，即"<b>第二含义</b>"）。</p>
+      <div class="note">三维标志的<b>功能性排除</b>（§12）：仅由商品自身性质产生的形状 / 为获得技术效果所需的形状 / 使商品具有实质性价值的形状——<b>不得注册</b>，用了再久也救不回来。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">⏳</span>期限与续展</h3>
+      <div class="bignum"><span class="n">10</span><span class="u">年 / 次</span></div>
+      <p>有效期自<mark>核准注册之日</mark>起算 10 年（§39）——注意不是申请日，别与专利混。</p>
+      <ul class="cond-list">
+        <li><span class="dot">①</span>期满前 <b>12 个月</b>内办理续展</li>
+        <li><span class="dot">②</span>没赶上？再给 <b>6 个月宽展期</b></li>
+        <li><span class="dot">③</span>每次续 10 年，<mark>次数不限</mark></li>
+      </ul>
+      <div class="note">宽展期内仍未办理的，<b>注销</b>其注册商标（§40）。</div>
+    </article>
+
+    <article class="card wide">
+      <h3><span class="ico">🚫</span>绝对禁止 vs 相对禁止 · 一表辨清</h3>
+      <table class="compare">
+        <tr><th>对比项</th><th>绝对禁止（§10）</th><th>相对禁止（§11）</th></tr>
+        <tr><td class="k">法律效果</td><td><b>不得作为商标使用</b>——注册、贴牌统统不行</td><td><b>不得注册</b>，但可以使用；用出显著性还能注册</td></tr>
+        <tr><td class="k">典型情形</td><td>国旗国徽国歌、中央国家机关名称及所在地标志性建筑、红十字/红新月、<mark>带有欺骗性</mark>、有害于社会主义道德风尚</td><td>仅有本商品的<b>通用名称、图形、型号</b>；仅直接表示商品<b>质量、主要原料、功能、用途</b>等；其他缺乏显著特征</td></tr>
+        <tr><td class="k">能否补救</td><td>不能——用得再久也是违法使用</td><td>能——<mark>经使用取得显著性</mark>（第二含义）即可注册</td></tr>
+      </table>
+      <div class="note">陷阱句式："某标志不得注册为商标，则一定不得使用"——只有落入 <b>§10</b> 才对；落入 §11 的可以照常使用。</div>
+    </article>
+
+    <article class="card">
+      <div class="stamp-sq">撤三</div>
+      <h3><span class="ico">🗑️</span>撤 三</h3>
+      <p>注册商标有下列情形之一，<mark>任何单位或个人</mark>都可申请商标局撤销（§49Ⅱ）：</p>
+      <ul class="cond-list">
+        <li><span class="dot">①</span>成为其核定商品的<b>通用名称</b>（"优盘"之殇）</li>
+        <li><span class="dot">②</span>无正当理由<mark>连续三年不使用</mark></li>
+      </ul>
+      <div class="note">是"<b>撤销</b>"不是"无效宣告"：撤销自公告之日起失效、只向<b>将来</b>发生效力；无效宣告则视为<b>自始不存在</b>。</div>
+    </article>
+
+    <article class="card wide">
+      <h3><span class="ico">📮</span>注册程序 · 档案怎么走</h3>
+      <div class="steps">
+        <div class="st"><span class="no">STEP 1</span><b>申请</b><small>一标一件，可多类别</small></div>
+        <div class="arw">➜</div>
+        <div class="st"><span class="no">STEP 2 · §28</span><b>审查 → 初步审定</b><small>收到申请起 <b>9 个月</b>内审完，或驳回</small></div>
+        <div class="arw">➜</div>
+        <div class="st"><span class="no">STEP 3 · §33</span><b>公告 3 个月异议期</b><small>相对理由：<b>在先权利人 / 利害关系人</b>；绝对理由：<b>任何人</b></small></div>
+        <div class="arw">➜</div>
+        <div class="st"><span class="no">STEP 4</span><b>核准注册</b><small>无异议或异议不成立 → 发证公告</small></div>
+      </div>
+      <p>异议成立 → <b>不予注册</b>，申请人可向商标评审部门申请<b>不予注册复审</b>（§35）；已经注册的，还有<mark>无效宣告</mark>这条后路（§44、§45）。</p>
+      <div class="note">无效宣告的期限差：<b>绝对理由</b>不受时间限制、任何人可提；<b>相对理由</b>须自注册之日起 <b>5 年内</b>提出——但<mark>驰名商标所有人对恶意注册不受 5 年限制</mark>。</div>
+    </article>
+
+    <article class="card">
+      <h3><span class="ico">👑</span>驰名商标</h3>
+      <p>认定十二字诀：<mark>个案认定、按需认定、被动保护</mark>（§14）——不存在"终身驰名"的红本本。</p>
+      <ul class="cond-list">
+        <li><span class="dot">已</span><b>已注册</b>驰名 → <mark>跨类保护</mark>：不相同/不类似商品上误导公众、致其利益可能受损的，禁注 + 禁用</li>
+        <li><span class="dot">未</span><b>未注册</b>驰名 → 仅<b>同类/类似</b>商品：复制、摹仿、翻译且<b>容易导致混淆</b>的，禁注 + 禁用</li>
+      </ul>
+      <div class="note">§14Ⅴ：生产经营者<b>不得</b>将"驰名商标"字样用于商品、包装或<mark>广告宣传</mark>、展览等商业活动。</div>
+    </article>
+
+    <article class="card wide">
+      <h3><span class="ico">⚔️</span>侵权与正当使用</h3>
+      <ul class="cond-list">
+        <li><span class="dot">①</span><b>同一种商品 + 相同商标</b>：未经许可即侵权——<mark>推定混淆</mark>，无须再证明（§57①）</li>
+        <li><span class="dot">②</span>同种商品近似商标 / <b>类似商品</b>相同或近似商标：须<mark>容易导致混淆</mark>才侵权（§57②）</li>
+        <li><span class="dot">③</span>销售侵权商品也是侵权；但销售者<b>不知情</b>且能证明<b>合法来源</b>并说明提供者的 → <mark>不承担赔偿责任</mark>，仍须停止销售（§64Ⅱ）</li>
+      </ul>
+      <div class="note"><b>正当使用不侵权</b>（§59Ⅰ）：注册商标中含有的通用名称，或直接表示商品质量、原料、功能、产地等的<b>描述性使用</b>，以及善意使用<b>自己的名称</b>——权利人无权禁止。答题口诀：<mark>描述自己的货，不是蹭别人的牌</mark>。</div>
+    </article>
+
+  </section>
+
+  <div class="pagefoot">
+    <div class="footnav"><a href="zhishichanquan.html">上一主题：著作权 · 专利 · 商标</a><a href="index.html">返回首页</a></div>
+    <div class="dots"><span></span><span class="active"></span></div>
+  </div>
+
+</div>
+</body>
+</html>
