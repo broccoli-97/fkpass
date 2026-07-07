@@ -27,6 +27,8 @@
 <style>
   /* 本页专属：主题色 + 效力位阶梯。公共 token / 组件见 tokens.css */
   :root{ --accent:#46506b; --glow:rgba(70,80,107,.14); }  /* 理论法 = 黛青灰 */
+  /* 裁决/备案两卡条文最长，放宽占位减少折行 */
+  .card.full{grid-column:1 / -1;}
   /* 角章：钉在"法律保留"卡右上角（tokens.css 的 .seal 为居中通用样式） */
   .seal{position:absolute; top:14px; right:14px; width:64px; height:64px; border-radius:50%;
     border:2.5px double var(--seal); color:var(--seal); display:flex; align-items:center; justify-content:center;
@@ -132,7 +134,7 @@
       <div class="note">经济特区法规、自治条例和单行条例<b>依法变通</b>的，在本地方<b>优先适用</b>变通规定。</div>
     </article>
 
-    <article class="card">
+    <article class="card wide">
       <h3><span class="ico">🧭</span>同位阶冲突 · 谁来裁决</h3>
       <ul class="cond-list">
         <li><span class="dot">①</span>法律之间新一般 vs 旧特别 → <b>全国人大常委会</b>裁决</li>
@@ -143,7 +145,7 @@
       <div class="note">③ 是最爱设坑的一条——国务院<b>不能直接拍板适用部门规章</b>，必须上交常委会。</div>
     </article>
 
-    <article class="card">
+    <article class="card full">
       <h3><span class="ico">🗂️</span>备案审查 · 改变与撤销</h3>
       <ul class="cond-list">
         <li><span class="dot">①</span>全国人大：<b>改变或撤销</b>其常委会制定的不适当的法律</li>
