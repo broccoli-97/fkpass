@@ -16,7 +16,9 @@
     "format:check": "prettier --check \"test/**/*.js\" \"scripts/**/*.mjs\" \"*.config.js\" \"*.json\" \".github/**/*.yml\"",
     "format": "prettier --write \"test/**/*.js\" \"scripts/**/*.mjs\" \"*.config.js\" \"*.json\" \".github/**/*.yml\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html && npm run format:check",
-    "check": "npm run lint && npm run check:head && npm test"
+    "check": "npm run lint && npm run check:head && npm run check:sitemap && npm test",
+    "gen:sitemap": "node scripts/gen-sitemap.mjs",
+    "check:sitemap": "node scripts/gen-sitemap.mjs --check"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

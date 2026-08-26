@@ -12,7 +12,8 @@ src/         the published site — HTML pages + tokens.css (shared stylesheet)
 functions/   Cloudflare Pages Function: api/messages.js  (feedback board API)
 docs/        design spec (SKILL.md, components.md), Cloudflare setup, .skill bundle
 test/        node --test suites (design system + messages API)
-scripts/     dev-only Node checks (e.g. check-head.mjs — <head> consistency)
+scripts/     dev-only Node checks (e.g. check-head.mjs — <head> consistency,
+             gen-sitemap.mjs — sitemap.xml from git log)
 ```
 
 ## Preview
@@ -28,9 +29,10 @@ when previewing locally).
 ## Dev tooling (Node 20+)
 
 ```bash
-npm install     # one-time
-npm run check   # lint (ESLint + Stylelint + html-validate + Prettier) + head-consistency check + tests
-npm test        # tests only
+npm install        # one-time
+npm run check      # lint + head/sitemap consistency checks + tests
+npm run gen:sitemap # regenerate src/sitemap.xml after adding a page
+npm test           # tests only
 ```
 
 ## Deploy
