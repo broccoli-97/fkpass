@@ -34,6 +34,7 @@
   // 构建一次浮层骨架，全站复用
   function build() {
     overlay = el('div', 'term-overlay');
+    overlay.id = 'term-overlay';
     overlay.hidden = true;
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
@@ -172,6 +173,7 @@
     for (var i = 0; i < terms.length; i++) {
       terms[i].setAttribute('aria-haspopup', 'dialog');
       terms[i].setAttribute('aria-expanded', 'false');
+      terms[i].setAttribute('aria-controls', 'term-overlay');
     }
     document.addEventListener('click', function (e) {
       var btn = e.target.closest ? e.target.closest('.term') : null;
