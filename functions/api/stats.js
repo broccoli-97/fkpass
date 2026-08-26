@@ -4,9 +4,14 @@
 // 复用留言板的同一个 KV：绑定名 FEEDBACK_KV，计数存在 "site-stats" 键下，
 // 单个 JSON {visits,likes,dislikes} 读写各 1 次——无需新增任何绑定。
 // 说明：KV 最终一致，高并发下自增可能少计；对学习站点足够（与留言板同等取舍）。
+//
+// 防刷：visit 计数前端已用 sessionStorage 每会话去重，服务端再按 IP 去重——每 IP
+// 在 VISIT_DEDUP_MS 内只计一次 visit（键带 expirationTtl 自动过期）。直接 curl
+// 重复 POST visit 不会把访问数刷到天文数字。like/dislike 是用户主动操作，不限流。
 
 const KEY = 'site-stats';
 const FIELDS = ['visits', 'likes', 'dislikes'];
+const VISIT_DEDUP_MS = 30 * 60 * 1000; // 同一 IP 30 分钟内只计一次访问
 
 // 每个 action 对应字段增量；unlike/undislike 用于撤销或切换投票
 const DELTAS = {
@@ -25,6 +30,27 @@ function json(data, status = 200) {
       'Cache-Control': 'no-store',
     },
   });
+}
+
+// 取客户端 IP。Cloudflare Pages 下走 CF-Connecting-IP；缺失（本地预览/测试）时
+// 返回 null，调用方据此决定是否去重（不去重但不拒绝）。
+function clientIP(request) {
+  const ip = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For');
+  if (!ip) return null;
+  return ip.split(',')[0].trim();
+}
+
+// 返回 true 表示这次 visit 应计数（该 IP 在窗口内首次），false 表示已计过。
+async function visitShouldCount(kv, ip, now) {
+  const vk = `visit-${ip}`;
+  const last = Number(await kv.get(vk));
+  if (Number.isFinite(last) && now - last < VISIT_DEDUP_MS) return false;
+  try {
+    await kv.put(vk, String(now), { expirationTtl: Math.ceil(VISIT_DEDUP_MS / 1000) + 60 });
+  } catch {
+    await kv.put(vk, String(now));
+  }
+  return true;
 }
 
 // 把 KV 里的原始值规整成 {visits,likes,dislikes} 三个非负整数（坏数据归零）
@@ -69,6 +95,15 @@ export async function onRequestPost({ request, env }) {
   const delta = DELTAS[body && body.action];
   if (!delta) {
     return json({ error: 'action 必须是 visit / like / unlike / dislike / undislike' }, 400);
+  }
+
+  // visit 按 IP 去重：同一 IP 在窗口内重复 visit 不再 +1（防 curl 刷量）。无 IP 头
+  // 时（本地预览/单测桩）照常计数，避免把正常的去重逻辑在无头环境下误关。
+  if (body.action === 'visit') {
+    const ip = clientIP(request);
+    if (ip && !(await visitShouldCount(kv, ip, Date.now()))) {
+      return json(readStats(await kv.get(KEY))); // 维持计数不变
+    }
   }
 
   const stats = readStats(await kv.get(KEY));

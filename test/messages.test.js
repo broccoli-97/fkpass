@@ -27,6 +27,32 @@ function postReq(body) {
   });
 }
 
+// 带客户端 IP 头的请求，用于测限流（Cloudflare 下走 CF-Connecting-IP）
+function postReqFrom(ip, body) {
+  return new Request('https://example.com/api/messages', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'CF-Connecting-IP': ip },
+    body: JSON.stringify(body),
+  });
+}
+
+// 能记录所有 put 写入的键，用于断言限流窗口键 / visit 去重键是否落地
+function makeTrackingKV(initial) {
+  const store = new Map(initial ? [[KEY, JSON.stringify(initial)]] : []);
+  const puts = [];
+  return {
+    store,
+    puts,
+    async get(k) {
+      return store.has(k) ? store.get(k) : null;
+    },
+    async put(k, v) {
+      puts.push(k);
+      store.set(k, v);
+    },
+  };
+}
+
 test('GET returns [] when the store is empty', async () => {
   const res = await onRequestGet({ env: { FEEDBACK_KV: makeKV() } });
   assert.equal(res.status, 200);
@@ -132,4 +158,56 @@ test('the stored list is capped at 500 (MAX_ITEMS), keeping the newest', async (
   assert.equal(stored.length, 500);
   assert.equal(stored[stored.length - 1].message, 'newest');
   assert.equal(stored[0].id, '1'); // the oldest (id '0') was dropped
+});
+
+test('honeypot: a filled website field is silently dropped (201 but not stored)', async () => {
+  const kv = makeKV();
+  const res = await onRequestPost({
+    request: postReq({ message: 'spam content', website: 'http://buy-now.example' }),
+    env: { FEEDBACK_KV: kv },
+  });
+  assert.equal(res.status, 201); // 假装成功，不给机器人反馈
+  assert.equal(await kv.get(KEY), null); // 但不落库
+});
+
+test('honeypot: an empty website field stores normally', async () => {
+  const kv = makeKV();
+  const res = await onRequestPost({
+    request: postReq({ message: 'real msg', website: '   ' }),
+    env: { FEEDBACK_KV: kv },
+  });
+  assert.equal(res.status, 201);
+  assert.equal(JSON.parse(await kv.get(KEY)).length, 1);
+});
+
+test('rate limit: a single IP is throttled after RATE_MAX messages in the window', async () => {
+  const kv = makeTrackingKV();
+  const env = { FEEDBACK_KV: kv };
+  // 同一 IP 连发三条：前 3 条 201
+  for (let i = 0; i < 3; i++) {
+    const res = await onRequestPost({
+      request: postReqFrom('203.0.113.7', { message: `msg ${i}` }),
+      env,
+    });
+    assert.equal(res.status, 201);
+  }
+  const stored = JSON.parse(await kv.get(KEY));
+  assert.equal(stored.length, 3);
+  // 第 4 条被限流：429，且不再写入留言列表
+  const blocked = await onRequestPost({
+    request: postReqFrom('203.0.113.7', { message: 'msg 3' }),
+    env,
+  });
+  assert.equal(blocked.status, 429);
+  assert.equal(JSON.parse(await kv.get(KEY)).length, 3);
+});
+
+test('rate limit: different IPs do not share a window', async () => {
+  const kv = makeTrackingKV();
+  const env = { FEEDBACK_KV: kv };
+  const r1 = await onRequestPost({ request: postReqFrom('203.0.113.1', { message: 'a' }), env });
+  const r2 = await onRequestPost({ request: postReqFrom('198.51.100.2', { message: 'b' }), env });
+  assert.equal(r1.status, 201);
+  assert.equal(r2.status, 201);
+  assert.equal(JSON.parse(await kv.get(KEY)).length, 2);
 });

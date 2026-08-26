@@ -46,6 +46,8 @@
     color:var(--ink); margin-bottom:30px;}
   .panel h2{font-family:'Noto Serif SC',serif; font-size:16px; margin:0 0 16px; display:flex; align-items:center; gap:8px;}
   .row2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  /* 蜜罐：对真人隐藏（屏幕外/不可见），挡机器人自动填充 */
+  .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; opacity:0;}
   label{display:block; font-size:12px; color:var(--ink-soft); margin-bottom:5px; font-weight:700;}
   input[type="text"], textarea{
     width:100%; border:1.5px solid var(--line); background:#fbf6e8; color:var(--ink);
@@ -114,6 +116,11 @@
           <label for="fcontact">联系方式（选填，微信 / 邮箱）</label>
           <input type="text" id="fcontact" maxlength="60" placeholder="方便回复你时使用">
         </div>
+      </div>
+      <!-- 蜜罐字段：真人看不见也不该填，机器人会填；服务端见到非空即丢弃 -->
+      <div class="hp" aria-hidden="true">
+        <label for="fweb">网站（请勿填写）</label>
+        <input type="text" id="fweb" name="website" tabindex="-1" autocomplete="off">
       </div>
       <label for="fmsg">留言内容</label>
       <textarea id="fmsg" maxlength="500" placeholder="例如：求一张《缔约过失责任》的对比卡片！"></textarea>
@@ -240,7 +247,8 @@
     var payload = {
       name: nameEl.value.trim().slice(0,30),
       contact: contactEl.value.trim().slice(0,60),
-      message: message.slice(0,500)
+      message: message.slice(0,500),
+      website: (document.getElementById('fweb') || {}).value || ''
     };
 
     var ok = false;

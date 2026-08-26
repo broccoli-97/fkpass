@@ -26,6 +26,15 @@ function postReq(body) {
   });
 }
 
+// 带客户端 IP 头的请求，用于测 visit 服务端去重
+function postReqFrom(ip, body) {
+  return new Request('https://example.com/api/stats', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'CF-Connecting-IP': ip },
+    body: JSON.stringify(body),
+  });
+}
+
 test('GET returns zeroed counts when empty', async () => {
   const res = await onRequestGet({ env: { FEEDBACK_KV: makeKV() } });
   assert.equal(res.status, 200);
@@ -109,4 +118,35 @@ test('POST 400 on a non-JSON body', async () => {
 test('POST 500 when KV is unbound', async () => {
   const res = await onRequestPost({ request: postReq({ action: 'like' }), env: {} });
   assert.equal(res.status, 500);
+});
+
+test('visit dedup: the same IP only counts once within the window', async () => {
+  const kv = makeKV();
+  const env = { FEEDBACK_KV: kv };
+  // 同一 IP 连发 5 次 visit，访问数只 +1
+  for (let i = 0; i < 5; i++) {
+    await onRequestPost({ request: postReqFrom('203.0.113.7', { action: 'visit' }), env });
+  }
+  const res = await onRequestGet({ env });
+  assert.equal((await res.json()).visits, 1);
+});
+
+test('visit dedup: different IPs each count once', async () => {
+  const kv = makeKV();
+  const env = { FEEDBACK_KV: kv };
+  await onRequestPost({ request: postReqFrom('203.0.113.1', { action: 'visit' }), env });
+  await onRequestPost({ request: postReqFrom('198.51.100.2', { action: 'visit' }), env });
+  const res = await onRequestGet({ env });
+  assert.equal((await res.json()).visits, 2);
+});
+
+test('visit dedup: like/dislike still work and are not affected by dedup', async () => {
+  const kv = makeKV();
+  const env = { FEEDBACK_KV: kv };
+  await onRequestPost({ request: postReqFrom('203.0.113.7', { action: 'visit' }), env });
+  await onRequestPost({ request: postReqFrom('203.0.113.7', { action: 'visit' }), env }); // dedup'd
+  await onRequestPost({ request: postReqFrom('203.0.113.7', { action: 'like' }), env });
+  await onRequestPost({ request: postReqFrom('203.0.113.7', { action: 'like' }), env }); // like 不限
+  const res = await onRequestGet({ env });
+  assert.deepEqual(await res.json(), { visits: 1, likes: 2, dislikes: 0 });
 });
