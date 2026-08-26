@@ -49,4 +49,15 @@ export default [
     },
     rules: { ...js.configs.recommended.rules },
   },
+
+  // Dev-only Node scripts (e.g. head-consistency check). Not shipped.
+  {
+    files: ['scripts/**/*.mjs'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: { ...globals.node },
+    },
+    rules: { ...js.configs.recommended.rules },
+  },
 ];
