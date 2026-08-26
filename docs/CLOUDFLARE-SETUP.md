@@ -38,10 +38,10 @@ Cloudflare 控制台 → **Storage & Databases → KV → Create namespace**，�
 
 ```bash
 npm i -g wrangler
-wrangler pages dev . --kv FEEDBACK_KV
+wrangler pages dev src --kv FEEDBACK_KV
 ```
 
-`--kv FEEDBACK_KV` 会起一个本地模拟 KV，访问它给出的地址即可联调读写。
+`--kv FEEDBACK_KV` 会起一个本地模拟 KV，访问它给出的地址即可联调读写。注意第一个位置参数是 `src`（站点文件所在目录），不是仓库根——部署时 Cloudflare 把 `src/` 拍平成站点根，本地预览也要对齐这个目录，否则页面会找不到 `tokens.css`。
 
 ## 五、验证
 
