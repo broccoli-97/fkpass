@@ -72,9 +72,25 @@ if (process.argv.includes('--check')) {
     process.exit(1);
   }
   if (current !== generated) {
-    console.error(`sitemap check failed: ${OUT} is out of sync with git history.`);
-    console.error('A page was added/edited/removed without regenerating the sitemap.');
-    console.error('Run `npm run gen:sitemap` to fix.');
+    let isShallow = false;
+    try {
+      isShallow =
+        execSync('git rev-parse --is-shallow-repository', {
+          encoding: 'utf8',
+        }).trim() === 'true';
+    } catch {
+      isShallow = false;
+    }
+    if (isShallow) {
+      console.error(
+        'sitemap check failed: git repository is a shallow clone (fetch-depth is not full).',
+      );
+      console.error('Full git history is needed to derive file commit dates.');
+    } else {
+      console.error(`sitemap check failed: ${OUT} is out of sync with git history.`);
+      console.error('A page was added/edited/removed without regenerating the sitemap.');
+      console.error('Run `npm run gen:sitemap` to fix.');
+    }
     process.exit(1);
   }
   console.log(`sitemap check passed (${pages.length} entries).`);
