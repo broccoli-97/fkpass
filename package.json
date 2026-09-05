@@ -3,7 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "法考速记卷宗 — static design-system site + Cloudflare Pages feedback API. The published site has no build step; this package.json exists only for dev tooling (tests, linters, CI, deploy).",
+  "description": "法考速记卷宗 (Legal-Exam Cheat-Sheet Casefile) — 专为法考打造的沉浸式复古案卷风静态高频考点速记与检索系统。",
+  "homepage": "https://fkpass.pages.dev/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/broccoli-97/fkpass.git"
+  },
+  "keywords": [
+    "法考",
+    "法律职业资格考试",
+    "司法考试",
+    "考点速记",
+    "备考卡片",
+    "案卷卡片",
+    "思维导图",
+    "民法",
+    "刑法",
+    "行政法",
+    "诉讼法",
+    "chinese-bar-exam",
+    "legal-exam",
+    "cheat-sheet",
+    "flashcards",
+    "study-site",
+    "cloudflare-pages",
+    "static-site"
+  ],
   "engines": {
     "node": ">=20"
   },
